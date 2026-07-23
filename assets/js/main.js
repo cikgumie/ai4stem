@@ -19,10 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const typeElement = document.getElementById('typewriter-text');
     if (typeElement) {
         const phrases = [
-            "Dengan Kuasa AI",
-            "Hanya Dalam 1 Minit",
-            "Masa Depan Digital",
-            "Lebih Mudah & Pintar"
+            "Melalui Program STEM",
+            "Dengan Teknologi AI",
+            "Inovasi & Reka Cipta",
+            "Sains & Matematik",
+            "Pendidikan Masa Hadapan"
         ];
         initTypewriter(typeElement, phrases);
     }
@@ -49,15 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
         initTypewriter(visualTypeElement, visualPhrases);
     }
 
-    // 6. Initialize Typewriter (Audio AI)
-    const audioTypeElement = document.getElementById('typewriter-audio');
-    if (audioTypeElement) {
-        const audioPhrases = [
-            "Modul Penjana Audio AI",
-            "Muzik & Suara Masa Depan",
-            "Seni Bunyi Digital"
+    // 6. Initialize Typewriter (Gamifikasi AI)
+    const gamifikasiTypeElement = document.getElementById('typewriter-gamifikasi');
+    if (gamifikasiTypeElement) {
+        const gamifikasiPhrases = [
+            "Modul Gamifikasi AI",
+            "Bilik Darjah Masa Depan",
+            "Seni Pembelajaran Interaktif"
         ];
-        initTypewriter(audioTypeElement, audioPhrases);
+        initTypewriter(gamifikasiTypeElement, gamifikasiPhrases);
     }
 
     // 7. Initialize Typewriter (Video AI)
@@ -69,6 +70,20 @@ document.addEventListener('DOMContentLoaded', () => {
             "Klip Video Masa Depan"
         ];
         initTypewriter(videoTypeElement, videoPhrases);
+    }
+
+    // 8. Back-to-Top Button Visibility
+    const backToTop = document.getElementById('back-to-top');
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTop.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+                backToTop.classList.add('opacity-100', 'translate-y-0');
+            } else {
+                backToTop.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+                backToTop.classList.remove('opacity-100', 'translate-y-0');
+            }
+        });
     }
 });
 
@@ -83,7 +98,7 @@ function initTypewriter(element, phrases) {
 
     function type() {
         const currentPhrase = phrases[phraseIndex];
-        
+
         if (isDeleting) {
             element.textContent = currentPhrase.substring(0, charIndex - 1);
             charIndex--;
@@ -140,7 +155,7 @@ function openModal(title, content) {
     if (modalOverlay && modalBox && modalTitle && modalBody) {
         modalTitle.innerText = title;
         modalBody.innerText = content;
-        
+
         modalOverlay.classList.remove('hidden');
         setTimeout(() => {
             modalOverlay.classList.remove('opacity-0');

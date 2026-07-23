@@ -4,21 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pendidik AI Hub | Transformasi Digital</title>
+    <meta name="description"
+        content="AI4STEM - Hub Integrasi STEM & AI untuk pendidik Malaysia. Kuasai AI generatif, visual, audio, dan video untuk bilik darjah abad ke-21.">
+    <title>AI4STEM | Hub Integrasi STEM & AI</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Plus Jakarta Sans (Moden & Geometrik) -->
+    <!-- Google Fonts: Exo & Roboto Mono (Tech Mode) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400;500;700&display=swap"
         rel="stylesheet">
 
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
     <!-- Custom Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -28,19 +30,22 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        display: ['"Outfit"', 'sans-serif'],
+                        sans: ['"Roboto Mono"', 'monospace'],
+                        display: ['"Exo"', 'sans-serif'],
                     },
                     colors: {
                         brand: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
+                            50: 'rgba(16, 185, 129, 0.1)',
+                            100: 'rgba(16, 185, 129, 0.2)',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
                         },
                         accent: {
-                            500: '#14b8a6',
+                            50: 'rgba(6, 182, 212, 0.1)',
+                            500: '#06b6d4',
+                            600: '#0891b2',
                         }
                     }
                 }
@@ -49,426 +54,461 @@
     </script>
 </head>
 
-<body class="antialiased selection:bg-brand-100 selection:text-brand-700">
+<body class="antialiased selection:bg-emerald-500/30 selection:text-emerald-400 bg-slate-950 text-slate-100">
 
     <!-- Navigation (Modular) -->
-    <div id="navbar-placeholder" data-theme="light" data-accent="brand"></div>
+    <div id="navbar-placeholder" data-theme="dark" data-accent="brand"></div>
     <script src="assets/js/nav-component.js"></script>
-
 
     <main class="pt-20 overflow-hidden">
 
+        <!-- ═══════════════════════════════════════ -->
         <!-- Hero Section -->
-        <section id="pengenalan" class="relative py-20 lg:py-32 bg-slate-50">
-            <!-- Decorative Background -->
-            <div class="blob bg-blue-200 w-96 h-96 rounded-full top-0 left-0 mix-blend-multiply animate-blob"></div>
+        <!-- ═══════════════════════════════════════ -->
+        <section id="pengenalan" class="relative py-20 lg:py-32 bg-slate-950 overflow-hidden bg-grid-tech">
+            <!-- Particle Grid Background -->
+            <div class="absolute inset-0 bg-grid-tech opacity-30"></div>
+
+            <!-- Gradient Orbs -->
             <div
-                class="blob bg-purple-200 w-96 h-96 rounded-full top-0 right-0 mix-blend-multiply animate-blob animation-delay-2000">
+                class="absolute top-0 left-0 w-[600px] h-[600px] bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-transparent rounded-full blur-3xl opacity-60 -translate-x-1/4 -translate-y-1/4">
             </div>
             <div
-                class="blob bg-teal-100 w-96 h-96 rounded-full -bottom-32 left-20 mix-blend-multiply animate-blob animation-delay-4000">
+                class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-gradient-to-tl from-cyan-500/10 via-blue-500/5 to-transparent rounded-full blur-3xl opacity-50 translate-x-1/4 translate-y-1/4">
+            </div>
+
+            <!-- Floating Blobs -->
+            <div class="blob bg-emerald-500/10 w-80 h-80 rounded-full top-20 left-10 animate-blob">
+            </div>
+            <div
+                class="blob bg-cyan-500/10 w-80 h-80 rounded-full top-10 right-10 animate-blob animation-delay-2000">
+            </div>
+            <div
+                class="blob bg-teal-500/10 w-96 h-96 rounded-full -bottom-20 left-1/4 animate-blob animation-delay-4000">
             </div>
 
             <div class="container mx-auto px-6 relative z-10">
                 <div class="text-center max-w-4xl mx-auto" data-aos="fade-up">
+                    <!-- Live Badge -->
                     <div
-                        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-brand-100 shadow-sm mb-8">
+                        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-sm border border-slate-800/80 shadow-md mb-8 glow-border-green">
                         <span class="relative flex h-2 w-2">
                             <span
-                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                         </span>
-                        <span class="text-xs font-bold text-brand-600 tracking-wide uppercase">Revolusi Pendidikan
-                            5.0</span>
+                        <span class="text-xs font-bold text-emerald-400 tracking-wide uppercase">Pendidikan STEM &
+                            AI</span>
                     </div>
 
+                    <!-- Headline with Upgraded Gradient -->
                     <h1
-                        class="font-display text-5xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-6 tracking-tight">
-                        Transformasi Pengajaran <br>
-                        <span id="typewriter-text" class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-accent-500"></span><span class="type-cursor text-brand-600">|</span>
+                        class="font-display text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight">
+                        Peneraju Inovasi <br>
+                        <span id="typewriter-text"
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 glow-text-cyan"></span><span
+                            class="type-cursor text-emerald-400">|</span>
                     </h1>
 
-                    <p class="text-lg text-slate-600 mb-10 leading-relaxed max-w-2xl mx-auto">
-                        Tingkatkan kualiti pendidikan dengan teknologi terkini. Kami membantu pendidik menguasai alatan
-                        AI untuk bilik darjah masa hadapan.
+                    <p class="text-lg text-slate-300 mb-10 leading-relaxed max-w-2xl mx-auto">
+                        Memperkasa generasi masa hadapan melalui integrasi pendidikan STEM (Sains, Teknologi,
+                        Kejuruteraan, dan Matematik) dengan Kecerdasan Buatan (AI) secara praktikal dan dinamik.
                     </p>
 
-                    <!-- Profile Thumbnail Restored & Styled -->
-                    <div class="flex items-center justify-center gap-4 mb-10" data-aos="fade-up" data-aos-delay="100">
-                        <div class="relative group">
-                            <div
-                                class="absolute inset-0 bg-brand-400 rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity duration-500">
-                            </div>
-                            <img src="assets/img/cikgu_mie.jpg"
-                                alt="Cikgu Mie"
-                                class="relative w-16 h-16 rounded-full border-4 border-white shadow-card object-cover transform group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="text-left">
-                            <p class="text-[10px] font-bold text-brand-600 uppercase tracking-widest mb-0.5">Dibawakan
-                                Oleh</p>
-                            <p class="text-slate-900 font-display font-bold text-lg leading-none">Cikgu Mie</p>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
                         <button onclick="scrollToSection('alatan')"
-                            class="px-8 py-4 bg-brand-600 text-white rounded-2xl font-bold hover:bg-brand-700 transition shadow-xl shadow-brand-200 flex items-center justify-center gap-2 group">
+                            class="px-8 py-4 bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 rounded-2xl font-extrabold hover:opacity-90 transition shadow-lg shadow-emerald-500/10 flex items-center justify-center gap-2 group border border-emerald-400/20 cursor-pointer">
                             Mula Teroka
                             <i data-lucide="arrow-right"
-                                class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                                class="w-5 h-5 group-hover:translate-x-1 transition-transform text-slate-950"></i>
                         </button>
                         <button onclick="scrollToSection('video-intro')"
-                            class="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-2xl font-bold hover:bg-slate-50 hover:border-slate-300 transition flex items-center justify-center gap-2 shadow-sm">
-                            <i data-lucide="play-circle" class="w-5 h-5 text-brand-600"></i>
+                            class="px-8 py-4 bg-slate-900/80 backdrop-blur-sm text-slate-200 border border-slate-800 rounded-2xl font-bold hover:bg-slate-800 transition flex items-center justify-center gap-2 shadow-md cursor-pointer">
+                            <i data-lucide="play-circle" class="w-5 h-5 text-emerald-400"></i>
                             Tonton Video
                         </button>
+                    </div>
+
+                    <!-- Stats (moved from video section into hero) -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto" data-aos="fade-up"
+                        data-aos-delay="200">
+                        <div
+                            class="bg-slate-900/60 backdrop-blur-md rounded-2xl p-5 border border-slate-800/80 shadow-md hover:border-slate-700/80 transition-all hover:scale-[1.03] cursor-pointer">
+                            <h3 class="text-3xl font-extrabold text-emerald-400 mb-1"><span class="count-up"
+                                     data-target="500">0</span>+</h3>
+                            <p class="text-slate-400 font-medium text-xs">Pendidik Dilatih</p>
+                        </div>
+                        <div
+                            class="bg-slate-900/60 backdrop-blur-md rounded-2xl p-5 border border-slate-800/80 shadow-md hover:border-slate-700/80 transition-all hover:scale-[1.03] cursor-pointer">
+                            <h3 class="text-3xl font-extrabold text-cyan-400 mb-1"><span class="count-up"
+                                     data-target="20">0</span>+</h3>
+                            <p class="text-slate-400 font-medium text-xs">Modul AI</p>
+                        </div>
+                        <div
+                            class="bg-slate-900/60 backdrop-blur-md rounded-2xl p-5 border border-slate-800/80 shadow-md hover:border-slate-700/80 transition-all hover:scale-[1.03] cursor-pointer">
+                            <h3 class="text-3xl font-extrabold text-indigo-400 mb-1"><span class="count-up"
+                                     data-target="100">0</span>%</h3>
+                            <p class="text-slate-400 font-medium text-xs">Akses Percuma</p>
+                        </div>
+                        <div
+                            class="bg-slate-900/60 backdrop-blur-md rounded-2xl p-5 border border-slate-800/80 shadow-md hover:border-slate-700/80 transition-all hover:scale-[1.03] cursor-pointer">
+                            <h3 class="text-3xl font-extrabold text-emerald-400 mb-1">24/7</h3>
+                            <p class="text-slate-400 font-medium text-xs">Sokongan</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- ═══════════════════════════════════════ -->
         <!-- Video Section -->
-        <section id="video-intro" class="py-20 bg-white">
+        <!-- ═══════════════════════════════════════ -->
+        <section id="video-intro" class="py-20 bg-slate-950 border-t border-slate-900">
             <div class="container mx-auto px-6">
                 <div class="max-w-5xl mx-auto" data-aos="zoom-in-up">
-                    <div class="bg-slate-100 p-2 rounded-[2rem] shadow-soft border border-slate-200">
-                        <div class="relative aspect-video rounded-[1.5rem] overflow-hidden bg-slate-900 shadow-inner">
-                            <!-- YouTube Embed -->
+                    <div class="bg-slate-900/60 p-2.5 rounded-[2rem] shadow-lg border border-slate-800/80 backdrop-blur-md shadow-[0_0_15px_rgba(6,182,212,0.15)]">
+                        <div class="relative aspect-video rounded-[1.5rem] overflow-hidden bg-slate-950 shadow-inner">
                             <iframe class="absolute top-0 left-0 w-full h-full"
                                 src="https://www.youtube.com/embed/ad79nYk2keg?rel=0&modestbranding=1"
-                                title="Pengenalan AI" 
-                                frameborder="0"
+                                title="Pengenalan AI" frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen
-                                loading="lazy">
+                                allowfullscreen loading="lazy">
                             </iframe>
                         </div>
                     </div>
                 </div>
 
-                <!-- Stats -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 border-t border-slate-100 pt-12">
-                    <div class="text-center" data-aos="fade-up" data-aos-delay="0">
-                        <h3 class="text-4xl font-extrabold text-slate-900 mb-1">500+</h3>
-                        <p class="text-slate-500 font-medium text-sm">Pendidik Dilatih</p>
+                <!-- Inspirational Quote (replaces old stats) -->
+                <div class="text-center mt-12 max-w-2xl mx-auto" data-aos="fade-up">
+                    <i data-lucide="quote" class="w-10 h-10 text-cyan-500/20 mx-auto mb-4"></i>
+                    <p class="text-xl text-slate-300 italic leading-relaxed font-medium">
+                        "Pendidikan bukan sekadar mengisi baldi, tetapi menyalakan api. <br class="hidden sm:block">
+                        <span class="text-cyan-400 font-bold not-italic glow-text-cyan">AI adalah pemetik api generasi baharu.</span>"
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- STEM Features (Teras STEM) -->
+        <!-- ═══════════════════════════════════════ -->
+        <section id="stem-features" class="py-24 bg-slate-950 border-t border-slate-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 max-w-2xl mx-auto" data-aos="fade-up">
+                    <span
+                        class="text-emerald-400 font-bold tracking-wider text-xs uppercase bg-emerald-500/10 border border-emerald-500/20 px-4 py-1.5 rounded-full">Kriteria
+                        Utama</span>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold mt-4 text-white">Teras Pendidikan STEM</h2>
+                    <p class="text-slate-400 mt-4">Integrasi pintar empat disiplin ilmu utama bagi melahirkan pelajar
+                        kreatif, kritis dan berdaya saing global.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Science -->
+                    <div class="relative bg-slate-900/60 backdrop-blur-md rounded-3xl p-8 border border-slate-800/85 shadow-md hover:border-cyan-500/30 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] hover:scale-[1.02] transition-all duration-300 group cursor-pointer"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <span
+                            class="absolute top-4 right-6 text-5xl font-extrabold text-slate-800/40 group-hover:text-blue-500/20 transition-colors select-none">01</span>
+                        <div
+                            class="w-14 h-14 bg-blue-500/15 text-blue-400 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-500 group-hover:text-slate-950 transition-all duration-300 shadow-md relative z-10">
+                            <i data-lucide="flask-conical" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-white mb-3 relative z-10">Sains (Science)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed relative z-10">Penerokaan alam semula jadi
+                            berasaskan kaedah inkuiri saintifik, hipotesis dan eksperimen interaktif untuk memahami
+                            fenomena fizikal dan biologi.</p>
                     </div>
-                    <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="text-4xl font-extrabold text-slate-900 mb-1">20+</h3>
-                        <p class="text-slate-500 font-medium text-sm">Modul AI</p>
+
+                    <!-- Technology -->
+                    <div class="relative bg-slate-900/60 backdrop-blur-md rounded-3xl p-8 border border-slate-800/85 shadow-md hover:border-emerald-500/30 hover:shadow-[0_0_15px_rgba(16,185,129,0.15)] hover:scale-[1.02] transition-all duration-300 group cursor-pointer"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <span
+                            class="absolute top-4 right-6 text-5xl font-extrabold text-slate-800/40 group-hover:text-emerald-500/20 transition-colors select-none">02</span>
+                        <div
+                            class="w-14 h-14 bg-emerald-500/15 text-emerald-400 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all duration-300 shadow-md relative z-10">
+                            <i data-lucide="cpu" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-white mb-3 relative z-10">Teknologi
+                            (Technology)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed relative z-10">Penggunaan alatan digital,
+                            pengaturcaraan, robotik, dan integrasi Kecerdasan Buatan (AI) bagi membina penyelesaian
+                            pintar untuk masalah semasa.</p>
                     </div>
-                    <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-                        <h3 class="text-4xl font-extrabold text-slate-900 mb-1">100%</h3>
-                        <p class="text-slate-500 font-medium text-sm">Akses Percuma</p>
+
+                    <!-- Engineering -->
+                    <div class="relative bg-slate-900/60 backdrop-blur-md rounded-3xl p-8 border border-slate-800/85 shadow-md hover:border-cyan-500/30 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] hover:scale-[1.02] transition-all duration-300 group cursor-pointer"
+                        data-aos="fade-up" data-aos-delay="300">
+                        <span
+                            class="absolute top-4 right-6 text-5xl font-extrabold text-slate-800/40 group-hover:text-cyan-500/20 transition-colors select-none">03</span>
+                        <div
+                            class="w-14 h-14 bg-cyan-500/15 text-cyan-400 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-all duration-300 shadow-md relative z-10">
+                            <i data-lucide="wrench" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-white mb-3 relative z-10">Kejuruteraan
+                            (Engineering)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed relative z-10">Aplikasi praktikal melalui
+                            Pemikiran Reka Bentuk (Design Thinking), reka bentuk CAD 3D, prototaip pantas, dan ujian
+                            keberkesanan produk.</p>
                     </div>
-                    <div class="text-center" data-aos="fade-up" data-aos-delay="300">
-                        <h3 class="text-4xl font-extrabold text-slate-900 mb-1">24/7</h3>
-                        <p class="text-slate-500 font-medium text-sm">Sokongan Komuniti</p>
+
+                    <!-- Math -->
+                    <div class="relative bg-slate-900/60 backdrop-blur-md rounded-3xl p-8 border border-slate-800/85 shadow-md hover:border-violet-500/30 hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] hover:scale-[1.02] transition-all duration-300 group cursor-pointer"
+                        data-aos="fade-up" data-aos-delay="400">
+                        <span
+                            class="absolute top-4 right-6 text-5xl font-extrabold text-slate-800/40 group-hover:text-violet-500/20 transition-colors select-none">04</span>
+                        <div
+                            class="w-14 h-14 bg-violet-500/15 text-violet-400 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-violet-500 group-hover:text-slate-950 transition-all duration-300 shadow-md relative z-10">
+                            <i data-lucide="binary" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="font-display font-bold text-xl text-white mb-3 relative z-10">Matematik
+                            (Mathematics)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed relative z-10">Analisis kuantitatif, pemodelan
+                            data saintifik, pemikiran algoritma, dan corak logik untuk menyelesaikan pengiraan matematik
+                            yang rumit.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Modul Carousel -->
-        <section id="modul" class="py-24 bg-slate-50">
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Modul Carousel (2 slides, local images) -->
+        <!-- ═══════════════════════════════════════ -->
+        <section id="modul" class="py-24 bg-slate-950 border-t border-slate-900">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16 max-w-2xl mx-auto" data-aos="fade-up">
                     <span
-                        class="text-brand-600 font-bold tracking-wider text-xs uppercase bg-brand-50 px-3 py-1 rounded-full">Kurikulum</span>
-                    <h2 class="font-display text-3xl md:text-4xl font-bold mt-4 text-slate-900">Modul Transformasi</h2>
-                    <p class="text-slate-600 mt-4">Tiga tonggak utama dalam mengintegrasikan teknologi kecerdasan buatan
-                        ke dalam bilik darjah.</p>
+                        class="text-cyan-400 font-bold tracking-wider text-xs uppercase bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full">Kurikulum</span>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold mt-4 text-white">Modul Integrasi STEM & AI</h2>
+                    <p class="text-slate-400 mt-4">Kuasai kemahiran abad ke-21 melalui modul pembelajaran komprehensif kami.</p>
                 </div>
 
-                <div class="relative max-w-5xl mx-auto bg-white rounded-[2rem] shadow-soft p-2 border border-white"
+                <div class="relative max-w-5xl mx-auto bg-slate-900/60 backdrop-blur-md rounded-[2rem] shadow-lg p-2.5 border border-slate-800/80"
                     data-aos="fade-up">
                     <div id="carousel-inner"
                         class="relative aspect-[16/10] md:aspect-[21/9] rounded-[1.5rem] overflow-hidden">
                         <!-- Slide 1 -->
                         <div class="carousel-item absolute inset-0 opacity-100 transition-opacity duration-700">
-                            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070"
-                                class="w-full h-full object-cover">
+                            <img src="assets/img/ai_junior_hero.png" class="w-full h-full object-cover" loading="lazy"
+                                alt="Penerokaan Inkuiri"
+                                onerror="this.style.background='linear-gradient(135deg, #0f172a, #132238)'; this.style.objectFit='cover';">
                             <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent flex flex-col justify-end p-10">
+                                class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent flex flex-col justify-end p-10">
                                 <div
-                                    class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl max-w-2xl">
+                                    class="bg-slate-900/80 backdrop-blur-md border border-slate-800 p-6 rounded-2xl max-w-2xl">
                                     <span
-                                        class="text-accent-500 font-bold text-xs uppercase tracking-wider mb-2 block">Modul
+                                        class="text-cyan-400 font-bold text-xs uppercase tracking-wider mb-2 block">Teras
                                         1</span>
-                                    <h3 class="text-2xl font-bold text-white mb-2">Produktiviti Guru</h3>
-                                    <p class="text-slate-200 text-sm leading-relaxed">Automatikkan tugasan pentadbiran
-                                        dan RPH untuk fokus kembali kepada pengajaran.</p>
+                                    <h3 class="text-2xl font-bold text-white mb-2">Penerokaan Inkuiri & Reka Bentuk</h3>
+                                    <p class="text-slate-300 text-sm leading-relaxed">Mempelajari asas sains dan
+                                        kejuruteraan secara praktikal menerusi aktiviti binaan projek fizikal serta
+                                        simulasi digital.</p>
                                 </div>
                             </div>
                         </div>
                         <!-- Slide 2 -->
                         <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-700">
-                            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2070"
-                                class="w-full h-full object-cover">
+                            <img src="assets/img/game_hero.png" class="w-full h-full object-cover" loading="lazy"
+                                alt="Sains Komputer & AI"
+                                onerror="this.style.background='linear-gradient(135deg, #090d16, #111a2e)'; this.style.objectFit='cover';">
                             <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent flex flex-col justify-end p-10">
+                                class="absolute inset-0 bg-gradient-to-t from-slate-955/95 via-slate-950/40 to-transparent flex flex-col justify-end p-10">
                                 <div
-                                    class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl max-w-2xl">
+                                    class="bg-slate-900/80 backdrop-blur-md border border-slate-800 p-6 rounded-2xl max-w-2xl">
                                     <span
-                                        class="text-purple-400 font-bold text-xs uppercase tracking-wider mb-2 block">Modul
+                                        class="text-pink-400 font-bold text-xs uppercase tracking-wider mb-2 block">Teras
                                         2</span>
-                                    <h3 class="text-2xl font-bold text-white mb-2">Pembelajaran Adaptif</h3>
-                                    <p class="text-slate-200 text-sm leading-relaxed">Personalosasikan pengalaman
-                                        pembelajaran untuk setiap murid menggunakan data analitik.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Slide 3 -->
-                        <div class="carousel-item absolute inset-0 opacity-0 transition-opacity duration-700">
-                            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974"
-                                class="w-full h-full object-cover">
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent flex flex-col justify-end p-10">
-                                <div
-                                    class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl max-w-2xl">
-                                    <span
-                                        class="text-orange-400 font-bold text-xs uppercase tracking-wider mb-2 block">Modul
-                                        3</span>
-                                    <h3 class="text-2xl font-bold text-white mb-2">Kandungan Kreatif</h3>
-                                    <p class="text-slate-200 text-sm leading-relaxed">Jana bahan bantu mengajar visual,
-                                        audio, dan video dalam masa beberapa minit.</p>
+                                    <h3 class="text-2xl font-bold text-white mb-2">Sains Komputer & AI Aplikasi</h3>
+                                    <p class="text-slate-300 text-sm leading-relaxed">Membina literasi pengaturcaraan,
+                                        robotik, dan pembelajaran mesin (machine learning) untuk melahirkan pencipta
+                                        teknologi masa hadapan.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Progress Dots -->
+                    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                        <button onclick="goToSlide(0)"
+                            class="carousel-dot w-3 h-3 rounded-full bg-slate-700 shadow-md transition-all duration-300"
+                            data-index="0"></button>
+                        <button onclick="goToSlide(1)"
+                            class="carousel-dot w-3 h-3 rounded-full bg-slate-700/50 shadow-md transition-all duration-300"
+                            data-index="1"></button>
+                    </div>
+
                     <!-- Controls -->
                     <div class="absolute bottom-8 right-8 flex gap-2 z-20">
                         <button onclick="prevSlide()"
-                            class="w-10 h-10 bg-white text-slate-800 hover:bg-brand-600 hover:text-white rounded-full flex items-center justify-center transition shadow-lg"><i
+                            class="w-10 h-10 bg-slate-950 text-slate-300 hover:bg-cyan-500 hover:text-slate-950 rounded-full flex items-center justify-center transition shadow-lg border border-slate-800 hover:border-cyan-400 cursor-pointer"><i
                                 data-lucide="arrow-left" class="w-5 h-5"></i></button>
                         <button onclick="nextSlide()"
-                            class="w-10 h-10 bg-white text-slate-800 hover:bg-brand-600 hover:text-white rounded-full flex items-center justify-center transition shadow-lg"><i
+                            class="w-10 h-10 bg-slate-950 text-slate-300 hover:bg-cyan-500 hover:text-slate-950 rounded-full flex items-center justify-center transition shadow-lg border border-slate-800 hover:border-cyan-400 cursor-pointer"><i
                                 data-lucide="arrow-right" class="w-5 h-5"></i></button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Tools Grid -->
-        <section id="alatan" class="py-24 bg-white">
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Kotak Peralatan Digital — 3 Kad -->
+        <!-- ═══════════════════════════════════════ -->
+        <section id="alatan" class="py-24 bg-slate-950 border-t border-slate-900">
             <div class="container mx-auto px-6">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-slate-100 pb-8">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-slate-900 pb-8">
                     <div data-aos="fade-right">
-                        <h2 class="font-display text-3xl md:text-4xl font-bold text-slate-900">Kotak Peralatan Digital
-                        </h2>
-                        <p class="text-slate-500 mt-2 text-lg">Aplikasi AI terpilih untuk kegunaan bilik darjah.</p>
+                        <h2 class="font-display text-3xl md:text-4xl font-bold text-white">Kotak Peralatan Digital</h2>
+                        <p class="text-slate-400 mt-2 text-lg">Aplikasi AI terpilih untuk kegunaan bilik darjah.</p>
                     </div>
                     <div class="mt-4 md:mt-0">
-                        <button onclick="scrollToSection('alatan')"
-                            class="text-brand-600 font-bold flex items-center gap-2 hover:gap-3 transition-all bg-brand-50 px-4 py-2 rounded-lg">Lihat
-                            Semua <i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                        <span
+                            class="text-cyan-400 font-bold flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 px-4 py-2 rounded-lg text-sm">
+                            <i data-lucide="zap" class="w-4 h-4"></i> 3 Alatan Kuasa AI
+                        </span>
                     </div>
                 </div>
 
-                <!-- Responsive Grid Container -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Card 1: AI Teks -->
-                    <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-card hover-lift group cursor-pointer h-full flex flex-col"
-                        data-aos="fade-up" data-aos-delay="0">
+                <!-- 3-Column Card Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- AI Teks Card -->
+                    <div class="glass-card group cursor-pointer flex flex-col overflow-hidden" data-aos="fade-up"
+                        data-aos-delay="0">
                         <div class="relative h-48 overflow-hidden">
-                            <img src="assets/img/ai_text.png" alt="AI Teks" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+                            <img src="assets/img/ai_text.png" alt="AI Teks"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent">
+                            </div>
                         </div>
                         <div class="p-8 pt-0 -mt-8 relative z-10 flex flex-col flex-grow">
                             <div
-                                class="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-brand-600 mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors shadow-lg">
-                                <i data-lucide="type" class="w-7 h-7"></i>
+                                class="w-12 h-12 bg-emerald-500/15 rounded-2xl flex items-center justify-center text-emerald-400 mb-4 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-colors shadow-md border border-emerald-500/20">
+                                <i data-lucide="type" class="w-6 h-6"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-3">AI Teks</h3>
-                            <p class="text-slate-500 text-sm leading-relaxed flex-grow">Penjana RPH, soalan kuiz, dan surat
-                                rasmi automatik.</p>
-                            <div class="mt-6 pt-6 border-t border-slate-50 flex flex-wrap gap-3">
+                            <h3 class="text-xl font-bold text-white mb-2">AI Teks</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed flex-grow">Penjana RPH, soalan kuiz, dan
+                                surat rasmi automatik — jimat masa perancangan pengajaran.</p>
+                            <div class="mt-6 pt-6 border-t border-slate-800 flex flex-wrap gap-3">
                                 <button
                                     onclick="openModal('AI Teks', 'Fungsi: Menjana teks. \nContoh: ChatGPT, Claude, Gemini. \nKegunaan: Membantu guru merangka soalan KBAT, membina rubrik pentaksiran, dan menulis ulasan pelajar dengan pantas.')"
-                                    class="text-sm font-bold text-brand-600 flex items-center gap-2">Info <i
-                                        data-lucide="plus-circle" class="w-4 h-4"></i></button>
+                                    class="text-sm font-bold text-emerald-400 flex items-center gap-2 hover:bg-emerald-500/10 px-3 py-1.5 rounded-lg transition-colors border border-emerald-500/20">Info
+                                    <i data-lucide="plus-circle" class="w-4 h-4"></i></button>
                                 <a href="generatif_ai.html"
-                                    class="text-sm font-bold text-white bg-brand-600 hover:bg-brand-700 px-4 py-2 rounded-lg transition-colors shadow-sm">
-                                    Buka Modul
+                                    class="text-sm font-bold text-slate-950 bg-emerald-500 hover:bg-emerald-450 px-5 py-2.5 rounded-lg transition-colors shadow-sm flex items-center gap-1.5">
+                                    Buka Modul <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-slate-955"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Card 2: AI Visual -->
-                    <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-card hover-lift group cursor-pointer h-full flex flex-col"
-                        data-aos="fade-up" data-aos-delay="100">
+                    <!-- AI Visual Card -->
+                    <div class="glass-card group cursor-pointer flex flex-col overflow-hidden" data-aos="fade-up"
+                        data-aos-delay="100">
                         <div class="relative h-48 overflow-hidden">
-                            <img src="assets/img/ai_visual.png" alt="AI Visual" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+                            <img src="assets/img/ai_visual.png" alt="AI Visual"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent">
+                            </div>
                         </div>
                         <div class="p-8 pt-0 -mt-8 relative z-10 flex flex-col flex-grow">
                             <div
-                                class="w-14 h-14 bg-teal-50 rounded-2xl flex items-center justify-center text-accent-500 mb-6 group-hover:bg-accent-500 group-hover:text-white transition-colors shadow-lg">
-                                <i data-lucide="image" class="w-7 h-7"></i>
+                                class="w-12 h-12 bg-cyan-500/15 rounded-2xl flex items-center justify-center text-cyan-400 mb-4 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-colors shadow-md border border-cyan-500/20">
+                                <i data-lucide="image" class="w-6 h-6"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-3">AI Visual</h3>
-                            <p class="text-slate-500 text-sm leading-relaxed flex-grow">Menghasil poster, ilustrasi
-                                saintifik, dan grafik tanpa hak cipta.</p>
-                            <div class="mt-6 pt-6 border-t border-slate-50 flex flex-wrap gap-3">
+                            <h3 class="text-xl font-bold text-white mb-2">AI Visual</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed flex-grow">Menghasil poster, ilustrasi
+                                saintifik, dan grafik tanpa hak cipta untuk bahan bantu mengajar.</p>
+                            <div class="mt-6 pt-6 border-t border-slate-800 flex flex-wrap gap-3">
                                 <button
                                     onclick="openModal('AI Visual', 'Fungsi: Menjana Imej. \nContoh: Midjourney, Bing Image Creator. \nKegunaan: Mencipta bahan bantu mengajar visual yang unik untuk menarik minat pelajar visual.')"
-                                    class="text-sm font-bold text-accent-500 flex items-center gap-2">Info <i
-                                        data-lucide="plus-circle" class="w-4 h-4"></i></button>
+                                    class="text-sm font-bold text-cyan-400 flex items-center gap-2 hover:bg-cyan-500/10 px-3 py-1.5 rounded-lg transition-colors border border-cyan-500/20">Info
+                                    <i data-lucide="plus-circle" class="w-4 h-4"></i></button>
                                 <a href="visual_ai.html"
-                                    class="text-sm font-bold text-white bg-accent-500 hover:bg-teal-600 px-4 py-2 rounded-lg transition-colors shadow-sm">
-                                    Buka Modul
+                                    class="text-sm font-bold text-slate-955 bg-cyan-500 hover:bg-cyan-450 px-5 py-2.5 rounded-lg transition-colors shadow-sm flex items-center gap-1.5">
+                                    Buka Modul <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-slate-955"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Card 3: AI Suara -->
-                    <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-card hover-lift group cursor-pointer h-full flex flex-col"
-                        data-aos="fade-up" data-aos-delay="200">
+                    <!-- AI Video Card -->
+                    <div class="glass-card group cursor-pointer flex flex-col overflow-hidden" data-aos="fade-up"
+                        data-aos-delay="200">
                         <div class="relative h-48 overflow-hidden">
-                            <img src="assets/img/ai_audio.png" alt="AI Suara" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+                            <img src="assets/img/ai_video.png" alt="AI Video"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                loading="lazy">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent">
+                            </div>
                         </div>
                         <div class="p-8 pt-0 -mt-8 relative z-10 flex flex-col flex-grow">
                             <div
-                                class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-600 mb-6 group-hover:bg-orange-600 group-hover:text-white transition-colors shadow-lg">
-                                <i data-lucide="mic" class="w-7 h-7"></i>
+                                class="w-12 h-12 bg-pink-500/15 rounded-2xl flex items-center justify-center text-pink-400 mb-4 group-hover:bg-pink-500 group-hover:text-slate-950 transition-colors shadow-md border border-pink-500/20">
+                                <i data-lucide="video" class="w-6 h-6"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-3">AI Suara</h3>
-                            <p class="text-slate-500 text-sm leading-relaxed flex-grow">Tukar teks ke audio (TTS) dan klon
-                                suara untuk e-buku.</p>
-                            <div class="mt-6 pt-6 border-t border-slate-50 flex flex-wrap gap-3">
-                                <button
-                                    onclick="openModal('AI Suara', 'Fungsi: Audio sintetik. \nContoh: ElevenLabs. \nKegunaan: Menyediakan bahan bacaan audio untuk pelajar disleksia atau menghasilkan podcast pendidikan.')"
-                                    class="text-sm font-bold text-orange-600 flex items-center gap-2">Info <i
-                                        data-lucide="plus-circle" class="w-4 h-4"></i></button>
-                                <a href="audio_ai.html"
-                                    class="text-sm font-bold text-white bg-orange-600 hover:bg-orange-700 px-4 py-2 rounded-lg transition-colors shadow-sm">
-                                    Buka Modul
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 4: AI Video -->
-                    <div class="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-card hover-lift group cursor-pointer h-full flex flex-col"
-                        data-aos="fade-up" data-aos-delay="300">
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="assets/img/ai_video.png" alt="AI Video" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
-                        </div>
-                        <div class="p-8 pt-0 -mt-8 relative z-10 flex flex-col flex-grow">
-                            <div
-                                class="w-14 h-14 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600 mb-6 group-hover:bg-pink-600 group-hover:text-white transition-colors shadow-lg">
-                                <i data-lucide="video" class="w-7 h-7"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-900 mb-3">AI Video</h3>
-                            <p class="text-slate-500 text-sm leading-relaxed flex-grow">Video pengajaran dengan avatar
-                                penyampai maya.</p>
-                            <div class="mt-6 pt-6 border-t border-slate-50 flex flex-wrap gap-3">
+                            <h3 class="text-xl font-bold text-white mb-2">AI Video</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed flex-grow">Video pengajaran dengan avatar
+                                penyampai maya tanpa peralatan kamera yang mahal.</p>
+                            <div class="mt-6 pt-6 border-t border-slate-800 flex flex-wrap gap-3">
                                 <button
                                     onclick="openModal('AI Video', 'Fungsi: Penjana Video. \nContoh: HeyGen, D-ID. \nKegunaan: Menghasilkan video penerangan topik tanpa perlu peralatan kamera yang mahal.')"
-                                    class="text-sm font-bold text-pink-600 flex items-center gap-2">Info <i
-                                        data-lucide="plus-circle" class="w-4 h-4"></i></button>
+                                    class="text-sm font-bold text-pink-400 flex items-center gap-2 hover:bg-pink-500/10 px-3 py-1.5 rounded-lg transition-colors border border-pink-500/20">Info
+                                    <i data-lucide="plus-circle" class="w-4 h-4"></i></button>
                                 <a href="video_ai.html"
-                                    class="text-sm font-bold text-white bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-lg transition-colors shadow-sm">
-                                    Buka Modul
+                                    class="text-sm font-bold text-slate-955 bg-pink-500 hover:bg-pink-450 px-5 py-2.5 rounded-lg transition-colors shadow-sm flex items-center gap-1.5">
+                                    Buka Modul <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-slate-955"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- Guestbook -->
-        <section id="guestbook" class="py-24 bg-slate-50 border-t border-slate-200">
-            <div class="container mx-auto px-6">
-                <div class="flex flex-col lg:flex-row gap-12">
-                    <!-- Form Side -->
-                    <div class="w-full lg:w-1/3">
-                        <div class="sticky top-28">
-                            <div class="mb-8">
-                                <span class="text-brand-600 font-bold text-xs uppercase tracking-wider">Komuniti</span>
-                                <h2 class="font-display text-3xl font-bold text-slate-900 mt-2">Buku Pelawat</h2>
-                                <p class="text-slate-500 mt-3 text-sm leading-relaxed">Tinggalkan jejak anda. Kongsikan
-                                    pandangan atau pengalaman mengenai platform ini.</p>
-                            </div>
+        <!-- ═══════════════════════════════════════ -->
+        <!-- CTA: Sertai Komuniti (replaces Guestbook) -->
+        <!-- ═══════════════════════════════════════ -->
+        <section id="komuniti" class="py-24 relative overflow-hidden border-t border-slate-900">
+            <!-- Gradient Background (Deep Space Tech) -->
+            <div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950/40"></div>
+            <!-- Geometric Pattern Overlay -->
+            <div class="absolute inset-0 bg-grid-tech opacity-15"></div>
+            <!-- Decorative Circles -->
+            <div class="absolute top-10 right-10 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 left-10 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl"></div>
 
-                            <div class="bg-white p-8 rounded-3xl shadow-soft border border-slate-100">
-                                <form id="guestbook-form" class="space-y-5">
-                                    <div>
-                                        <label class="block text-slate-700 text-xs font-bold uppercase mb-2 ml-1">Nama
-                                            Penuh</label>
-                                        <div class="relative">
-                                            <i data-lucide="user"
-                                                class="absolute left-4 top-3.5 w-5 h-5 text-slate-400"></i>
-                                            <input type="text" name="nama"
-                                                class="modern-input w-full pl-12 pr-4 py-3 rounded-xl text-slate-800 text-sm font-medium"
-                                                required placeholder="Nama Pendidik">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label
-                                            class="block text-slate-700 text-xs font-bold uppercase mb-2 ml-1">Sekolah /
-                                            Organisasi</label>
-                                        <div class="relative">
-                                            <i data-lucide="building-2"
-                                                class="absolute left-4 top-3.5 w-5 h-5 text-slate-400"></i>
-                                            <input type="text" name="dari"
-                                                class="modern-input w-full pl-12 pr-4 py-3 rounded-xl text-slate-800 text-sm font-medium"
-                                                required placeholder="Nama Sekolah">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label
-                                            class="block text-slate-700 text-xs font-bold uppercase mb-2 ml-1">Ucapan</label>
-                                        <textarea name="ucapan" rows="4"
-                                            class="modern-input w-full px-4 py-3 rounded-xl text-slate-800 text-sm font-medium"
-                                            required placeholder="Tulis pesanan di sini..."></textarea>
-                                    </div>
-                                    <button type="submit" id="submit-btn"
-                                        class="w-full bg-slate-900 text-white font-bold py-4 rounded-xl hover:bg-brand-600 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-slate-200 hover:shadow-brand-200 transform hover:-translate-y-1">
-                                        <span id="btn-text">Hantar Ucapan</span>
-                                        <i data-lucide="send" class="w-4 h-4"></i>
-                                    </button>
-                                    <div id="status-message" class="text-center text-sm font-medium mt-2 min-h-[20px]">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/60 border border-slate-800/80 mb-8">
+                        <i data-lucide="users" class="w-4 h-4 text-cyan-400"></i>
+                        <span class="text-xs font-bold text-slate-300 tracking-wide uppercase">Komuniti AI4STEM</span>
                     </div>
 
-                    <!-- List Side -->
-                    <div class="w-full lg:w-2/3">
-                        <div class="flex justify-between items-center mb-8">
-                            <h3 class="text-xl font-bold text-slate-800 flex items-center gap-2"><i
-                                    data-lucide="message-square" class="w-5 h-5 text-brand-600"></i> Pesanan Terkini
-                            </h3>
-                            <div id="pagination-controls" class="hidden gap-2">
-                                <button id="prev-btn-guestbook"
-                                    class="p-2 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 text-slate-600 disabled:opacity-50 transition"><i
-                                        data-lucide="chevron-left" class="w-5 h-5"></i></button>
-                                <span id="page-info"
-                                    class="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-bold text-slate-700 flex items-center shadow-sm">1
-                                    / 1</span>
-                                <button id="next-btn-guestbook"
-                                    class="p-2 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 text-slate-600 disabled:opacity-50 transition"><i
-                                        data-lucide="chevron-right" class="w-5 h-5"></i></button>
-                            </div>
-                        </div>
+                    <h2 class="font-display text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight">
+                        Sertai Revolusi <br class="sm:hidden">Pendidikan AI
+                    </h2>
 
-                        <div id="loading" class="py-12 text-center">
-                            <div
-                                class="inline-block w-8 h-8 border-4 border-slate-200 border-t-brand-600 rounded-full animate-spin mb-3">
-                            </div>
-                            <p class="text-slate-500 text-sm font-medium">Memuat turun data...</p>
-                        </div>
+                    <p class="text-lg text-slate-300 mb-10 leading-relaxed max-w-xl mx-auto">
+                        Bersama ribuan pendidik yang telah memulakan perjalanan STEM & AI. Mari kita bentuk masa depan
+                        pendidikan Malaysia — bermula hari ini.
+                    </p>
 
-                        <div id="messages-container" class="testimonial-grid p-1">
-                            <!-- Messages injected here via JS -->
-                        </div>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="scrollToSection('alatan')"
+                            class="px-8 py-4 bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 rounded-2xl font-extrabold hover:opacity-90 transition shadow-lg shadow-emerald-500/10 flex items-center justify-center gap-2 group cursor-pointer border border-emerald-400/20">
+                            Mula Belajar Percuma
+                            <i data-lucide="arrow-right"
+                                class="w-5 h-5 group-hover:translate-x-1 transition-transform text-slate-950"></i>
+                        </button>
+                        <a href="mailto:admin@ai4stem.my"
+                            class="px-8 py-4 bg-slate-900/80 text-white border border-slate-800/80 rounded-2xl font-bold hover:bg-slate-800 transition flex items-center justify-center gap-2 backdrop-blur-sm cursor-pointer">
+                            <i data-lucide="mail" class="w-5 h-5 text-cyan-400"></i>
+                            Hubungi Kami
+                        </a>
                     </div>
                 </div>
             </div>
@@ -476,72 +516,150 @@
 
     </main>
 
-    <footer class="bg-white border-t border-slate-200 py-12">
+    <!-- ═══════════════════════════════════════ -->
+    <!-- Footer -->
+    <!-- ═══════════════════════════════════════ -->
+    <footer class="bg-slate-950 border-t border-slate-900 py-12">
         <div class="container mx-auto px-6 text-center">
             <div class="flex justify-center items-center gap-2 mb-6">
                 <div
-                    class="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white font-bold shadow-md">
-                    AI</div>
-                <span class="font-display font-bold text-slate-800 text-lg">Pendidik AI</span>
+                    class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-xl flex items-center justify-center text-slate-950 font-bold shadow-md shadow-[0_0_15px_rgba(16,185,129,0.2)] border border-emerald-400/20">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-slate-950"></i>
+                </div>
+                <span class="font-display font-bold text-white text-lg">AI4<span
+                        class="text-emerald-400 glow-text-green">STEM</span></span>
             </div>
-            <div class="flex justify-center gap-6 mb-8">
-                <button class="p-2 text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded-full transition"><i
-                        data-lucide="facebook" class="w-5 h-5"></i></button>
-                <button class="p-2 text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded-full transition"><i
-                        data-lucide="twitter" class="w-5 h-5"></i></button>
-                <button class="p-2 text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded-full transition"><i
-                        data-lucide="instagram" class="w-5 h-5"></i></button>
-                <button class="p-2 text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded-full transition"><i
-                        data-lucide="youtube" class="w-5 h-5"></i></button>
+            <div class="flex justify-center gap-4 mb-8">
+                <a href="https://facebook.com/" target="_blank" rel="noopener"
+                    class="p-2.5 text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 rounded-xl transition cursor-pointer"
+                    aria-label="Facebook">
+                    <i data-lucide="facebook" class="w-5 h-5"></i>
+                </a>
+                <a href="https://twitter.com/" target="_blank" rel="noopener"
+                    class="p-2.5 text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 rounded-xl transition cursor-pointer"
+                    aria-label="Twitter">
+                    <i data-lucide="twitter" class="w-5 h-5"></i>
+                </a>
+                <a href="https://instagram.com/" target="_blank" rel="noopener"
+                    class="p-2.5 text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 rounded-xl transition cursor-pointer"
+                    aria-label="Instagram">
+                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                </a>
+                <a href="https://youtube.com/" target="_blank" rel="noopener"
+                    class="p-2.5 text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 rounded-xl transition cursor-pointer"
+                    aria-label="YouTube">
+                    <i data-lucide="youtube" class="w-5 h-5"></i>
+                </a>
             </div>
-            <p class="text-slate-400 text-sm font-medium">&copy; 2026 Pendidik AI. Hak Cipta Terpelihara.</p>
+            <p class="text-slate-500 text-sm font-medium">&copy; 2026 AI4STEM. Hak Cipta Terpelihara.</p>
         </div>
     </footer>
 
+    <!-- ═══════════════════════════════════════ -->
+    <!-- Back to Top Button -->
+    <!-- ═══════════════════════════════════════ -->
+    <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+        class="fixed bottom-6 right-6 w-12 h-12 bg-emerald-500 text-slate-950 rounded-full shadow-lg opacity-0 translate-y-4 pointer-events-none transition-all duration-300 z-50 flex items-center justify-center hover:bg-emerald-400 border border-emerald-400/20 shadow-glow-green cursor-pointer"
+        aria-label="Kembali ke atas">
+        <i data-lucide="arrow-up" class="w-5 h-5 text-slate-950"></i>
+    </button>
+
+    <!-- ═══════════════════════════════════════ -->
     <!-- Modal -->
+    <!-- ═══════════════════════════════════════ -->
     <div id="modal-overlay"
-        class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4 hidden z-[100] transition-opacity duration-300 opacity-0">
+        class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden z-[100] transition-opacity duration-300 opacity-0">
         <div id="modal-box"
-            class="bg-white rounded-[1.5rem] shadow-2xl p-8 max-w-md w-full transform scale-95 transition-transform duration-300 border border-white">
+            class="bg-slate-900 border border-slate-800 rounded-[1.5rem] shadow-2xl p-8 max-w-md w-full transform scale-95 transition-transform duration-300 shadow-[0_0_25px_rgba(6,182,212,0.15)]">
             <div class="flex justify-between items-start mb-6">
                 <div
-                    class="w-12 h-12 bg-brand-50 rounded-2xl flex items-center justify-center text-brand-600 border border-brand-100">
+                    class="w-12 h-12 bg-cyan-500/15 border border-cyan-500/20 rounded-2xl flex items-center justify-center text-cyan-400">
                     <i data-lucide="info" class="w-6 h-6"></i>
                 </div>
                 <button onclick="closeModal()"
-                    class="text-slate-400 hover:text-red-500 transition bg-slate-50 p-2 rounded-full hover:bg-red-50"><i
+                    class="text-slate-400 hover:text-cyan-400 transition bg-slate-950 p-2 rounded-full border border-slate-800 hover:bg-slate-900 cursor-pointer"><i
                         data-lucide="x" class="w-5 h-5"></i></button>
             </div>
-            <h2 id="modal-title" class="text-2xl font-bold text-slate-900 mb-4 font-display">Title</h2>
-            <div id="modal-body" class="text-slate-600 leading-relaxed whitespace-pre-line text-sm">Content</div>
+            <h2 id="modal-title" class="text-2xl font-bold text-white mb-4 font-display">Title</h2>
+            <div id="modal-body" class="text-slate-300 leading-relaxed whitespace-pre-line text-sm">Content</div>
             <button onclick="closeModal()"
-                class="mt-8 w-full py-3 bg-slate-100 text-slate-700 font-bold rounded-xl hover:bg-slate-200 transition">Tutup</button>
+                class="mt-8 w-full py-3 bg-slate-950 text-slate-300 border border-slate-800 font-bold rounded-xl hover:bg-slate-900 transition cursor-pointer">Tutup</button>
         </div>
     </div>
 
     <!-- Vendor Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    
+
     <!-- Custom Scripts -->
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/guestbook.js"></script>
 
     <script>
-        // Carousel Logic (Keep only what is specific to this page)
+        // ═══════════════════════════════════════
+        // Carousel Logic (2 slides with progress dots)
+        // ═══════════════════════════════════════
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-item');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const totalSlides = slides.length;
 
         function showSlide(index) {
             slides.forEach((slide, i) => {
                 slide.style.opacity = i === index ? '1' : '0';
             });
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('bg-white', 'w-8');
+                    dot.classList.remove('bg-white/50', 'w-3');
+                } else {
+                    dot.classList.add('bg-white/50', 'w-3');
+                    dot.classList.remove('bg-white', 'w-8');
+                }
+            });
         }
 
-        function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; showSlide(currentSlide); }
-        function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; showSlide(currentSlide); }
+        function nextSlide() { currentSlide = (currentSlide + 1) % totalSlides; showSlide(currentSlide); }
+        function prevSlide() { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; showSlide(currentSlide); }
+        function goToSlide(index) { currentSlide = index; showSlide(currentSlide); }
+
+        showSlide(0);
         setInterval(nextSlide, 6000);
 
+        // ═══════════════════════════════════════
+        // Count-Up Animation for Stats
+        // ═══════════════════════════════════════
+        function animateCountUp() {
+            document.querySelectorAll('.count-up').forEach(el => {
+                const target = parseInt(el.getAttribute('data-target'));
+                const suffix = el.nextSibling ? el.nextSibling.textContent.trim().charAt(0) === '+' ? '+' : '' : '';
+                let current = 0;
+                const increment = target / 60; // 60 frames at 60fps ≈ 1 second
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        el.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        el.textContent = Math.floor(current);
+                    }
+                }, 16);
+            });
+        }
+
+        // Trigger count-up when stats section is in view (using IntersectionObserver)
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCountUp();
+                    statsObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const firstCountUp = document.querySelector('.count-up');
+        if (firstCountUp) {
+            statsObserver.observe(firstCountUp.closest('.grid'));
+        }
     </script>
 </body>
 

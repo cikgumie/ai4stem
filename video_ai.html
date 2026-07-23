@@ -4,22 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Modul Pakar Penjana Video AI — cipta video pengajaran profesional dengan avatar maya menggunakan HeyGen & D-ID. Tanpa peralatan kamera yang mahal.">
     <title>Modul Pakar: Penjana Video AI (Video Generator AI)</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+    <!-- Google Fonts: Exo & Roboto Mono (Tech Mode) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <!-- Custom Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -28,17 +26,33 @@
         tailwind.config = {
             theme: {
                 extend: {
+                    container: {
+                        center: true,
+                        padding: '1.5rem',
+                        screens: {
+                            '2xl': '1440px',
+                        }
+                    },
+                    maxWidth: {
+                        'frame': '1440px',
+                    },
                     fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        display: ['"Outfit"', 'sans-serif'],
+                        sans: ['"Roboto Mono"', 'monospace'],
+                        display: ['"Exo"', 'sans-serif'],
+                        mono: ['"Roboto Mono"', 'monospace'],
                     },
                     colors: {
                         brand: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
+                            50: 'rgba(16, 185, 129, 0.1)',
+                            100: 'rgba(16, 185, 129, 0.2)',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        },
+                        accent: {
+                            50: 'rgba(6, 182, 212, 0.1)',
+                            500: '#06b6d4',
+                            600: '#0891b2',
                         }
                     }
                 }
@@ -50,96 +64,134 @@
         .hero-mask {
             clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0% 30%);
         }
+        .glass-card {
+            background: rgba(13, 20, 35, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
     </style>
 </head>
 
-<body class="antialiased selection:bg-brand-100 selection:text-brand-900">
+<body class="antialiased selection:bg-emerald-500/30 selection:text-emerald-400 bg-slate-950 text-slate-100">
 
     <!-- Navigation (Modular) -->
-    <div id="navbar-placeholder" data-theme="light" data-accent="brand"></div>
+    <div id="navbar-placeholder" data-theme="dark" data-accent="brand"></div>
     <script src="assets/js/nav-component.js"></script>
 
 
     <main>
         <!-- Hero Section -->
-        <header class="relative pt-32 pb-20 lg:pt-44 lg:pb-36 overflow-hidden">
+        <header class="relative pt-32 pb-20 lg:pt-44 lg:pb-36 overflow-hidden bg-slate-950">
             <div id="particles-js" class="absolute inset-0 z-0"></div>
-            <div class="absolute inset-0 bg-grid-slate -z-10"></div>
-            
+            <div class="absolute inset-0 bg-grid-tech -z-10 opacity-30"></div>
+
             <div class="container mx-auto px-6 relative z-10">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
                     <div class="text-left" data-aos="fade-right">
-                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-100 mb-6">
+                        <span
+                            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
                             <span class="flex h-2 w-2 relative">
-                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-                                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                             </span>
-                            <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Motion Intelligence</span>
+                            <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Motion
+                                Intelligence</span>
                         </span>
-                        <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 leading-[1.1]">
-                            <span id="typewriter-video" class="text-brand-600"></span><span class="type-cursor text-brand-600">|</span>
+                        <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-[1.1] font-display">
+                            <span id="typewriter-video" class="text-emerald-400 glow-text-green"></span><span
+                                class="type-cursor text-emerald-400">|</span>
                         </h1>
-                        <p class="text-lg text-slate-600 mb-10 leading-relaxed max-w-xl">
-                            Hidupkan idea anda dengan kuasa video AI. Dari narasi automatik sehingga babak sinematik, transformasi bahan pendidikan anda ke tahap luar biasa.
+                        <p class="text-lg text-slate-400 mb-10 leading-relaxed max-w-xl">
+                            Hidupkan idea anda dengan kuasa video AI. Dari narasi automatik sehingga babak sinematik,
+                            transformasi bahan pendidikan anda ke tahap luar biasa.
                         </p>
                         <div class="flex flex-wrap gap-4">
-                            <a href="#slam" class="bg-brand-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-brand-700 transition shadow-xl shadow-brand-500/20 flex items-center gap-2">
-                                Mula Belajar <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                            <a href="#slam"
+                                class="bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-955 px-8 py-4 rounded-xl font-extrabold hover:opacity-90 transition shadow-lg cursor-pointer border border-emerald-400/20 shadow-emerald-500/10 flex items-center gap-2">
+                                Mula Belajar <i data-lucide="arrow-down" class="w-4 h-4 text-slate-955"></i>
                             </a>
                         </div>
                     </div>
 
                     <div class="relative" data-aos="zoom-out-left">
-                        <div class="absolute -inset-4 bg-brand-600/10 blur-3xl rounded-full opacity-50"></div>
-                        <div class="relative z-10 w-full aspect-square md:aspect-[4/3] overflow-hidden rounded-[3rem] hero-mask shadow-2xl">
+                        <div class="absolute -inset-4 bg-emerald-600/10 blur-3xl rounded-full opacity-50"></div>
+                        <div
+                            class="relative z-10 w-full aspect-square md:aspect-[4/3] overflow-hidden rounded-[3rem] hero-mask shadow-2xl border border-slate-800">
                             <img src="assets/img/video_hero.png" alt="Video AI Hero" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-tr from-brand-600/40 via-transparent to-transparent"></div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-tr from-emerald-600/20 via-transparent to-transparent">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </header>
-
-        <!-- Showcase Section -->
-        <section id="gallery" class="py-24 bg-white">
+        </header>        <!-- Showcase Section -->
+        <section id="gallery" class="py-24 bg-slate-950 border-t border-slate-900">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16" data-aos="fade-up">
-                    <span class="text-brand-600 font-bold tracking-widest text-xs uppercase bg-brand-50 px-3 py-1 rounded-full">Video Showcase</span>
-                    <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mt-4">Kreativiti Tanpa Sempadan</h2>
-                    <p class="text-slate-600 mt-4 max-w-2xl mx-auto text-lg leading-relaxed">Lihat bagaimana AI mampu menterjemah imaginasi kepada klip video yang realistik dan berimpak tinggi.</p>
+                    <span
+                        class="text-emerald-400 font-bold tracking-widest text-xs uppercase bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full">Video
+                        Showcase</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mt-4 font-display">Kreativiti Tanpa Sempadan</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl mx-auto text-lg leading-relaxed">Lihat bagaimana AI mampu
+                        menterjemah imaginasi kepada klip video yang realistik dan berimpak tinggi.</p>
                 </div>
-                
+
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Example 1 -->
-                    <div class="group relative bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-100 h-[450px]" data-aos="fade-up">
-                        <img src="assets/img/video_ai_motion.png" alt="Motion AI" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent"></div>
+                    <div class="group relative bg-slate-950 rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-800/80 h-[450px]"
+                        data-aos="fade-up">
+                        <img src="assets/img/video_ai_motion.png" alt="Motion AI"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-955/95 via-slate-955/30 to-transparent">
+                        </div>
                         <div class="absolute bottom-0 left-0 p-8 w-full">
-                            <span class="bg-blue-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase mb-4 inline-block shadow-lg">Aksi & Pergerakan</span>
-                            <h4 class="text-2xl font-bold text-white mb-2">Simulasi Realistik</h4>
-                            <p class="text-slate-300 text-sm leading-relaxed italic border-l-2 border-blue-500 pl-3">"Menjana pergerakan cecair dan fizik yang kompleks untuk eksperimen sains maya."</p>
+                            <span
+                                class="bg-blue-500/20 text-blue-400 border border-blue-500/30 text-[10px] font-bold px-3 py-1 rounded-full uppercase mb-4 inline-block shadow-lg">Aksi
+                                & Pergerakan</span>
+                            <h4 class="text-2xl font-bold text-white mb-2 font-display">Simulasi Realistik</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed italic border-l-2 border-blue-500 pl-3">
+                                "Menjana pergerakan cecair dan fizik yang kompleks untuk eksperimen sains maya."</p>
                         </div>
                     </div>
 
                     <!-- Example 2 -->
-                    <div class="group relative bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-100 h-[450px]" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/video_cinematic.png" alt="Cinematic AI" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent"></div>
+                    <div class="group relative bg-slate-955 rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-800/80 h-[450px]"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <img src="assets/img/video_cinematic.png" alt="Cinematic AI"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-955/95 via-slate-955/30 to-transparent">
+                        </div>
                         <div class="absolute bottom-0 left-0 p-8 w-full">
-                            <span class="bg-orange-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase mb-4 inline-block shadow-lg">Sinematik & Visual</span>
-                            <h4 class="text-2xl font-bold text-white mb-2">Penceritaan Digital</h4>
-                            <p class="text-slate-300 text-sm leading-relaxed italic border-l-2 border-orange-500 pl-3">"Menghasilkan babak sejarah dalam kualiti filem 4K untuk pengalaman pembelajaran imersif."</p>
+                            <span
+                                class="bg-orange-500/20 text-orange-400 border border-orange-500/30 text-[10px] font-bold px-3 py-1 rounded-full uppercase mb-4 inline-block shadow-lg">Sinematik
+                                & Visual</span>
+                            <h4 class="text-2xl font-bold text-white mb-2 font-display">Penceritaan Digital</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed italic border-l-2 border-orange-500 pl-3">
+                                "Menghasilkan babak sejarah dalam kualiti filem 4K untuk pengalaman pembelajaran
+                                imersif."</p>
                         </div>
                     </div>
 
                     <!-- Example 3 -->
-                    <div class="group relative bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-100 h-[450px]" data-aos="fade-up" data-aos-delay="200">
-                        <img src="assets/img/video_avatar.png" alt="Avatar AI" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent"></div>
+                    <div class="group relative bg-slate-955 rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-800/80 h-[450px]"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <img src="assets/img/video_avatar.png" alt="Avatar AI"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-slate-955/95 via-slate-955/30 to-transparent">
+                        </div>
                         <div class="absolute bottom-0 left-0 p-8 w-full">
-                            <span class="bg-purple-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase mb-4 inline-block shadow-lg">Virtual Presenter</span>
-                            <h4 class="text-2xl font-bold text-white mb-2">Avatar Guru AI</h4>
-                            <p class="text-slate-300 text-sm leading-relaxed italic border-l-2 border-purple-500 pl-3">"Cipta hos video yang boleh bercakap dalam pelbagai bahasa hanya melalui skrip teks."</p>
+                            <span
+                                class="bg-purple-500/20 text-purple-400 border border-purple-500/30 text-[10px] font-bold px-3 py-1 rounded-full uppercase mb-4 inline-block shadow-lg">Virtual
+                                Presenter</span>
+                            <h4 class="text-2xl font-bold text-white mb-2 font-display">Avatar Guru AI</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed italic border-l-2 border-purple-500 pl-3">
+                                "Cipta hos video yang boleh bercakap dalam pelbagai bahasa hanya melalui skrip teks."
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -147,71 +199,329 @@
         </section>
 
         <!-- Components Grid (S.L.A.M Acronym) -->
-        <section id="slam" class="py-24 bg-slate-50 border-y border-slate-100">
+        <section id="slam" class="py-24 bg-slate-950 border-t border-slate-900">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16" data-aos="fade-up">
-                    <span class="text-brand-600 font-bold tracking-widest text-xs uppercase bg-brand-50 px-3 py-1 rounded-full">Methodology</span>
-                    <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mt-4">S.L.A.M</h2>
-                    <p class="text-slate-500 mt-4 text-lg">Formula ringkas untuk menghasilkan video AI yang berkualiti profesional.</p>
+                    <span
+                        class="text-cyan-400 font-bold tracking-widest text-xs uppercase bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full">Methodology</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mt-4 font-display">S.L.A.M</h2>
+                    <p class="text-slate-400 mt-4 text-lg">Formula ringkas untuk menghasilkan video AI yang berkualiti
+                        profesional.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- S - Subjek -->
-                    <div class="group bg-white rounded-[2.5rem] p-4 shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    <div
+                        class="group glass-card rounded-[2.5rem] p-4 border border-slate-805/85 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
                         <div class="relative h-48 mb-6 overflow-hidden rounded-[2rem]">
-                            <img src="assets/img/prompt_vid_subjek.png" alt="Subjek" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-brand-600/10 group-hover:bg-transparent transition-colors"></div>
-                            <div class="absolute top-4 left-4 w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-brand-600 shadow-lg">
-                                <span class="text-2xl font-black italic">S</span>
+                            <img src="assets/img/prompt_vid_subjek.png" alt="Subjek"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-emerald-500/10 group-hover:bg-transparent transition-colors">
+                            </div>
+                            <div
+                                class="absolute top-4 left-4 w-12 h-12 bg-slate-950 text-emerald-450 border border-emerald-555/25 rounded-2xl flex items-center justify-center font-bold shadow-lg">
+                                <span class="text-2xl font-black italic text-emerald-400">S</span>
                             </div>
                         </div>
                         <div class="px-4 pb-6">
-                            <h4 class="font-bold text-xl text-slate-900 mb-2">Subjek</h4>
-                            <p class="text-sm text-slate-500 leading-relaxed">Fokus utama, watak, atau objek yang ingin anda gerakkan dalam babak.</p>
+                            <h4 class="font-bold text-xl text-white mb-2 font-display">Subjek</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">Fokus utama, watak, atau objek yang ingin
+                                anda gerakkan dalam babak.</p>
                         </div>
                     </div>
 
                     <!-- L - Latar -->
-                    <div class="group bg-white rounded-[2.5rem] p-4 shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    <div
+                        class="group glass-card rounded-[2.5rem] p-4 border border-slate-805/85 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
                         <div class="relative h-48 mb-6 overflow-hidden rounded-[2rem]">
-                            <img src="assets/img/prompt_vid_latar.png" alt="Latar" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-teal-600/10 group-hover:bg-transparent transition-colors"></div>
-                            <div class="absolute top-4 left-4 w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-teal-600 shadow-lg">
-                                <span class="text-2xl font-black italic">L</span>
+                            <img src="assets/img/prompt_vid_latar.png" alt="Latar"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-cyan-500/10 group-hover:bg-transparent transition-colors">
+                            </div>
+                            <div
+                                class="absolute top-4 left-4 w-12 h-12 bg-slate-950 text-cyan-400 border border-cyan-555/25 rounded-2xl flex items-center justify-center font-bold shadow-lg">
+                                <span class="text-2xl font-black italic text-cyan-400">L</span>
                             </div>
                         </div>
                         <div class="px-4 pb-6">
-                            <h4 class="font-bold text-xl text-slate-900 mb-2">Latar</h4>
-                            <p class="text-sm text-slate-500 leading-relaxed">Persekitaran tempat babak berlaku, termasuk elemen cuaca dan masa.</p>
+                            <h4 class="font-bold text-xl text-white mb-2 font-display">Latar</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">Persekitaran tempat babak berlaku,
+                                termasuk elemen cuaca dan masa.</p>
                         </div>
                     </div>
 
                     <!-- A - Aura -->
-                    <div class="group bg-white rounded-[2.5rem] p-4 shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    <div
+                        class="group glass-card rounded-[2.5rem] p-4 border border-slate-805/85 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
                         <div class="relative h-48 mb-6 overflow-hidden rounded-[2rem]">
-                            <img src="assets/img/prompt_vid_aura.png" alt="Aura" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-purple-600/10 group-hover:bg-transparent transition-colors"></div>
-                            <div class="absolute top-4 left-4 w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-purple-600 shadow-lg">
-                                <span class="text-2xl font-black italic">A</span>
+                            <img src="assets/img/prompt_vid_aura.png" alt="Aura"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-purple-500/10 group-hover:bg-transparent transition-colors">
+                            </div>
+                            <div
+                                class="absolute top-4 left-4 w-12 h-12 bg-slate-950 text-purple-400 border border-purple-555/25 rounded-2xl flex items-center justify-center font-bold shadow-lg">
+                                <span class="text-2xl font-black italic text-purple-400">A</span>
                             </div>
                         </div>
                         <div class="px-4 pb-6">
-                            <h4 class="font-bold text-xl text-slate-900 mb-2">Aura</h4>
-                            <p class="text-sm text-slate-500 leading-relaxed">Gaya visual, tona warna, mood sinematik dan pencahayaan artistik.</p>
+                            <h4 class="font-bold text-xl text-white mb-2 font-display">Aura</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">Gaya visual, tona warna, mood sinematik
+                                dan pencahayaan artistik.</p>
                         </div>
                     </div>
 
                     <!-- M - Motion -->
-                    <div class="group bg-white rounded-[2.5rem] p-4 shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    <div
+                        class="group glass-card rounded-[2.5rem] p-4 border border-slate-805/85 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
                         <div class="relative h-48 mb-6 overflow-hidden rounded-[2rem]">
-                            <img src="assets/img/prompt_vid_motion.png" alt="Motion" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-rose-600/10 group-hover:bg-transparent transition-colors"></div>
-                            <div class="absolute top-4 left-4 w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-rose-600 shadow-lg">
-                                <span class="text-2xl font-black italic">M</span>
+                            <img src="assets/img/prompt_vid_motion.png" alt="Motion"
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-rose-500/10 group-hover:bg-transparent transition-colors">
+                            </div>
+                            <div
+                                class="absolute top-4 left-4 w-12 h-12 bg-slate-950 text-rose-400 border border-rose-555/25 rounded-2xl flex items-center justify-center font-bold shadow-lg">
+                                <span class="text-2xl font-black italic text-rose-400">M</span>
                             </div>
                         </div>
                         <div class="px-4 pb-6">
-                            <h4 class="font-bold text-xl text-slate-900 mb-2">Motion</h4>
-                            <p class="text-sm text-slate-500 leading-relaxed">Tahap pergerakan subjek dan teknik kamera seperti "slow motion" atau "tracking shot".</p>
+                            <h4 class="font-bold text-xl text-white mb-2 font-display">Motion</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">Tahap pergerakan subjek dan teknik kamera
+                                seperti "slow motion" atau "tracking shot".</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modul Penghasilan Video Pembelajaran AI -->
+        <section id="modul-penghasilan" class="py-24 bg-slate-950 border-t border-slate-900">
+            <div class="container max-w-[1440px] mx-auto px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="text-emerald-400 font-bold tracking-widest text-xs uppercase bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full">Panduan Praktikal</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mt-4 font-display">Modul Penghasilan Video Pembelajaran AI</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl mx-auto text-lg leading-relaxed">Langkah sistematik untuk guru STEM menghasilkan video pembelajaran berkualiti tinggi dan patuh kurikulum menggunakan teknologi AI terkini.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-12 items-start mb-20">
+                    <!-- Steps Timeline (Left Column) -->
+                    <div class="lg:col-span-5 space-y-8" data-aos="fade-right">
+                        <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-2 font-display">
+                            <i data-lucide="list-todo" class="w-6 h-6 text-emerald-400 animate-pulse"></i> Alur Kerja Pendidik STEM
+                        </h3>
+                        <div class="relative pl-8 border-l-2 border-slate-850 space-y-12">
+                            <!-- Step 1 -->
+                            <div class="relative group">
+                                <div class="absolute -left-[45px] top-0 w-8 h-8 rounded-full bg-slate-955 border-2 border-emerald-500/40 flex items-center justify-center font-bold text-sm text-emerald-400 group-hover:bg-emerald-500 group-hover:text-slate-955 transition-all">1</div>
+                                <h4 class="font-bold text-lg text-white mb-2">Penyediaan Papan Cerita (Storyboard)</h4>
+                                <p class="text-sm text-slate-450 leading-relaxed mb-3">Bahagikan topik pembelajaran kepada babak (scenes) pendek berdurasi 5 hingga 10 saat.</p>
+                                <ul class="text-xs text-slate-400 space-y-1.5 pl-4 list-disc">
+                                    <li><strong>Story Prompt (Idea Babak):</strong> Sinopsis ringkas aksi atau peristiwa dalam babak.</li>
+                                    <li><strong>Visual Prompt:</strong> Deskripsi visual terperinci (gaya seni, sudut kamera, pencahayaan) dalam bahasa Inggeris untuk ketepatan optimum AI.</li>
+                                    <li><strong>Dialog / Naratif:</strong> Skrip suara latar (voiceover) yang padat dan selari dengan DSKP.</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Step 2 -->
+                            <div class="relative group">
+                                <div class="absolute -left-[45px] top-0 w-8 h-8 rounded-full bg-slate-955 border-2 border-emerald-500/40 flex items-center justify-center font-bold text-sm text-emerald-400 group-hover:bg-emerald-500 group-hover:text-slate-955 transition-all">2</div>
+                                <h4 class="font-bold text-lg text-white mb-2">Penjanaan Imej Watak Konsisten</h4>
+                                <p class="text-sm text-slate-450 leading-relaxed mb-3">Cipta watak guru atau maskot STEM konsisten menggunakan penjana imej AI (seperti Imagen 3).</p>
+                                <ul class="text-xs text-slate-400 space-y-1.5 pl-4 list-disc">
+                                    <li>Tulis deskripsi watak yang sangat spesifik (contoh: jenis pakaian, warna rambut, gaya animasi 3D).</li>
+                                    <li>Simpan imej watak ini sebagai rujukan utama (<em>Image Reference</em>) untuk mengekalkan konsistensi visual dalam video.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="relative group">
+                                <div class="absolute -left-[45px] top-0 w-8 h-8 rounded-full bg-slate-955 border-2 border-emerald-500/40 flex items-center justify-center font-bold text-sm text-emerald-400 group-hover:bg-emerald-500 group-hover:text-slate-955 transition-all">3</div>
+                                <h4 class="font-bold text-lg text-white mb-2">Integrasi ke dalam Google Veo</h4>
+                                <p class="text-sm text-slate-450 leading-relaxed mb-3">Buka platform Google Veo atau alat jana video AI pilihan anda.</p>
+                                <ul class="text-xs text-slate-400 space-y-1.5 pl-4 list-disc">
+                                    <li>Muat naik imej watak utama yang telah dijana pada Langkah 2 ke dalam ruangan <em>Image Input / Reference</em>.</li>
+                                    <li>Masukkan teks <em>Visual Prompt</em> yang telah disediakan dalam papan cerita untuk memulakan proses animasi.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Step 4 -->
+                            <div class="relative group">
+                                <div class="absolute -left-[45px] top-0 w-8 h-8 rounded-full bg-slate-955 border-2 border-emerald-500/40 flex items-center justify-center font-bold text-sm text-emerald-400 group-hover:bg-emerald-500 group-hover:text-slate-955 transition-all">4</div>
+                                <h4 class="font-bold text-lg text-white mb-2">Penjanaan Video Mengikut Babak</h4>
+                                <p class="text-sm text-slate-450 leading-relaxed mb-3">Jana video secara berperingkat (babak demi babak), bukan sekaligus.</p>
+                                <ul class="text-xs text-slate-400 space-y-1.5 pl-4 list-disc">
+                                    <li>Semak ketepatan pergerakan subjek dan kamera (contoh: <em>pan right</em>, <em>zoom in</em>) bagi setiap klip.</li>
+                                    <li>Muat turun semua klip video yang berjaya, kemudian gabungkan menggunakan perisian suntingan (seperti CapCut atau Canva) bersama rakaman suara latar (naratif).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Practical Example (Right Column) -->
+                    <div class="lg:col-span-7 space-y-8" data-aos="fade-left">
+                        <div class="glass-card rounded-[2.5rem] p-8 border border-slate-800/80 shadow-sm relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl"></div>
+                            <div class="flex items-center justify-between mb-8">
+                                <div>
+                                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Contoh Praktikal</span>
+                                    <h3 class="text-xl font-bold text-white mt-1 font-display">STEM: Sains Tahun 5 (Kitaran Air)</h3>
+                                </div>
+                                <span class="px-4 py-1.5 bg-emerald-500/15 text-emerald-400 border border-emerald-500/20 text-xs font-bold rounded-full">3 Babak Utama</span>
+                            </div>
+
+                            <!-- Interactive List of Scenes -->
+                            <div class="space-y-6">
+                                <!-- Scene 1 -->
+                                <div class="bg-slate-900/60 rounded-3xl p-5 border border-slate-850 shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row gap-5">
+                                    <div class="md:w-1/3 aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 relative group flex-shrink-0">
+                                        <img src="assets/img/video_scene_cikgu.png" alt="Babak 1: Cikgu STEM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                        <div class="absolute top-2 left-2 bg-slate-950/80 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">Babak 1</div>
+                                    </div>
+                                    <div class="flex-grow flex flex-col justify-between">
+                                        <div>
+                                            <h4 class="font-bold text-white text-base mb-1">Pengenalan Cikgu STEM</h4>
+                                            <p class="text-xs text-slate-350 italic mb-3">"Hai murid-murid! Hari ini kita akan menerokai rahsia di sebalik kitaran air semulajadi."</p>
+                                            <div class="bg-slate-955 rounded-xl p-3 border border-slate-850">
+                                                <div class="text-[9px] font-bold text-slate-500 uppercase mb-1">Visual Prompt (AI Input)</div>
+                                                <p class="text-[11px] text-cyan-400 leading-relaxed font-mono font-medium">"A friendly male Malaysian teacher wearing a modern lab coat, standing in a futuristic digital science lab, 3D Pixar style, bright lighting, cinematic shot."</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Scene 2 -->
+                                <div class="bg-slate-900/60 rounded-3xl p-5 border border-slate-850 shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row gap-5">
+                                    <div class="md:w-1/3 aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 relative group flex-shrink-0">
+                                        <img src="assets/img/video_scene_penyejatan.png" alt="Babak 2: Penyejatan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                        <div class="absolute top-2 left-2 bg-slate-950/80 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">Babak 2</div>
+                                    </div>
+                                    <div class="flex-grow flex flex-col justify-between">
+                                        <div>
+                                            <h4 class="font-bold text-white text-base mb-1">Proses Penyejatan Air</h4>
+                                            <p class="text-xs text-slate-355 italic mb-3">"Proses pertama ialah penyejatan. Haba matahari menukarkan air kepada wap air yang naik ke udara."</p>
+                                            <div class="bg-slate-955 rounded-xl p-3 border border-slate-850">
+                                                <div class="text-[9px] font-bold text-slate-500 uppercase mb-1">Visual Prompt (AI Input)</div>
+                                                <p class="text-[11px] text-cyan-400 leading-relaxed font-mono font-medium">"Extreme close up of ocean water evaporating into glowing vapor under a bright sun, cinematic, 3D animation style, dynamic camera movement rising upwards."</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Scene 3 -->
+                                <div class="bg-slate-900/60 rounded-3xl p-5 border border-slate-850 shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row gap-5">
+                                    <div class="md:w-1/3 aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 relative group flex-shrink-0">
+                                        <img src="assets/img/video_scene_hujan.png" alt="Babak 3: Kondensasi & Hujan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                        <div class="absolute top-2 left-2 bg-slate-950/80 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">Babak 3</div>
+                                    </div>
+                                    <div class="flex-grow flex flex-col justify-between">
+                                        <div>
+                                            <h4 class="font-bold text-white text-base mb-1">Kondensasi & Hujan</h4>
+                                            <p class="text-xs text-slate-355 italic mb-3">"Wap air menyejuk menjadi titisan air, membentuk awan, dan akhirnya turun sebagai hujan. Kitaran ini berulang sentiasa."</p>
+                                            <div class="bg-slate-955 rounded-xl p-3 border border-slate-850">
+                                                <div class="text-[9px] font-bold text-slate-500 uppercase mb-1">Visual Prompt (AI Input)</div>
+                                                <p class="text-[11px] text-cyan-400 leading-relaxed font-mono font-medium">"Heavy rain falling from dark fluffy clouds over a green tropical forest, 3D animation style, wide angle shot, macro raindrops."</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Latihan Kuasai AI (Flow & Storyboard Anime Futuristik) -->
+                <div id="latihan-kuasai-ai" class="mt-20 pt-16 border-t border-slate-900" data-aos="fade-up">
+                    <div class="text-center mb-12">
+                        <span class="text-cyan-400 font-bold tracking-widest text-xs uppercase bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full">Latihan Praktikal</span>
+                        <h3 class="text-3xl md:text-4xl font-bold text-white mt-4 font-display">Latihan Kuasai AI: Alur Kerja & Papan Cerita Video</h3>
+                        <p class="text-slate-400 mt-3 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+                            Alur kerja lengkap pembinaan video AI berpandukan Nota Pembelajaran STEM "Teknik Leraian".
+                        </p>
+                    </div>
+
+                    <!-- Flow Diagram Cards -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
+                        <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl text-center relative group hover:border-emerald-500/40 transition">
+                            <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xs flex items-center justify-center mx-auto mb-3 border border-emerald-500/30">1</div>
+                            <h5 class="text-xs font-bold text-white mb-1">Sediakan Nota</h5>
+                            <p class="text-[10px] text-slate-400">Nota DSKP & Fakta Teras</p>
+                        </div>
+                        <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl text-center relative group hover:border-cyan-500/40 transition">
+                            <div class="w-8 h-8 rounded-full bg-cyan-500/20 text-cyan-400 font-bold text-xs flex items-center justify-center mx-auto mb-3 border border-cyan-500/30">2</div>
+                            <h5 class="text-xs font-bold text-white mb-1">Bina Cerita</h5>
+                            <p class="text-[10px] text-slate-400">Papan Cerita & Skrip Babak</p>
+                        </div>
+                        <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl text-center relative group hover:border-indigo-500/40 transition">
+                            <div class="w-8 h-8 rounded-full bg-indigo-500/20 text-indigo-400 font-bold text-xs flex items-center justify-center mx-auto mb-3 border border-indigo-500/30">3</div>
+                            <h5 class="text-xs font-bold text-white mb-1">Jana Gambar</h5>
+                            <p class="text-[10px] text-slate-400">Visual AI Image Ref</p>
+                        </div>
+                        <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl text-center relative group hover:border-purple-500/40 transition">
+                            <div class="w-8 h-8 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xs flex items-center justify-center mx-auto mb-3 border border-purple-500/30">4</div>
+                            <h5 class="text-xs font-bold text-white mb-1">Google Veo</h5>
+                            <p class="text-[10px] text-slate-400">Muat Naik Imej Rujukan</p>
+                        </div>
+                        <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl text-center relative group hover:border-rose-500/40 transition">
+                            <div class="w-8 h-8 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xs flex items-center justify-center mx-auto mb-3 border border-rose-500/30">5</div>
+                            <h5 class="text-xs font-bold text-white mb-1">Masukkan Prompt</h5>
+                            <p class="text-[10px] text-slate-400">Visual & Video Motion Prompt</p>
+                        </div>
+                        <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl text-center relative group hover:border-amber-500/40 transition">
+                            <div class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xs flex items-center justify-center mx-auto mb-3 border border-amber-500/30">6</div>
+                            <h5 class="text-xs font-bold text-white mb-1">Jana Video</h5>
+                            <p class="text-[10px] text-slate-400">Klip Sinematik Final</p>
+                        </div>
+                    </div>
+
+                    <!-- Master Prompt AI Box (Untuk Salinan Guru) -->
+                    <div class="glass-card rounded-[2.5rem] p-6 md:p-8 border border-emerald-500/30 mb-12 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950/20 shadow-xl shadow-emerald-500/5">
+                        <div class="flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-800">
+                            <div class="flex items-center gap-3">
+                                <span class="p-2.5 bg-emerald-500/20 text-emerald-400 rounded-xl border border-emerald-500/30">
+                                    <i data-lucide="terminal" class="w-6 h-6"></i>
+                                </span>
+                                <div>
+                                    <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Master Prompt AI (Templat Salinan Guru)</span>
+                                    <h4 class="text-xl font-bold text-white font-display">Prompt Utama Penjanaan Papan Cerita Video AI</h4>
+                                </div>
+                            </div>
+                            <button onclick="copyMasterPrompt()" class="px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-955 rounded-xl font-extrabold text-xs hover:opacity-90 transition shadow-lg flex items-center gap-2 border border-emerald-400/20 cursor-pointer">
+                                <i id="copy-btn-icon" data-lucide="copy" class="w-4 h-4 text-slate-955"></i> <span id="copy-btn-text">Salin Master Prompt</span>
+                            </button>
+                        </div>
+
+                        <p class="text-xs text-slate-400 mb-4">
+                            Guru boleh menyalin templat master prompt di bawah dan menampalkannya (*paste*) terus ke dalam ChatGPT / Gemini / Claude bersama nota pembelajaran DSKP masing-masing:
+                        </p>
+
+                        <div class="bg-slate-955 rounded-2xl p-5 border border-slate-800 font-mono text-xs text-slate-200 leading-relaxed overflow-x-auto relative shadow-inner">
+                            <pre id="master-prompt-content" class="whitespace-pre-wrap font-mono">Bertindak sebagai Pengarah Kreatif profesional. Bina satu papan cerita (storyboard) yang komprehensif berdasarkan nota pengajaran yang diberikan di bawah.
+
+⚙️ Tetapan Papan Cerita:
+
+Latar (Scene): Dunia futuristik berteknologi tinggi.
+
+Watak Utama: Seorang guru dan dua orang murid.
+
+Gaya Visual (Tema): Animasi Jepun (Anime) dengan kualiti sinematik.
+
+Struktur: Hasilkan tepat 4 babak.
+
+Durasi: Setiap babak berdurasi 6 saat.
+
+📌 Syarat Kandungan (Mesti ada dalam setiap babak):
+
+Prompt Visual: Tuliskan meperlukan butiran terperinci merangkumi pencahayaan, sudut kamera, reka bentuk watak, dan persekitaran.
+
+Prompt Video: Terangkan secara jelas pergerakan kamera (panning, zooming) dan pergerakan fizikal watak.
+
+Dialog: Tuliskan dialog yang ringkas dan padat. Mesti menggunakan Bahasa Melayu standard (Nyatakan "Dialog Bahasa Melayu:" secara jelas pada setiap teks dialog).
+
+🛑 Larangan Bersyarat:
+
+Jangan hasilkan jawapan dalam bentuk jadual.
+
+Gunakan format senarai (bullet points) yang kemas untuk mengasingkan setiap babak dan prompt.
+
+📄 Nota Rujukan: [gantikan dengan nota cikgu]</pre>
                         </div>
                     </div>
                 </div>
@@ -219,52 +529,89 @@
         </section>
 
         <!-- Tools Grid -->
-        <section class="py-24 bg-white">
+        <section class="py-24 bg-slate-950 border-t border-slate-900">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16" data-aos="fade-up">
-                    <span class="text-brand-600 font-bold tracking-widest text-xs uppercase bg-brand-50 px-3 py-1 rounded-full">AI Tools</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-4">Alatan Berkuasa</h2>
-                    <p class="text-slate-600 mt-4 max-w-2xl mx-auto">Platform utama untuk membina modul video pendidikan masa depan.</p>
+                    <span
+                        class="text-cyan-400 font-bold tracking-widest text-xs uppercase bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full">AI
+                        Tools</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mt-4 font-display">Alatan Berkuasa</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl mx-auto">Platform utama untuk membina modul video pendidikan
+                        masa depan.</p>
                 </div>
                 <div class="grid md:grid-cols-3 gap-8">
-                    <div class="card p-8 group hover:bg-slate-50 transition-colors border border-slate-100 rounded-[2.5rem]" data-aos="fade-up">
-                        <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                    <div class="glass-card p-8 group hover:border-cyan-500/30 transition-all border border-slate-805/85 rounded-[2.5rem]"
+                        data-aos="fade-up">
+                        <div
+                            class="w-16 h-16 bg-blue-500/15 border border-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 mb-6 group-hover:bg-blue-500 group-hover:text-slate-950 transition-all">
                             <i data-lucide="video" class="w-8 h-8"></i>
                         </div>
-                        <h4 class="text-xl font-bold mb-3">Runway Gen-2</h4>
-                        <p class="text-slate-600 mb-4 text-sm">Peneraju video AI yang menawarkan kualiti sinematik dan kawalan kamera yang mendalam.</p>
+                        <h4 class="text-xl font-bold mb-3 text-white font-display">Runway Gen-2</h4>
+                        <p class="text-slate-400 mb-4 text-sm">Peneraju video AI yang menawarkan kualiti sinematik dan
+                            kawalan kamera yang mendalam.</p>
                     </div>
-                    <div class="card p-8 group hover:bg-slate-50 transition-colors border border-slate-100 rounded-[2.5rem]" data-aos="fade-up" data-aos-delay="100">
-                        <div class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-600 mb-6 group-hover:bg-orange-600 group-hover:text-white transition-all">
+                    <div class="glass-card p-8 group hover:border-amber-500/30 transition-all border border-slate-805/85 rounded-[2.5rem]"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <div
+                            class="w-16 h-16 bg-amber-500/15 border border-amber-500/20 rounded-2xl flex items-center justify-center text-amber-405 mb-6 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all">
                             <i data-lucide="sparkles" class="w-8 h-8"></i>
                         </div>
-                        <h4 class="text-xl font-bold mb-3">HeyGen / Synthesia</h4>
-                        <p class="text-slate-600 mb-4 text-sm">Cipta avatar maya yang boleh bercakap seolah-olah pengajar sebenar di hadapan kelas.</p>
+                        <h4 class="text-xl font-bold mb-3 text-white font-display">HeyGen / Synthesia</h4>
+                        <p class="text-slate-400 mb-4 text-sm">Cipta avatar maya yang boleh bercakap seolah-olah
+                            pengajar sebenar di hadapan kelas.</p>
                     </div>
-                    <div class="card p-8 group hover:bg-slate-50 transition-colors border border-slate-100 rounded-[2.5rem]" data-aos="fade-up" data-aos-delay="200">
-                        <div class="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-600 mb-6 group-hover:bg-purple-600 group-hover:text-white transition-all">
+                    <div class="glass-card p-8 group hover:border-purple-500/30 transition-all border border-slate-805/85 rounded-[2.5rem]"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <div
+                            class="w-16 h-16 bg-purple-500/15 border border-purple-500/20 rounded-2xl flex items-center justify-center text-purple-400 mb-6 group-hover:bg-purple-500 group-hover:text-slate-950 transition-all">
                             <i data-lucide="clapperboard" class="w-8 h-8"></i>
                         </div>
-                        <h4 class="text-xl font-bold mb-3">Luma Dream Machine</h4>
-                        <p class="text-slate-600 mb-4 text-sm">Menghasilkan klip video yang sangat realistik dengan konsistensi fizik yang tinggi.</p>
+                        <h4 class="text-xl font-bold mb-3 text-white font-display">Luma Dream Machine</h4>
+                        <p class="text-slate-400 mb-4 text-sm">Menghasilkan klip video yang sangat realistik dengan
+                            konsistensi fizik yang tinggi.</p>
                     </div>
 
                     <!-- New: Google Flow -->
-                    <div class="card p-8 group hover:bg-slate-50 transition-colors border border-slate-100 rounded-[2.5rem]" data-aos="fade-up">
-                        <div class="w-16 h-16 bg-teal-50 rounded-2xl flex items-center justify-center text-teal-600 mb-6 group-hover:bg-teal-600 group-hover:text-white transition-all">
+                    <div class="glass-card p-8 group hover:border-cyan-500/30 transition-all border border-slate-805/85 rounded-[2.5rem]"
+                        data-aos="fade-up">
+                        <div
+                            class="w-16 h-16 bg-cyan-500/15 border border-cyan-500/20 rounded-2xl flex items-center justify-center text-cyan-400 mb-6 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-all">
                             <i data-lucide="workflow" class="w-8 h-8"></i>
                         </div>
-                        <h4 class="text-xl font-bold mb-3">Google Flow</h4>
-                        <p class="text-slate-600 mb-4 text-sm">Platform pembikinan filem AI yang memberikan kawalan kreatif penuh terhadap babak dan penceritaan.</p>
+                        <h4 class="text-xl font-bold mb-3 text-white font-display">Google Flow</h4>
+                        <p class="text-slate-400 mb-4 text-sm">Platform pembikinan filem AI yang memberikan kawalan
+                            kreatif penuh terhadap babak dan penceritaan.</p>
                     </div>
 
                     <!-- New: Google Veo 3 -->
-                    <div class="card p-8 group hover:bg-slate-50 transition-colors border border-slate-100 rounded-[2.5rem]" data-aos="fade-up" data-aos-delay="100">
-                        <div class="w-16 h-16 bg-brand-50 rounded-2xl flex items-center justify-center text-brand-600 mb-6 group-hover:bg-brand-600 group-hover:text-white transition-all">
+                    <div class="glass-card p-8 group hover:border-emerald-500/30 transition-all border border-slate-805/85 rounded-[2.5rem]"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <div
+                            class="w-16 h-16 bg-emerald-500/15 border border-emerald-500/20 rounded-2xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all">
                             <i data-lucide="zap" class="w-8 h-8"></i>
                         </div>
-                        <h4 class="text-xl font-bold mb-3">Google Veo 3</h4>
-                        <p class="text-slate-600 mb-4 text-sm">Model penjanaan video termaju yang menghasilkan visual 4K sinematik dengan pemahaman bahasa yang mendalam.</p>
+                        <h4 class="text-xl font-bold mb-3 text-white font-display">Google Veo 3</h4>
+                        <p class="text-slate-400 mb-4 text-sm">Model penjanaan video termaju yang menghasilkan visual 4K
+                            sinematik dengan pemahaman bahasa yang mendalam.</p>
+                    </div>
+
+                    <!-- New: Google Vids -->
+                    <div class="glass-card p-8 group hover:border-blue-500/30 transition-all border border-slate-805/85 rounded-[2.5rem]"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center justify-between mb-6">
+                            <div
+                                class="w-16 h-16 bg-blue-500/15 border border-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 group-hover:bg-blue-500 group-hover:text-slate-950 transition-all">
+                                <i data-lucide="play-square" class="w-8 h-8"></i>
+                            </div>
+                            <a href="https://docs.google.com/videos" target="_blank" rel="noopener noreferrer" class="p-2.5 bg-slate-900 border border-slate-800 text-slate-400 hover:text-cyan-400 hover:border-cyan-500/30 rounded-xl transition flex items-center gap-1.5 text-xs font-bold cursor-pointer">
+                                Layari <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                            </a>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3 text-white font-display">Google Vids</h4>
+                        <p class="text-slate-400 mb-4 text-sm leading-relaxed">Platform penjanaan video berasaskan AI dalam Google Workspace untuk membina persembahan video pembelajaran STEM dengan pantas.</p>
+                        <a href="https://docs.google.com/videos" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-cyan-400 hover:text-cyan-300 transition cursor-pointer">
+                            docs.google.com/videos <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -272,15 +619,15 @@
     </main>
 
     <!-- Footer -->
-    <footer class="text-center py-16 bg-slate-900 text-slate-300">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-wrap justify-center gap-8 mb-8 text-sm font-bold uppercase tracking-widest text-slate-500">
-                <a href="index.html" class="hover:text-brand-400 transition">Utama</a>
-                <a href="generatif_ai.html" class="hover:text-brand-400 transition">Teks</a>
-                <a href="visual_ai.html" class="hover:text-brand-400 transition">Visual</a>
-                <a href="audio_ai.html" class="hover:text-brand-400 transition">Audio</a>
+    <footer class="bg-slate-950 border-t border-slate-900 py-10">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex flex-wrap justify-center gap-4 mb-4 text-sm font-semibold">
+                <a href="index.html" class="text-slate-400 hover:text-cyan-400 transition cursor-pointer">Laman Utama</a>
+                <a href="generatif_ai.html" class="text-slate-400 hover:text-cyan-400 transition cursor-pointer">Generatif AI</a>
+                <a href="visual_ai.html" class="text-slate-400 hover:text-cyan-400 transition cursor-pointer">Visual AI</a>
+                <a href="gamifikasi_ai.html" class="text-slate-400 hover:text-cyan-400 transition cursor-pointer">Gamifikasi AI</a>
             </div>
-            <p class="text-slate-500">&copy; 2026 Pendidik AI Hub. Dibina untuk Kecemerlangan Guru.</p>
+            <p class="text-slate-500 text-sm font-medium">&copy; 2026 AI4STEM Hub. Panduan AI Video.</p>
         </div>
     </footer>
 
@@ -288,7 +635,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
+
     <!-- Custom Scripts -->
     <script src="assets/js/main.js"></script>
 
@@ -297,10 +644,62 @@
         lucide.createIcons();
 
         // Specific particles for Video Page (Dynamic/Flowing)
-            "retina_detect": true
-        });
+        if (typeof particlesJS !== 'undefined') {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": { "value": 40, "density": { "enable": true, "value_area": 800 } },
+                    "color": { "value": "#06b6d4" },
+                    "shape": { "type": "circle" },
+                    "opacity": { "value": 0.25, "random": true },
+                    "size": { "value": 3, "random": true },
+                    "line_linked": { "enable": true, "distance": 150, "color": "#06b6d4", "opacity": 0.15, "width": 1 },
+                    "move": { "enable": true, "speed": 1.5, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }
+                },
+                "retina_detect": true
+            });
+        }
 
+        // Reflection Box Toggle Logic
+        function showReflectionAnswer() {
+            const placeholder = document.getElementById('reflection-placeholder');
+            const answer = document.getElementById('reflection-answer');
+            
+            if (placeholder && answer) {
+                placeholder.classList.add('hidden');
+                answer.classList.remove('hidden');
+                setTimeout(() => {
+                    answer.classList.remove('opacity-0');
+                    answer.classList.add('opacity-100');
+                }, 50);
+            }
+        }
+
+        // Copy Master Prompt Function
+        function copyMasterPrompt() {
+            const content = document.getElementById('master-prompt-content');
+            if (!content) return;
+            const textToCopy = content.innerText || content.textContent;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const btnText = document.getElementById('copy-btn-text');
+                const btnIcon = document.getElementById('copy-btn-icon');
+                if (btnText) btnText.innerText = 'Berjaya Disalin!';
+                if (btnIcon) btnIcon.setAttribute('data-lucide', 'check');
+                if (window.lucide) lucide.createIcons();
+                
+                setTimeout(() => {
+                    if (btnText) btnText.innerText = 'Salin Master Prompt';
+                    if (btnIcon) btnIcon.setAttribute('data-lucide', 'copy');
+                    if (window.lucide) lucide.createIcons();
+                }, 2500);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
     </script>
 </body>
-
 </html>

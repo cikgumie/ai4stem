@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Kuasai Gamifikasi AI — ubah bilik darjah anda dengan elemen mekanik permainan, Quizizz AI, Kahoot! AI, dan strategi penglibatan aktif pelajar menggunakan Kecerdasan Buatan.">
+    <title>Gamifikasi AI: Pembelajaran Interaktif | AI4STEM</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Exo & Roboto Mono (Tech Mode) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Vanta Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Roboto Mono"', 'monospace'],
+                        display: ['"Exo"', 'sans-serif'],
+                        mono: ['"Roboto Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: 'rgba(16, 185, 129, 0.1)',
+                            100: 'rgba(16, 185, 129, 0.2)',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        },
+                        accent: {
+                            50: 'rgba(139, 92, 246, 0.1)',
+                            100: 'rgba(139, 92, 246, 0.2)',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .glass-card {
+            background: rgba(13, 20, 35, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-purple-500/30 selection:text-purple-400 bg-slate-950 text-slate-100">
+
+    <!-- Navigation (Modular) -->
+    <div id="navbar-placeholder" data-theme="dark" data-accent="brand"></div>
+    <script src="assets/js/nav-component.js"></script>
+
+    <!-- Header Section with Vanta.waves -->
+    <header id="vanta-bg" class="text-white text-center pt-48 pb-32 mb-10 overflow-hidden relative bg-slate-950">
+        <div class="container mx-auto relative z-10 px-6" data-aos="zoom-in">
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-bold mb-6">
+                <i data-lucide="gamepad-2" class="w-4 h-4 inline-block text-purple-400"></i> Modul Gamifikasi Termaju
+            </span>
+            <h1 class="text-4xl md:text-7xl font-extrabold mb-8 leading-tight font-display tracking-tight text-white">
+                Kuasai Gamifikasi <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-violet-400 to-cyan-400 glow-text-purple">Bilik Darjah AI</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed mb-12">
+                Integrasikan mekanik permainan dengan kuasa kecerdasan buatan untuk meningkatkan penglibatan kognitif dan motivasi intrinsik pelajar STEM.
+            </p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#gallery" class="bg-gradient-to-r from-purple-500 to-cyan-500 text-slate-955 font-extrabold py-4 px-10 rounded-2xl hover:opacity-90 transition-all transform hover:scale-105 shadow-lg shadow-purple-500/10 flex items-center gap-3 cursor-pointer border border-purple-400/20">
+                    Teroka Dimensi Pembelajaran <i data-lucide="arrow-down" class="w-4 h-4 text-slate-955"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 overflow-hidden">        <!-- Asas Pedagogi & Psikologi Gamifikasi Section -->
+        <section id="teori-pedagogi" class="py-24 bg-slate-950 border-t border-slate-900">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="text-emerald-400 font-bold tracking-widest text-xs uppercase bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full">Teori & Rangka Kerja</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mt-4 font-display">Asas Pedagogi & Psikologi Gamifikasi</h2>
+                    <p class="text-slate-400 mt-4 text-lg leading-relaxed">Sebelum membina permainan dengan AI, fahami mekanik motivasi dan kognisi yang memacu pembelajaran mendalam.</p>
+                </div>
+
+                <!-- Intro Card -->
+                <div class="bg-gradient-to-br from-slate-950 via-slate-900 to-purple-950/30 p-8 md:p-12 rounded-[2.5rem] border border-slate-800 mb-12 shadow-md" data-aos="fade-up">
+                    <div class="flex flex-col md:flex-row gap-8 items-start">
+                        <div class="p-4 bg-slate-950 rounded-2xl border border-purple-500/20 shadow-lg text-purple-400">
+                            <i data-lucide="book-open" class="w-10 h-10"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-4 font-display">Membina Perancah Teori Pendidik</h3>
+                            <p class="text-slate-300 text-base leading-relaxed font-medium">
+                                Modul pembukaan mewujudkan perancah teori, psikologi, dan pedagogi yang diperlukan untuk mereka bentuk permainan pendidikan yang berkesan. Sebelum berinteraksi dengan AI generatif, pendidik mesti memupuk pemahaman yang bernuansa tentang mekanik motivasi dan struktur kognitif yang menjadikan permainan sebagai wahana yang menarik untuk pembelajaran mendalam.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid Details -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Tab 1: Epistemologi & Teori Landers -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-800/80 hover:shadow-xl transition-all duration-305 flex flex-col justify-between" data-aos="fade-up">
+                        <div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-12 h-12 bg-purple-500/15 border border-purple-500/20 rounded-2xl flex items-center justify-center text-purple-400 shadow-sm">
+                                    <i data-lucide="split" class="w-6 h-6"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white font-display">Gamifikasi vs GBL</h4>
+                            </div>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Satu perbezaan epistemologi asas mesti diwujudkan antara <strong>gamifikasi</strong> dan <strong>Pembelajaran Berasaskan Permainan (GBL)</strong>. Istilah gamifikasi, yang dicipta oleh Nick Pelling pada tahun 2002, melibatkan aplikasi elemen permainan (mata, lencana, papan pendahulu) ke dalam konteks bukan permainan. Sebaliknya, GBL melibatkan penggunaan permainan sebenar di mana pembelajaran adalah intrinsik kepada corak permainan.
+                            </p>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Modul ini mensintesis kedua-dua pendekatan menggunakan <strong>Teori Pembelajaran Gamifikasi Landers</strong>, yang menyatakan gamifikasi mempengaruhi hasil pembelajaran melalui tingkah laku atau sikap pengantara (kandungan, tingkah laku, dan ciri permainan khusus).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Gamifikasi Unplugged -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-800/80 hover:shadow-xl transition-all duration-305 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                        <div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-12 h-12 bg-emerald-500/15 border border-emerald-500/20 rounded-2xl flex items-center justify-center text-emerald-400 shadow-sm">
+                                    <i data-lucide="plug-zap-off" class="w-6 h-6"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white font-display">Prekursor Analog: Unplugged</h4>
+                            </div>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Konsep gamifikasi "unplugged"—aktiviti tanpa peranti—mewujudkan iklim bilik darjah positif dan keselamatan psikologi pelajar sebelum beralih kepada pembangunan digital dengan Gemini.
+                            </p>
+                            <ul class="space-y-2 text-slate-400 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0 bg-transparent"></i>
+                                    <span><strong>"Kod Senyap"</strong>: Menyelesaikan tugas kolaboratif menggunakan komunikasi bukan lisan semata-mata (mekanik kekangan).</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0 bg-transparent"></i>
+                                    <span><strong>"Mahkamah Kelas"</strong>: Mekanik main peranan membahaskan dilema moral bagi memupuk pemikiran kritis dan komunikasi persuasif.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Kerangka Neurobiologi & Octalysis -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-800/80 hover:shadow-xl transition-all duration-305 flex flex-col justify-between" data-aos="fade-up">
+                        <div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-12 h-12 bg-cyan-500/15 border border-cyan-500/20 rounded-2xl flex items-center justify-center text-cyan-400 shadow-sm">
+                                    <i data-lucide="brain" class="w-6 h-6"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white font-display">Dopamin & Kerangka Octalysis</h4>
+                            </div>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Mekanik permainan mencetuskan pembebasan dopamin di otak, menghasilkan sensasi kepuasan. Menggunakan <strong>Kerangka Octalysis</strong>, motivasi manusia dibahagikan kepada dorongan teras seperti <em>Makna Epik, Pencapaian, Pemerkasaan Kreativiti, dan Pengaruh Sosial</em>.
+                            </p>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Contohnya, menggantikan ujian Sirah Islam tradisional dengan simulasi sejarah di mana pelajar memandu peranan utama, mengaktifkan dorongan <strong>Makna Epik dan Panggilan</strong> bagi mencapai matlamat pengajaran.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Tab 4: Kegagalan Selamat & Bloom -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-800/80 hover:shadow-xl transition-all duration-305 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                        <div>
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-12 h-12 bg-rose-500/15 border border-rose-500/20 rounded-2xl flex items-center justify-center text-rose-400 shadow-sm">
+                                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                                </div>
+                                <h4 class="text-xl font-bold text-white font-display">Kegagalan Selamat & Taksonomi Bloom</h4>
+                            </div>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                                Permainan menyediakan "zon safe" untuk kegagalan di mana denda akademik dikurangkan, membolehkan pengulangan pantas (seperti ramuan kesihatan menggantikan kemasukan hospital).
+                            </p>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Pembangunan kognitif dijalinkan dengan tahap permainan berdasarkan <strong>Taksonomi Bloom (Krathwohl 2000)</strong>. Setiap tahap permainan direka untuk meningkatkan beban kognitif secara berperingkat—bermula daripada Mengingat/Memahami hingga ke peringkat Menganalisis, Menilai, dan Mencipta.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pemetaan Taksonomi Bloom & Mekanik Permainan Table -->
+                <div class="mt-16 glass-card rounded-[2.5rem] border border-slate-800/80 shadow-xl overflow-hidden" data-aos="fade-up">
+                    <div class="p-8 md:p-12 border-b border-slate-850 bg-gradient-to-r from-slate-950 to-slate-900/40">
+                        <h3 class="text-2xl font-bold text-white flex items-center gap-3 font-display">
+                            <i data-lucide="table-properties" class="w-6 h-6 text-purple-400"></i> Pemetaan Taksonomi Bloom & Mekanik Reka Bentuk
+                        </h3>
+                        <p class="text-sm text-slate-400 mt-2 font-medium">Jadual rujukan pendidik untuk menghubungkan tahap kognitif dengan cabaran dalam permainan.</p>
+                    </div>
+                    
+                    <div class="overflow-x-auto font-medium">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-950 border-b border-slate-850 text-slate-350 text-sm font-bold font-display">
+                                    <th class="py-5 px-8 w-[20%]">Tahap Bloom</th>
+                                    <th class="py-5 px-8 w-[35%]">Definisi Kognitif</th>
+                                    <th class="py-5 px-8 w-[45%]">Mekanik Permainan & Reka Bentuk Tahap</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-850 text-slate-400 text-sm leading-relaxed">
+                                <tr class="hover:bg-slate-900/35 transition-colors">
+                                    <td class="py-5 px-8 font-bold text-white flex items-center gap-2 font-display">
+                                        <span class="w-2 h-2 rounded-full bg-slate-500"></span> 1. Mengingat
+                                    </td>
+                                    <td class="py-5 px-8">Mendapatkan semula pengetahuan yang sesuai dari ingatan jangka panjang.</td>
+                                    <td class="py-5 px-8"><strong>Tahap Tutorial</strong>: Pemain diperkenalkan dengan kawalan asas. Mekanik melibatkan mengenal pasti item, padanan ringkas, atau mengingat kembali simbol visual untuk membuka laluan awal.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-900/35 transition-colors">
+                                    <td class="py-5 px-8 font-bold text-white flex items-center gap-2 font-display">
+                                        <span class="w-2 h-2 rounded-full bg-blue-400"></span> 2. Memahami
+                                    </td>
+                                    <td class="py-5 px-8">Membina makna daripada mesej pengajaran (lisan, tulisan, grafik).</td>
+                                    <td class="py-5 px-8"><strong>Teka-Teki Pengenalan</strong>: Pemain mesti mengklasifikasikan objek, menterjemah isyarat persekitaran, atau mengikuti arahan pelbagai langkah untuk menavigasi pagar sesat.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-900/35 transition-colors">
+                                    <td class="py-5 px-8 font-bold text-white flex items-center gap-2 font-display">
+                                        <span class="w-2 h-2 rounded-full bg-indigo-400"></span> 3. Mengaplikasi
+                                    </td>
+                                    <td class="py-5 px-8">Melaksanakan prosedur dalam keadaan tertentu atau situasi baharu.</td>
+                                    <td class="py-5 px-8"><strong>Gelung Corak Permainan Teras</strong>: Pemain menggunakan alat yang diperoleh untuk mengatasi halangan (cth. menggunakan formula matematik untuk mengira trajektori projektil bagi mengalahkan lawan).</td>
+                                </tr>
+                                <tr class="hover:bg-slate-900/35 transition-colors">
+                                    <td class="py-5 px-8 font-bold text-white flex items-center gap-2 font-display">
+                                        <span class="w-2 h-2 rounded-full bg-purple-400"></span> 4. Menganalisis
+                                    </td>
+                                    <td class="py-5 px-8">Memecahkan bahan kepada komponen-komponennya untuk memahami struktur asas.</td>
+                                    <td class="py-5 px-8"><strong>Lawan Bos / Senario Kompleks</strong>: Pemain mesti memerhati corak serangan musuh, menyimpulkan kelemahan struktur, dan memilih strategi yang sesuai daripada inventori mereka.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-900/35 transition-colors">
+                                    <td class="py-5 px-8 font-bold text-white flex items-center gap-2 font-display">
+                                        <span class="w-2 h-2 rounded-full bg-rose-400"></span> 5. Menilai
+                                    </td>
+                                    <td class="py-5 px-8">Membuat pertimbangan berdasarkan kriteria dan standard yang ditetapkan.</td>
+                                    <td class="py-5 px-8"><strong>Pengurusan Sumber</strong>: Pemain mesti membuat keputusan strategik berisiko tinggi dengan sumber yang terhad, menimbang kos lepas bagi tindakan yang berbeza untuk memastikan kelangsungan hidup.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-900/35 transition-colors">
+                                    <td class="py-5 px-8 font-bold text-white flex items-center gap-2 font-display">
+                                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span> 6. Mencipta
+                                    </td>
+                                    <td class="py-5 px-8">Menyusun semula elemen-elemen ke dalam corak, struktur, atau produk yang baharu.</td>
+                                    <td class="py-5 px-8"><strong>Main Gaya Bebas / Sandbox Mode</strong>: Pemain mereka bentuk tahap mereka sendiri, membina mekanik dalam permainan yang berfungsi, atau menjana penyelesaian yang sangat baharu untuk masalah terbuka.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Showcase Section -->
+        <section id="gallery" class="py-24 bg-slate-950 border-t border-slate-900">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-purple-400 font-bold tracking-widest text-xs uppercase bg-purple-500/10 border border-purple-500/20 px-3 py-1 rounded-full">Gamification Dimensions</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-white mt-4 font-display">Dimensi Gamifikasi AI</h2>
+                <p class="text-slate-400 mt-4 max-w-2xl mx-auto text-lg leading-relaxed">Terokai bagaimana AI menyuntik keseronokan dan mekanik permainan ke dalam proses pengajaran harian.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="group relative bg-slate-950 rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-805/85 h-[450px]" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600&auto=format&fit=crop" alt="Kuiz Pintar" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100 animate-pulse-subtle">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-955/95 via-slate-955/35 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <span class="bg-blue-500/25 text-blue-400 border border-blue-500/30 text-[10px] font-bold px-3 py-1 rounded-full uppercase mb-4 inline-block shadow-lg">Penilaian Adaptif</span>
+                        <h4 class="text-2xl font-bold text-white mb-2 font-display">Kuiz Pintar Berperingkat</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed italic border-l-2 border-blue-500 pl-3">
+                            "Membina soalan kuiz bertingkat yang disesuaikan secara dinamik mengikut prestasi semasa pelajar menggunakan AI."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group relative bg-slate-955 rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-805/85 h-[450px]" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=600&auto=format&fit=crop" alt="Role Play" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100 animate-pulse-subtle">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-955/95 via-slate-955/35 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <span class="bg-purple-500/25 text-purple-400 border border-purple-500/30 text-[10px] font-bold px-3 py-1 rounded-full uppercase mb-4 inline-block shadow-lg">Pembelajaran Berasaskan Peranan</span>
+                        <h4 class="text-2xl font-bold text-white mb-2 font-display">Penceritaan RPG Pendidikan</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed italic border-l-2 border-purple-500 pl-3">
+                            "Menggunakan AI to menjana simulasi peranan interaktif di mana pilihan keputusan pelajar mencorakkan naratif STEM."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group relative bg-slate-955 rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-805/85 h-[450px]" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1518152006812-cdff28906ec8?q=80&w=600&auto=format&fit=crop" alt="Reward System" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100 animate-pulse-subtle">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-955/95 via-slate-955/35 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <span class="bg-emerald-500/25 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold px-3 py-1 rounded-full uppercase mb-4 inline-block shadow-lg">Mekanik Permainan</span>
+                        <h4 class="text-2xl font-bold text-white mb-2 font-display">Ganjaran & Pencapaian</h4>
+                        <p class="text-slate-300 text-sm leading-relaxed italic border-l-2 border-emerald-500 pl-3">
+                            "Merekabentuk sistem lencana digital (badges) dan misi kelas (quests) bertema untuk merangsang persaingan sihat."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Methodology Section: P.L.A.Y.S -->
+        <section class="py-24 bg-slate-955 -mx-6 px-6 border-t border-slate-900">
+            <div class="container mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="text-cyan-400 font-bold tracking-widest text-xs uppercase bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full">Framework</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mt-4 font-display">Formula P.L.A.Y.S</h2>
+                    <p class="text-slate-400 mt-4 text-lg">Metodologi strategik bagi mengadun elemen permainan ke dalam modul pembelajaran STEM.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                    <!-- P -->
+                    <div class="group glass-card rounded-[2.5rem] p-4 border border-slate-805/85 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                        <div class="h-40 mb-6 bg-slate-950 text-emerald-450 border border-slate-850 group-hover:border-emerald-400 group-hover:bg-emerald-500 group-hover:text-slate-955 rounded-[2rem] flex items-center justify-center font-bold transition-all">
+                            <span class="text-4xl font-black italic">P</span>
+                        </div>
+                        <div class="px-4 pb-6">
+                            <h4 class="font-bold text-xl text-white mb-2 font-display">Peraturan</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">Rangka syarat, had masa, dan objektif cabaran permainan yang jelas dan adil.</p>
+                        </div>
+                    </div>
+                    <!-- L -->
+                    <div class="group glass-card rounded-[2.5rem] p-4 border border-slate-805/85 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                        <div class="h-40 mb-6 bg-slate-950 text-cyan-400 border border-slate-850 group-hover:border-cyan-400 group-hover:bg-cyan-500 group-hover:text-slate-955 rounded-[2rem] flex items-center justify-center font-bold transition-all">
+                            <span class="text-4xl font-black italic">L</span>
+                        </div>
+                        <div class="px-4 pb-6">
+                            <h4 class="font-bold text-xl text-white mb-2 font-display">Lencana</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">Cipta sistem pengiktirafan dan mata ganjaran (points) terkumpul sebagai motivasi.</p>
+                        </div>
+                    </div>
+                    <!-- A -->
+                    <div class="group glass-card rounded-[2.5rem] p-4 border border-slate-805/85 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                        <div class="h-40 mb-6 bg-slate-950 text-indigo-400 border border-slate-850 group-hover:border-indigo-400 group-hover:bg-indigo-500 group-hover:text-slate-955 rounded-[2rem] flex items-center justify-center font-bold transition-all">
+                            <span class="text-4xl font-black italic">A</span>
+                        </div>
+                        <div class="px-4 pb-6">
+                            <h4 class="font-bold text-xl text-white mb-2 font-display">Aktiviti</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">Reka bentuk aktiviti interaktif yang memerlukan tindak balas aktif kognitif pelajar.</p>
+                        </div>
+                    </div>
+                    <!-- Y -->
+                    <div class="group glass-card rounded-[2.5rem] p-4 border border-slate-805/85 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                        <div class="h-40 mb-6 bg-slate-950 text-purple-400 border border-slate-850 group-hover:border-purple-400 group-hover:bg-purple-500 group-hover:text-slate-955 rounded-[2rem] flex items-center justify-center font-bold transition-all">
+                            <span class="text-4xl font-black italic">Y</span>
+                        </div>
+                        <div class="px-4 pb-6">
+                            <h4 class="font-bold text-xl text-white mb-2 font-display">Yakin</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">Bina keyakinan diri dengan maklum balas segera dan cabaran bersesuaian tahap.</p>
+                        </div>
+                    </div>
+                    <!-- S -->
+                    <div class="group glass-card rounded-[2.5rem] p-4 border border-slate-805/85 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                        <div class="h-40 mb-6 bg-slate-950 text-rose-400 border border-slate-850 group-hover:border-rose-450 group-hover:bg-rose-500 group-hover:text-slate-955 rounded-[2rem] flex items-center justify-center font-bold transition-all">
+                            <span class="text-4xl font-black italic">S</span>
+                        </div>
+                        <div class="px-4 pb-6">
+                            <h4 class="font-bold text-xl text-white mb-2 font-display">Strategi AI</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed">Gunakan alat pintar AI untuk merangka pengembaraan peribadi mengikut tahap pelajar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Grid -->
+        <section class="py-24 bg-slate-955 border-t border-slate-900">
+            <div class="container mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="text-emerald-400 font-bold tracking-widest text-xs uppercase bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full">Gamification Suite</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mt-4 font-display">Alatan Gamifikasi AI Terbaik</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl mx-auto text-lg leading-relaxed">Platform kecerdasan buatan utama yang boleh anda terus gunakan untuk membina aktiviti interaktif kelas.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Tool 1 -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-805/85 hover:shadow-2xl transition-all duration-500 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-16 h-16 bg-purple-500/15 border border-purple-500/20 rounded-2xl flex items-center justify-center text-purple-400 mb-6 group-hover:bg-purple-500 group-hover:text-slate-950 transition-all shadow-md">
+                                <i data-lucide="wand-sparkles" class="w-8 h-8"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-3 font-display">Quizizz AI</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Mampu membaca dokumen RPH, pautan video YouTube, atau fail PDF dan menukarnya menjadi kuiz interaktif yang menyeronokkan dengan satu klik.</p>
+                        </div>
+                        <a href="https://quizizz.com" target="_blank" class="inline-flex items-center gap-2 text-purple-400 font-bold text-sm hover:text-purple-300 transition cursor-pointer">
+                            Layari Platform <i data-lucide="external-link" class="w-4 h-4 text-purple-450"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Tool 2 -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-805/85 hover:shadow-2xl transition-all duration-500 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-16 h-16 bg-emerald-500/15 border border-emerald-500/20 rounded-2xl flex items-center justify-center text-emerald-400 mb-6 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all shadow-md">
+                                <i data-lucide="trophy" class="w-8 h-8"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-3 font-display">Kahoot! AI</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Penjana soalan berasaskan kecerdasan buatan bersepadu untuk mencipta trivia bilik darjah berkuasa tinggi bagi mengukuhkan kefahaman konsep STEM secara kolektif.</p>
+                        </div>
+                        <a href="https://kahoot.com" target="_blank" class="inline-flex items-center gap-2 text-emerald-400 font-bold text-sm hover:text-emerald-300 transition cursor-pointer">
+                            Layari Platform <i data-lucide="external-link" class="w-4 h-4 text-emerald-450"></i>
+                        </a>
+                    </div>
+
+                    <!-- Tool 3 -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-805/85 hover:shadow-2xl transition-all duration-500 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-16 h-16 bg-amber-500/15 border border-amber-500/20 rounded-2xl flex items-center justify-center text-amber-400 mb-6 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all shadow-md">
+                                <i data-lucide="gamepad-2" class="w-8 h-8"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-3 font-display">Blooket AI</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">Menggabungkan soalan akademik dengan dunia permainan aksi/arkad RPG untuk memikat minat pelajar digital secara intensif dan menghiburkan.</p>
+                        </div>
+                        <a href="https://www.blooket.com" target="_blank" class="inline-flex items-center gap-2 text-amber-400 font-bold text-sm hover:text-amber-300 transition cursor-pointer">
+                            Layari Platform <i data-lucide="external-link" class="w-4 h-4 text-amber-455"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Panduan Reka Bentuk & Templat Prompt Induk -->
+        <section id="panduan-prompts" class="py-24 bg-slate-955 border-t border-slate-900">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="text-cyan-400 font-bold tracking-widest text-xs uppercase bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full">Guide & Templates</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mt-4 font-display">Struktur Modul Penghasilan Gamifikasi</h2>
+                    <p class="text-slate-400 mt-4 text-lg max-w-2xl mx-auto">Langkah demi langkah untuk menyusun kandungan pengajaran anda menjadi struktur permainan digital menggunakan AI.</p>
+                </div>
+
+                <!-- 4 Fasa Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                    <div class="glass-card rounded-[2rem] p-8 border border-slate-805/85 shadow-sm" data-aos="fade-up">
+                        <div class="text-3xl mb-4">📝</div>
+                        <h4 class="font-bold text-lg text-white mb-2 font-display">Fasa 1: Penyediaan Nota</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Sediakan nota ringkas (Konsep, Fakta Kritikal, Proses, Analisis/KBAT) sebagai bahan mentah permainan.</p>
+                    </div>
+                    <div class="glass-card rounded-[2rem] p-8 border border-slate-805/85 shadow-sm" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-3xl mb-4">🎮</div>
+                        <h4 class="font-bold text-lg text-white mb-2 font-display">Fasa 2: Jenis Permainan</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Pilih format yang sesuai: Kuiz Aras, Padanan, Pengembaraan Teks, Silang Kata, Menembak, Lumba.</p>
+                    </div>
+                    <div class="glass-card rounded-[2rem] p-8 border border-slate-805/85 shadow-sm" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-3xl mb-4">⚙️</div>
+                        <h4 class="font-bold text-lg text-white mb-2 font-display">Fasa 3: Mekanik</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Tetapkan peraturan asas seperti sistem markah, had cubaan/nyawa, dan bentuk maklum balas.</p>
+                    </div>
+                    <div class="glass-card rounded-[2rem] p-8 border border-slate-805/85 shadow-sm" data-aos="fade-up" data-aos-delay="300">
+                        <div class="text-3xl mb-4">🤖</div>
+                        <h4 class="font-bold text-lg text-white mb-2 font-display">Fasa 4: Prompt AI</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Gabungkan Fasa 1, 2, dan 3 ke dalam satu arahan prompt induk yang jelas untuk dihantar ke AI.</p>
+                    </div>
+                </div>
+
+                <!-- Contoh Templat Prompt Induk -->
+                <div class="bg-slate-900/60 rounded-[2.5rem] p-8 md:p-12 text-slate-100 mb-16 shadow-xl relative overflow-hidden group border border-slate-800" data-aos="fade-up">
+                    <div class="absolute -top-20 -right-20 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-all"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-2xl md:text-3xl font-bold font-display mb-4 text-white flex items-center gap-3">
+                            <i data-lucide="terminal" class="text-purple-400"></i> Contoh Templat Prompt Induk
+                        </h3>
+                        <p class="text-slate-400 text-sm mb-8 font-medium">Salin templat prompt di bawah, isi maklumat dalam kurungan petak <code class="text-cyan-300 font-mono bg-slate-950 px-2 py-0.5 rounded border border-slate-850">[...]</code>, dan hantarkannya ke Gemini untuk menjana fail HTML permainan lengkap.</p>
+                        
+                        <div class="relative">
+                            <pre class="bg-slate-950 p-6 md:p-8 rounded-2xl overflow-x-auto text-xs md:text-sm font-mono text-emerald-400 border border-slate-850 leading-relaxed whitespace-pre-wrap">Bertindak sebagai seorang pembangun permainan pendidikan pakar. Saya ingin membina sebuah permainan interaktif untuk murid tahap [Masukkan Umur/Tahun, contoh: Tahun 5].
+
+Topik & Nota: [Masukkan Topik, contoh: Proses Fotosintesis]. Berikut adalah nota untuk dimasukkan: [Tampal nota ringkas dari Fasa 1 di sini].
+
+Jenis Permainan: [Pilih genre dari Fasa 2, contoh: Permainan Lumba Kenderaan].
+
+Mekanik Permainan:
+Markah: [Contoh: Kereta memecut ke hadapan untuk jawapan betul, berhenti 2 saat jika salah].
+Cubaan: [Contoh: Murid boleh mencuba sehingga tamat perlumbaan].
+Maklum balas: [Contoh: Berikan jawapan sebenar dengan ringkas jika murid salah].
+
+Berdasarkan maklumat di atas, tolong jana:
+1. Konsep dan jalan cerita permainan ini.
+2. 5 cabaran/soalan mengikut format permainan tersebut.
+3. Kod asas (HTML, CSS, JavaScript) dalam satu fail tunggal supaya saya boleh mengujinya terus di pelayar web (browser).</pre>
+                            <button onclick="copyMasterPrompt()" class="absolute top-4 right-4 bg-slate-950 text-cyan-400 hover:bg-cyan-500 hover:text-slate-950 border border-slate-850 hover:border-cyan-400 py-2 px-4 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Templat
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 Contoh Prompt Unik -->
+                <div class="text-center mb-12">
+                    <h3 class="text-2xl md:text-3xl font-bold text-white font-display">Tiga Contoh Prompt Unik Kategori</h3>
+                    <p class="text-slate-400 mt-2 text-sm">Contoh siap guna untuk melatih fokus penceritaan, kepantasan refleks, atau kekuatan ingatan.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Prompt 1: Pengembaraan Teks -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-805/85 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-aos="fade-up">
+                        <div>
+                            <div class="text-3xl mb-4">🕵️</div>
+                            <h4 class="font-bold text-lg text-white mb-3 font-display">1. Pengembaraan Teks</h4>
+                            <p class="text-slate-350 text-xs leading-relaxed italic bg-slate-950 p-4 rounded-2xl border border-slate-850">
+                                "Bertindak sebagai penulis senario pendidikan. Bina permainan penceritaan interaktif untuk topik [Topik]. Mulakan dengan satu senario masalah. Berikan 3 pilihan tindakan kepada murid berdasarkan nota ini: [Masukkan Nota]. Jika mereka pilih jawapan yang betul, bawa plot cerita ke tahap seterusnya. Jika salah, terangkan akibat buruk secara logik dan berikan peluang kedua."
+                            </p>
+                        </div>
+                        <button onclick="copySpecificPrompt(this)" class="mt-6 w-full bg-slate-950 text-purple-400 border border-slate-850 hover:bg-purple-500 hover:text-slate-950 hover:border-purple-400 transition font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Prompt
+                        </button>
+                    </div>
+
+                    <!-- Prompt 2: Permainan Menembak -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-805/85 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                        <div>
+                            <div class="text-3xl mb-4">🎯</div>
+                            <h4 class="font-bold text-lg text-white mb-3 font-display">2. Permainan Menembak</h4>
+                            <p class="text-slate-350 text-xs leading-relaxed italic bg-slate-950 p-4 rounded-2xl border border-slate-850">
+                                "Jana kerangka permainan arked menembak bagi topik [Topik]. Hasilkan 5 soalan kepantasan. Untuk setiap soalan, sediakan 1 'sasaran' (jawapan betul) dan 3 pengalih perhatian (jawapan salah yang kelihatan sangat logik). Markah mesti dikira berdasarkan kelajuan dan ketepatan murid menembak jawapan yang betul."
+                            </p>
+                        </div>
+                        <button onclick="copySpecificPrompt(this)" class="mt-6 w-full bg-slate-950 text-purple-400 border border-slate-850 hover:bg-purple-500 hover:text-slate-950 hover:border-purple-400 transition font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Prompt
+                        </button>
+                    </div>
+
+                    <!-- Prompt 3: Padanan Interaktif -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-805/85 shadow-lg hover:shadow-xl transition-all duration-305 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                        <div>
+                            <div class="text-3xl mb-4">🧩</div>
+                            <h4 class="font-bold text-lg text-white mb-3 font-display">3. Padanan Interaktif</h4>
+                            <p class="text-slate-355 text-xs leading-relaxed italic bg-slate-950 p-4 rounded-2xl border border-slate-850">
+                                "Tuliskan kod web asas (HTML/JS) untuk permainan padanan kad memori bagi topik [Topik]. Sediakan 6 pasangan unik: Kumpulan A (Istilah) dan Kumpulan B (Definisi) berdasarkan nota ini: [Masukkan Nota]. Sistem mesti memberikan maklum balas visual serta-merta (hijau untuk padanan tepat, merah jika salah sebelum kad ditutup semula)."
+                            </p>
+                        </div>
+                        <button onclick="copySpecificPrompt(this)" class="mt-6 w-full bg-slate-950 text-purple-400 border border-slate-850 hover:bg-purple-500 hover:text-slate-955 hover:border-purple-400 transition font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Prompt
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Lesson Quest Planner Section -->
+        <section id="quest-planner" class="py-24 bg-slate-950 -mx-6 px-6 border-t border-slate-900">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="text-cyan-400 font-bold tracking-widest text-xs uppercase bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full">Interactive AI Quest</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mt-4 font-display">Bina Misi Pembelajaran STEM</h2>
+                    <p class="text-slate-400 mt-4 leading-relaxed">Rancang struktur gamifikasi pengajaran anda secara automatik dengan mengisi butiran di bawah.</p>
+                </div>
+
+                <div class="glass-card p-8 md:p-12 rounded-[3rem] shadow-2xl border border-slate-805/85" data-aos="fade-up">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 font-medium">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-300 mb-2">Topik Pembelajaran</label>
+                            <input type="text" id="quest-topic" placeholder="Cth: Fotosintesis / Kitaran Air" class="w-full px-5 py-4 bg-slate-950 border border-slate-800 rounded-2xl focus:outline-none focus:border-purple-500 text-white transition-all font-mono font-medium">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-300 mb-2">Mekanik Utama</label>
+                            <select id="quest-mechanic" class="w-full px-5 py-4 bg-slate-955 border border-slate-800 rounded-2xl focus:outline-none focus:border-purple-500 text-white transition-all font-medium">
+                                <option value="Sistem Lencana & Tahap (Levels & Badges)">Sistem Lencana & Tahap</option>
+                                <option value="Pertempuran Kuiz RPG (Blooket Mode)">Pertempuran Kuiz RPG</option>
+                                <option value="Cabaran Misteri Melarikan Diri (Escape Room)">Escape Room / Bilik Misteri</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button onclick="generateQuest()" class="w-full bg-gradient-to-r from-purple-500 to-cyan-500 text-slate-955 font-bold py-5 px-8 rounded-2xl hover:opacity-90 transition shadow-xl shadow-purple-500/10 flex items-center justify-center gap-3 border border-purple-400/20 cursor-pointer">
+                        <i data-lucide="sparkles" class="w-5 h-5 text-slate-955"></i> Jana Struktur Misi
+                    </button>
+
+                    <div id="quest-output-container" class="mt-8 hidden">
+                        <div class="relative">
+                            <span class="absolute -top-3 left-6 px-3 bg-slate-950 text-xs font-bold text-cyan-400 border border-slate-850 rounded uppercase tracking-widest font-mono">Draf Misi Pengajaran AI</span>
+                            <div id="quest-output" class="p-8 bg-slate-955 text-slate-200 border border-slate-850 rounded-2xl font-mono text-sm leading-relaxed whitespace-pre-line"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-955 border-t border-slate-900 py-10">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex flex-wrap justify-center gap-4 mb-4 text-sm font-semibold">
+                <a href="index.html" class="text-slate-400 hover:text-cyan-400 transition cursor-pointer">Laman Utama</a>
+                <a href="generatif_ai.html" class="text-slate-400 hover:text-cyan-400 transition cursor-pointer">Generatif AI</a>
+                <a href="visual_ai.html" class="text-slate-400 hover:text-cyan-400 transition cursor-pointer">Visual AI</a>
+                <a href="video_ai.html" class="text-slate-400 hover:text-cyan-400 transition cursor-pointer font-bold text-white">Video AI</a>
+            </div>
+            <p class="text-slate-500 text-sm font-medium">&copy; 2026 AI4STEM Hub. Panduan Gamifikasi AI.</p>
+        </div>
+    </footer>
+
+    <!-- Vendor Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Scripts -->
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        
+        lucide.createIcons();
+
+        // Initialize Vanta background waves
+        try {
+            VANTA.WAVES({
+              el: "#vanta-bg",
+              mouseControls: true,
+              touchControls: true,
+              gyroControls: false,
+              minHeight: 200.00,
+              minWidth: 200.00,
+              scale: 1.00,
+              scaleMobile: 1.00,
+              color: 0x7c3aed, // Violet/Purple waves matching gamification theme
+              shininess: 30.00,
+              waveHeight: 15.00,
+              waveSpeed: 0.80,
+              zoom: 0.65
+            });
+        } catch (e) {
+            console.error("Vanta initialization failed:", e);
+        }
+
+        // Quest Generator logic
+        function generateQuest() {
+            const topic = document.getElementById('quest-topic').value || 'Sains STEM';
+            const mechanic = document.getElementById('quest-mechanic').value;
+            
+            let resultText = "";
+            if (mechanic.includes("Lencana")) {
+                resultText = `🎯 NAMA MISI: PENEROKA ${topic.toUpperCase()}
+⚔️ GAYA: ${mechanic}
+
+1. PENGENALAN (QUEST INTRO):
+Pelajar dilantik sebagai "Kadet STEM". Tugasan mereka adalah menyiasat misteri ${topic}.
+
+2. CABARAN 1: KUIZ ASAS (MATA +100 XP)
+- Gunakan Quizizz AI untuk menjana kuiz 5 soalan berperingkat tentang ${topic}.
+- Syarat Lulus: Menjawab dengan ketepatan > 80% untuk mendapat Lencana Kadet Gangsa.
+
+3. CABARAN 2: EKSPEDISI PEMAHAMAN (MATA +200 XP)
+- Selesaikan cabaran berkumpulan membina mind map interaktif mengenai ${topic}.
+- Kumpulan yang berjaya mendapat Lencana Kadet Perak.
+
+4. MISI BOSS (BOSS FIGHT - MATA +500 XP)
+- Bentangkan aplikasi kreatif ${topic} dalam kehidupan harian.
+- Pembentangan terbaik dianugerahkan Lencana Peneroka Emas.`;
+            } else if (mechanic.includes("RPG")) {
+                resultText = `🎯 NAMA MISI: PERTEMPURAN RAJA ${topic.toUpperCase()}
+⚔️ GAYA: ${mechanic}
+
+1. PENGENALAN (QUEST INTRO):
+Raja Raksasa Miskonsepsi mengancam keselamatan ${topic}. Pelajar perlu menewaskannya dengan jawapan yang tepat!
+
+2. MEKANIK PERMAINAN:
+- Bina Blooket/Quizizz dengan set soalan berasaskan ${topic}.
+- Setiap jawapan betul akan mengurangkan HP (Health Points) Boss sebanyak 10 mata.
+- Pelajar dibahagikan kepada 4 kelas watak: Pahlawan (Sains), Penyembuh (Teknologi), Ahli Sihir (Kejuruteraan), dan Pemanah (Matematik).
+
+3. MISI KUMPULAN:
+Kolaborasi silang watak diperlukan untuk menjawab soalan Bonus STEM bagi memberikan 'Critical Hit' kepada Boss.`;
+            } else {
+                resultText = `🎯 NAMA MISI: OPERASI MELARIKAN DIRI DARI MAKMAL ${topic.toUpperCase()}
+⚔️ GAYA: ${mechanic}
+
+1. PENGENALAN (QUEST INTRO):
+Pintu makmal STEM terkunci secara automatik! Kod laluan pintu keluar tersembunyi di dalam 3 peti teka-teki bertemakan ${topic}.
+
+2. MEKANIK CABARAN:
+- Kunci 1: Selesaikan silang kata AI berkaitan takrif ${topic}. (Membuka Peti 1)
+- Kunci 2: Kenalpasti 3 kesalahan dalam rajah eksperimen ${topic}. (Membuka Peti 2)
+- Kunci 3: Kuiz Kod QR digital (Kahoot! AI). (Membuka Peti Akhir)
+
+3. KEPUTUSAN:
+Kumpulan yang berjaya keluar dalam masa kurang 20 minit akan dianugerahkan gelaran "Master Mind STEM" dan sijil digital.`;
+            }
+            
+            document.getElementById('quest-output').innerText = resultText;
+            document.getElementById('quest-output-container').classList.remove('hidden');
+            document.getElementById('quest-output-container').scrollIntoView({ behavior: 'smooth' });
+            
+            // Re-trigger lucide to render icon inside new block if any
+            lucide.createIcons();
+        }
+
+        function copyMasterPrompt() {
+            const codeEl = document.querySelector('#panduan-prompts pre');
+            window.copyTextToClipboard(codeEl.innerText).then(() => {
+                alert("Templat prompt induk berjaya disalin!");
+            });
+        }
+
+        function copySpecificPrompt(btn) {
+            const promptText = btn.parentElement.querySelector('p').innerText;
+            window.copyTextToClipboard(promptText).then(() => {
+                const originalContent = btn.innerHTML;
+                btn.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-500"></i> Disalin!';
+                lucide.createIcons();
+                setTimeout(() => {
+                    btn.innerHTML = originalContent;
+                    lucide.createIcons();
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+
+</html>

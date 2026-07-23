@@ -1,119 +1,146 @@
-/* Pendidik AI - Global Stylesheet (2026) */
+/* Pendidik AI - Tech Mode Global Stylesheet (2026) */
 
-/* 1. Base Styles */
+/* 1. Base Styles & Custom Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400;500;700&display=swap');
+
+:root {
+    --color-primary: #1e293b;
+    --color-secondary: #334155;
+    --color-cta: #10b981; /* Neon green */
+    --color-cyan: #06b6d4; /* Neon cyan */
+    --color-bg: #090d16; /* Deep dark tech background */
+    --color-card-bg: rgba(13, 20, 35, 0.7);
+    --color-text: #f8fafc;
+    --color-muted: #94a3b8;
+    
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.5);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.6);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.7);
+    --shadow-xl: 0 20px 25px rgba(0,0,0,0.8);
+    
+    --shadow-glow-cyan: 0 0 15px rgba(6, 182, 212, 0.25);
+    --shadow-glow-green: 0 0 15px rgba(16, 185, 129, 0.25);
+    --shadow-glow-pink: 0 0 15px rgba(236, 72, 153, 0.25);
+}
+
 html {
     scroll-behavior: smooth;
 }
 
 body {
-    background-color: #f8fafc; /* Slate 50 */
-    color: #334155; /* Slate 700 */
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Roboto Mono', monospace;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* 2. Unified Brand Colors (Tailwind manages these, but good for reference) */
-:root {
-    --brand-indigo: #4f46e5;
-    --brand-indigo-dark: #4338ca;
+/* 2. Cyber-Grid Patterns */
+.bg-grid-tech {
+    background-size: 50px 50px;
+    background-image: 
+        linear-gradient(to right, rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+    position: relative;
 }
 
-/* 3. Common UI Components */
+.bg-grid-tech::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 20%, var(--color-bg) 80%);
+    pointer-events: none;
+}
 
-/* Elegant lift on hover */
+/* 3. Component Styling */
+
+/* Elegant lift on hover with neon glow shadow */
 .hover-lift {
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .hover-lift:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    box-shadow: var(--shadow-glow-cyan);
+    border-color: rgba(6, 182, 212, 0.4);
 }
 
-/* Modern Card Style */
+/* Premium Tech Card */
 .card-premium {
-    background-color: white;
-    border: 1px solid #f1f5f9;
+    background-color: var(--color-card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 1.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
-    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .card-premium:hover {
-    border-color: #e0e7ff;
-    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+    border-color: rgba(16, 185, 129, 0.3);
+    box-shadow: var(--shadow-glow-green);
 }
 
-/* Module Specific Components */
-.bg-grid-slate {
-    background-size: 40px 40px;
-    background-image: linear-gradient(to right, #f1f5f9 1px, transparent 1px),
-        linear-gradient(to bottom, #f1f5f9 1px, transparent 1px);
+/* Modern Glass Card for Bento Grid & Info lists */
+.glass-card {
+    background: var(--color-card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-md);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.hero-module {
-    position: relative;
-    overflow: hidden;
-    background-color: #f8fafc;
+.glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow-cyan);
+    border-color: rgba(6, 182, 212, 0.3);
 }
 
-.wave-bg {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 120px;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3e%3cpath fill='%23ffffff' fill-opacity='1' d='M0,192L48,176C96,160,192,128,288,133.3C384,139,480,181,576,186.7C672,192,768,160,864,144C960,128,1056,128,1152,149.3C1248,171,1344,213,1392,234.7L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3e%3c/path%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: 10;
-}
-
-#particles-js {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-
-/* Modern Input Styles */
+/* Tech Input Style */
 .modern-input {
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
+    background-color: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-text);
+    border-radius: 0.75rem;
+    padding: 10px 16px;
+    font-family: 'Roboto Mono', monospace;
     transition: all 0.2s ease;
 }
 
 .modern-input:focus {
-    border-color: #6366f1;
+    border-color: var(--color-cyan);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
 }
 
-/* Custom Scrollbar (Premium Detail) */
+/* Custom Scrollbar (Futuristic Console style) */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f8fafc;
+    background: #06090f;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #e2e8f0;
-    border: 3px solid #f8fafc;
+    background: rgba(6, 182, 212, 0.3);
     border-radius: 10px;
+    border: 2px solid #06090f;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #cbd5e1;
+    background: rgba(6, 182, 212, 0.6);
 }
+
 /* Decorative Gradient Blobs */
 .blob {
     position: absolute;
-    filter: blur(80px);
+    filter: blur(120px);
     z-index: 0;
-    opacity: 0.6;
+    opacity: 0.3;
+    pointer-events: none;
 }
 
 @keyframes blob {
@@ -124,7 +151,7 @@ body {
 }
 
 .animate-blob {
-    animation: blob 7s infinite;
+    animation: blob 10s infinite alternate;
 }
 
 .animation-delay-2000 {
@@ -134,10 +161,11 @@ body {
 .animation-delay-4000 {
     animation-delay: 4s;
 }
+
 /* Typewriter Effect Styles */
 .type-cursor {
     font-weight: 200;
-    margin-left: 5px;
+    margin-left: 2px;
     animation: blink 1s infinite;
 }
 
@@ -146,7 +174,7 @@ body {
     50% { opacity: 0; }
 }
 
-/* Testimonial Cards */
+/* Testimonial Cards (Console / Tech specs layout) */
 .testimonial-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -160,27 +188,27 @@ body {
 }
 
 .testimonial-card {
-    background: white;
+    background: rgba(13, 20, 35, 0.6);
     border-radius: 1.25rem;
-    padding: 1.5rem;
+    padding: 1.75rem;
     position: relative;
-    border: 1px solid #f1f5f9;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--shadow-sm);
     transition: all 0.3s ease;
 }
 
 .testimonial-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
-    border-color: #e0e7ff;
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow-cyan);
+    border-color: rgba(6, 182, 212, 0.25);
 }
 
 .testimonial-quote {
     position: absolute;
     top: 1.25rem;
     right: 1.5rem;
-    opacity: 0.1;
-    color: #4f46e5;
+    opacity: 0.15;
+    color: var(--color-cyan);
 }
 
 .avatar-sphere {
@@ -192,5 +220,47 @@ body {
     justify-content: center;
     font-weight: 800;
     font-size: 1rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    background: rgba(6, 182, 212, 0.15);
+    color: var(--color-cyan);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+/* Back to Top Button */
+#back-to-top {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: var(--shadow-glow-green);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+#back-to-top:hover {
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+}
+
+/* Carousel Progress Dots */
+.carousel-dot.active {
+    width: 2rem !important;
+    background: var(--color-cyan) !important;
+    box-shadow: var(--shadow-glow-cyan);
+    opacity: 1;
+}
+
+/* Glowing Neon Elements */
+.glow-text-cyan {
+    text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+}
+
+.glow-text-green {
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+.glow-border-cyan {
+    border-color: rgba(6, 182, 212, 0.4);
+    box-shadow: var(--shadow-glow-cyan);
+}
+
+.glow-border-green {
+    border-color: rgba(16, 185, 129, 0.4);
+    box-shadow: var(--shadow-glow-green);
 }

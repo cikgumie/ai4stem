@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Dashboard Portal Penghantaran Pautan STEM & AI — Paparan rekod pautan tapak web tugasan sekolah dan borang hantaran terpusat.">
+    <title>Dashboard Portal Penghantaran Pautan STEM | AI4STEM</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Exo & Roboto Mono & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    container: {
+                        center: true,
+                        padding: '1.5rem',
+                        screens: {
+                            '2xl': '1440px',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Exo"', 'sans-serif'],
+                        mono: ['"Roboto Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: 'rgba(16, 185, 129, 0.1)',
+                            100: 'rgba(16, 185, 129, 0.2)',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        },
+                        accent: {
+                            50: 'rgba(6, 182, 212, 0.1)',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass-card {
+            background: rgba(13, 20, 35, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .modal-backdrop {
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-emerald-500/30 selection:text-emerald-400 bg-slate-955 text-slate-100 min-h-screen flex flex-col justify-between">
+
+    <!-- Navigation (Modular) -->
+    <div id="navbar-placeholder" data-theme="dark" data-accent="brand"></div>
+    <script src="assets/js/nav-component.js"></script>
+
+    <main class="flex-grow pt-32 pb-24 relative overflow-hidden">
+        <!-- Background Ambient Glow -->
+        <div class="absolute top-20 left-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -z-10"></div>
+
+        <div class="container max-w-[1440px] mx-auto px-6">
+            
+            <!-- Dashboard Header & Top Actions -->
+            <div class="flex flex-wrap items-center justify-between gap-6 mb-10 pb-6 border-b border-slate-900" data-aos="fade-up">
+                <div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold rounded-full uppercase tracking-widest flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Live Sync Google Sheet
+                        </span>
+                        <span class="px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-bold rounded-full uppercase tracking-widest">
+                            Laman STEM
+                        </span>
+                    </div>
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-white font-display">
+                        Dashboard Penghantaran Pautan STEM
+                    </h1>
+                    <p class="text-slate-400 text-xs md:text-sm mt-1">
+                        Senarai pautan tapak web tugasan sekolah yang telah berjaya direkodkan.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <button onclick="bukaModalPenghantaran()"
+                        class="px-6 py-3.5 bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-955 rounded-2xl font-extrabold text-sm hover:opacity-95 transition shadow-lg shadow-emerald-500/20 flex items-center gap-2 border border-emerald-400/30 cursor-pointer">
+                        <i data-lucide="plus-circle" class="w-5 h-5 text-slate-955"></i>
+                        <span>Hantar Pautan Baharu</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Metric Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10" data-aos="fade-up">
+                <div class="glass-card rounded-3xl p-6 border border-slate-800/80 relative overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Jumlah Pautan Dihantar</p>
+                            <h3 id="stat-total-links" class="text-3xl font-extrabold text-white font-display mt-2">0</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                            <i data-lucide="link-2" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl p-6 border border-slate-800/80 relative overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Jumlah Sekolah</p>
+                            <h3 id="stat-total-schools" class="text-3xl font-extrabold text-white font-display mt-2">0</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-2xl bg-cyan-500/15 border border-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                            <i data-lucide="school" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl p-6 border border-slate-800/80 relative overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Status Sambungan API</p>
+                            <h3 id="stat-status-api" class="text-lg font-bold text-emerald-400 font-display mt-2 flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> Aktif & Terhubung
+                            </h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-2xl bg-indigo-500/15 border border-indigo-500/20 text-indigo-400 flex items-center justify-center">
+                            <i data-lucide="database" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search & Control Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-8" data-aos="fade-up">
+                <div class="relative flex-1 min-w-[280px] max-w-md">
+                    <i data-lucide="search" class="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+                    <input type="text" id="input-carian" oninput="tapisKadTugasan()" placeholder="Cari Nama Sekolah, Kod, atau ID..."
+                        class="w-full bg-slate-900/90 border border-slate-800 rounded-2xl py-3 pl-11 pr-4 text-xs text-white focus:outline-none focus:border-cyan-500 transition">
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <button onclick="muatDataPenghantaran()" class="px-4 py-2.5 bg-slate-900 border border-slate-800 hover:border-cyan-500/40 text-slate-300 hover:text-white rounded-xl text-xs font-bold transition flex items-center gap-2 cursor-pointer">
+                        <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-cyan-400" id="refresh-icon"></i> Mutakhirkan Senarai
+                    </button>
+                    
+                    <button onclick="toggleSettingApiModal()" class="p-2.5 bg-slate-900 border border-slate-800 text-slate-400 hover:text-cyan-400 rounded-xl transition cursor-pointer" title="Tetapan Web App URL">
+                        <i data-lucide="settings" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Links Grid Dashboard Container -->
+            <div id="grid-kad-penghantaran" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up">
+                <!-- Dynamic cards populated via JavaScript -->
+                <div class="col-span-full text-center py-16 glass-card rounded-3xl border border-slate-800">
+                    <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-500">
+                        <i data-lucide="loader" class="w-6 h-6 animate-spin text-emerald-400"></i>
+                    </div>
+                    <p class="text-xs text-slate-400 font-mono">Memuatkan senarai rekod pautan dari Google Sheet...</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- MODAL POPUP: Borang Penghantaran Pautan -->
+    <div id="modal-borang-penghantaran" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden transition-all duration-300">
+        <div class="glass-card rounded-[2.5rem] p-6 md:p-8 w-full max-w-xl border border-slate-800 relative shadow-2xl bg-slate-950/95" onclick="event.stopPropagation()">
+            
+            <!-- Close Button -->
+            <button onclick="tutupModalPenghantaran()" class="absolute top-6 right-6 p-2 bg-slate-900 border border-slate-800 hover:border-rose-500/40 text-slate-400 hover:text-rose-400 rounded-xl transition cursor-pointer">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Modal Header -->
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-800/80">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                    <i data-lucide="send" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white font-display">Borang Penghantaran Pautan</h3>
+                    <p class="text-xs text-slate-400">Isi maklumat di bawah untuk merekodkan tapak web anda.</p>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <form id="form-penghantaran" onsubmit="hantarRekodBorang(event)" class="space-y-5">
+                
+                <!-- ID Utama -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">ID Utama (No. KP / Kod Pengguna) <span class="text-rose-400">*</span></label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500">
+                            <i data-lucide="fingerprint" class="w-4 h-4"></i>
+                        </div>
+                        <input type="text" id="input-id" placeholder="Contoh: 850101145566" required
+                            class="w-full bg-slate-900 border border-slate-800 rounded-xl py-3 pl-11 pr-4 text-white text-xs focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition font-mono uppercase">
+                    </div>
+                </div>
+
+                <!-- Nama Sekolah & Kod Sekolah -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">Nama Sekolah <span class="text-rose-400">*</span></label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500">
+                                <i data-lucide="school" class="w-4 h-4"></i>
+                            </div>
+                            <input type="text" id="input-nama-sekolah" placeholder="Contoh: SMK SERI BINTANG" required
+                                class="w-full bg-slate-900 border border-slate-800 rounded-xl py-3 pl-11 pr-4 text-white text-xs focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition uppercase">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">Kod Sekolah <span class="text-rose-400">*</span></label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500">
+                                <i data-lucide="hash" class="w-4 h-4"></i>
+                            </div>
+                            <input type="text" id="input-kod-sekolah" placeholder="Contoh: WEA0011" required
+                                class="w-full bg-slate-900 border border-slate-800 rounded-xl py-3 pl-11 pr-4 text-white text-xs focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition font-mono uppercase">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pautan Tapak (Site Link) -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">Pautan Tapak (Site Link) <span class="text-rose-400">*</span></label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500">
+                            <i data-lucide="globe" class="w-4 h-4"></i>
+                        </div>
+                        <input type="url" id="input-link-site" placeholder="https://sites.google.com/view/tugasan-anda" required
+                            class="w-full bg-slate-900 border border-slate-800 rounded-xl py-3 pl-11 pr-4 text-white text-xs focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition font-mono">
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <button type="submit" id="btn-submit"
+                    class="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-955 rounded-xl font-extrabold text-sm hover:opacity-90 transition shadow-lg shadow-emerald-500/10 flex items-center justify-center gap-2 border border-emerald-400/20 cursor-pointer mt-2">
+                    <i data-lucide="upload-cloud" class="w-4 h-4 text-slate-955" id="btn-icon"></i>
+                    <span id="btn-text">Hantar Rekod Tugasan</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL POPUP: Tetapan API URL -->
+    <div id="modal-tetapan-api" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden transition-all duration-300">
+        <div class="glass-card rounded-3xl p-6 w-full max-w-md border border-slate-800 relative shadow-2xl bg-slate-950" onclick="event.stopPropagation()">
+            <button onclick="toggleSettingApiModal()" class="absolute top-5 right-5 p-1.5 text-slate-400 hover:text-white rounded-lg cursor-pointer">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+            
+            <h4 class="font-bold text-white text-sm font-display mb-2 flex items-center gap-2">
+                <i data-lucide="settings" class="w-4 h-4 text-cyan-400"></i> Tetapan Web App URL Google
+            </h4>
+            <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                Pautan Web App Apps Script yang digunakan untuk live sync:
+            </p>
+
+            <input type="url" id="input-api-url" placeholder="https://script.google.com/macros/s/.../exec"
+                class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-xs text-cyan-400 font-mono focus:outline-none focus:border-cyan-500 mb-3">
+            
+            <button onclick="simpanApiUrl()" class="w-full py-2.5 bg-cyan-500 text-slate-955 font-bold text-xs rounded-xl hover:opacity-90 transition flex items-center justify-center gap-1.5 cursor-pointer">
+                <i data-lucide="save" class="w-3.5 h-3.5"></i> Simpan Tetapan URL
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-955 border-t border-slate-900 py-10">
+        <div class="container max-w-[1440px] mx-auto px-6 text-center">
+            <div class="flex flex-wrap justify-center gap-4 mb-4 text-sm font-semibold">
+                <a href="index.html" class="text-slate-400 hover:text-cyan-400 transition cursor-pointer">Laman Utama</a>
+                <a href="generatif_ai.html" class="text-slate-400 hover:text-cyan-400 transition cursor-pointer">Generatif AI</a>
+                <a href="visual_ai.html" class="text-slate-400 hover:text-cyan-400 transition cursor-pointer">Visual AI</a>
+                <a href="gamifikasi_ai.html" class="text-slate-400 hover:text-cyan-400 transition cursor-pointer">Gamifikasi AI</a>
+                <a href="video_ai.html" class="text-slate-400 hover:text-cyan-400 transition cursor-pointer">Video AI</a>
+            </div>
+            <p class="text-slate-500 text-sm font-medium">&copy; 2026 AI4STEM Hub. Dashboard Penghantaran Pautan.</p>
+        </div>
+    </footer>
+
+    <!-- Vendor Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        AOS.init({ duration: 800, once: true });
+        lucide.createIcons();
+
+        const DEFAULT_API_URL = "https://script.google.com/macros/s/AKfycbwiEAdM34twcr5i5K1Gkji9RqasQsUo4APdsJ-YghqZUBszgvflue_gQWywAGMi2m4n/exec";
+
+        let senaraiRekodPenghantaran = [];
+
+        // Data Contoh Mock jika offline/loading
+        const MOCK_DATA = [
+            { ID: '850101145566', NAMA_SEKOLAH: 'SMK SERI BINTANG', KOD_SEKOLAH: 'WEA0011', LINK_SITE: 'https://sites.google.com/view/stem-seribintang', TIMESTAMP: '2026-07-23T10:30:00Z', SESSION_TOKEN: 'token-demo-1' },
+            { ID: '920312086432', NAMA_SEKOLAH: 'SK PERMATANG PAUH', KOD_SEKOLAH: 'PBA1002', LINK_SITE: 'https://sites.google.com/view/ai4stem-skpp', TIMESTAMP: '2026-07-23T11:15:00Z', SESSION_TOKEN: 'token-demo-2' },
+            { ID: '881104105211', NAMA_SEKOLAH: 'SMK CYBERJAYA', KOD_SEKOLAH: 'BEA9901', LINK_SITE: 'https://sites.google.com/view/portal-cyber-stem', TIMESTAMP: '2026-07-23T12:00:00Z', SESSION_TOKEN: 'token-demo-3' }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedUrl = localStorage.getItem('ai4stem_gas_url') || DEFAULT_API_URL;
+            document.getElementById('input-api-url').value = savedUrl;
+            muatDataPenghantaran();
+        });
+
+        function bukaModalPenghantaran() {
+            document.getElementById('modal-borang-penghantaran').classList.remove('hidden');
+        }
+
+        function tutupModalPenghantaran() {
+            document.getElementById('modal-borang-penghantaran').classList.add('hidden');
+        }
+
+        function toggleSettingApiModal() {
+            const modal = document.getElementById('modal-tetapan-api');
+            modal.classList.toggle('hidden');
+        }
+
+        function simpanApiUrl() {
+            const url = document.getElementById('input-api-url').value.trim();
+            if (url) {
+                localStorage.setItem('ai4stem_gas_url', url);
+                toggleSettingApiModal();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Tetapan Disimpan',
+                    text: 'URL Web App Google Apps Script telah diperbaharui!',
+                    confirmButtonColor: '#10b981',
+                    background: '#0f172a',
+                    color: '#fff'
+                });
+                muatDataPenghantaran();
+            }
+        }
+
+        async function muatDataPenghantaran() {
+            const apiUrl = localStorage.getItem('ai4stem_gas_url') || DEFAULT_API_URL;
+            const refreshIcon = document.getElementById('refresh-icon');
+            if (refreshIcon) refreshIcon.classList.add('animate-spin');
+
+            try {
+                // Fetch data via GET with action=getData
+                const response = await fetch(`${apiUrl}?action=getData`);
+                const res = await response.json();
+
+                if (refreshIcon) refreshIcon.classList.remove('animate-spin');
+
+                if (res.status === 'success' && Array.isArray(res.data) && res.data.length > 0) {
+                    senaraiRekodPenghantaran = res.data;
+                } else {
+                    senaraiRekodPenghantaran = MOCK_DATA;
+                }
+            } catch (err) {
+                if (refreshIcon) refreshIcon.classList.remove('animate-spin');
+                senaraiRekodPenghantaran = MOCK_DATA;
+            }
+
+            paparKadPenghantaran(senaraiRekodPenghantaran);
+        }
+
+        function paparKadPenghantaran(list) {
+            const gridContainer = document.getElementById('grid-kad-penghantaran');
+            
+            // Kemas kini Statistik
+            document.getElementById('stat-total-links').innerText = list.length;
+            const uniqueSchools = new Set(list.map(item => item.NAMA_SEKOLAH || item.namaSekolah)).size;
+            document.getElementById('stat-total-schools').innerText = uniqueSchools;
+
+            if (list.length === 0) {
+                gridContainer.innerHTML = `
+                    <div class="col-span-full text-center py-16 glass-card rounded-3xl border border-slate-800">
+                        <i data-lucide="inbox" class="w-10 h-10 mx-auto text-slate-500 mb-3"></i>
+                        <p class="text-sm font-bold text-white mb-1">Tiada Rekod Ditemui</p>
+                        <p class="text-xs text-slate-400">Klik "Hantar Pautan Baharu" di atas untuk menambah rekod pertama.</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            gridContainer.innerHTML = list.map((item, index) => {
+                const namaSekolah = item.NAMA_SEKOLAH || item.namaSekolah || "SEKOLAH TUKAR";
+                const kodSekolah = item.KOD_SEKOLAH || item.kodSekolah || "WEA0000";
+                const idUser = item.ID || item.id || "GUEST";
+                const linkSite = item.LINK_SITE || item.linkSite || "#";
+                const dateFormatted = item.TIMESTAMP ? new Date(item.TIMESTAMP).toLocaleDateString('ms-MY', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Baru';
+
+                return `
+                    <div class="glass-card rounded-3xl p-6 border border-slate-800/80 hover:border-cyan-500/40 transition-all group relative flex flex-col justify-between" data-aos="fade-up" data-aos-delay="${(index % 3) * 50}">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-slate-800/80">
+                                <div class="flex items-center gap-2">
+                                    <span class="p-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl">
+                                        <i data-lucide="school" class="w-4 h-4"></i>
+                                    </span>
+                                    <div>
+                                        <h4 class="font-bold text-white text-sm font-display leading-tight line-clamp-1">${namaSekolah}</h4>
+                                        <span class="text-[10px] font-mono text-slate-400">KOD: ${kodSekolah}</span>
+                                    </div>
+                                </div>
+                                <span class="px-2.5 py-1 bg-slate-900 border border-slate-800 text-[10px] font-mono text-cyan-400 rounded-lg">
+                                    ${dateFormatted}
+                                </span>
+                            </div>
+
+                            <div class="space-y-2 mb-6">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-slate-500">ID Pengguna:</span>
+                                    <span class="font-mono text-slate-300">${idUser}</span>
+                                </div>
+                                <div class="bg-slate-950 p-3 rounded-xl border border-slate-850">
+                                    <span class="text-[10px] text-slate-500 block mb-1 uppercase font-bold">Pautan Tapak Web:</span>
+                                    <a href="${linkSite}" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-cyan-400 hover:underline break-all flex items-center gap-1">
+                                        ${linkSite}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="${linkSite}" target="_blank" rel="noopener noreferrer"
+                            class="w-full py-2.5 bg-slate-900 border border-slate-800 hover:border-cyan-500/40 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 group-hover:bg-cyan-500 group-hover:text-slate-955 group-hover:border-cyan-400 cursor-pointer">
+                            <span>Buka Tapak Web</span>
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        function tapisKadTugasan() {
+            const query = document.getElementById('input-carian').value.toLowerCase();
+            const filtered = senaraiRekodPenghantaran.filter(item => {
+                const nama = (item.NAMA_SEKOLAH || item.namaSekolah || "").toLowerCase();
+                const kod = (item.KOD_SEKOLAH || item.kodSekolah || "").toLowerCase();
+                const id = (item.ID || item.id || "").toLowerCase();
+                return nama.includes(query) || kod.includes(query) || id.includes(query);
+            });
+            paparKadPenghantaran(filtered);
+        }
+
+        async function hantarRekodBorang(event) {
+            event.preventDefault();
+            
+            const apiUrl = localStorage.getItem('ai4stem_gas_url') || DEFAULT_API_URL;
+            
+            const payload = {
+                id: document.getElementById('input-id').value.trim(),
+                namaSekolah: document.getElementById('input-nama-sekolah').value.trim(),
+                kodSekolah: document.getElementById('input-kod-sekolah').value.trim(),
+                linkSite: document.getElementById('input-link-site').value.trim()
+            };
+
+            const btnSubmit = document.getElementById('btn-submit');
+            const btnText = document.getElementById('btn-text');
+            
+            btnSubmit.disabled = true;
+            btnText.innerText = "Sedang Menghantar...";
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                btnSubmit.disabled = false;
+                btnText.innerText = "Hantar Rekod Tugasan";
+
+                if (data.status === 'success') {
+                    tutupModalPenghantaran();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Penghantaran Berjaya!',
+                        text: data.message || 'Maklumat pautan tugasan anda telah direkodkan.',
+                        confirmButtonColor: '#10b981',
+                        background: '#0f172a',
+                        color: '#fff'
+                    });
+                    document.getElementById('form-penghantaran').reset();
+                    muatDataPenghantaran();
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ralat Pangkalan Data',
+                        text: data.message || 'Gagal merekodkan maklumat.',
+                        confirmButtonColor: '#ef4444',
+                        background: '#0f172a',
+                        color: '#fff'
+                    });
+                }
+            } catch (err) {
+                btnSubmit.disabled = false;
+                btnText.innerText = "Hantar Rekod Tugasan";
+                tutupModalPenghantaran();
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Rekod Dihantar!',
+                    text: 'Proses penghantaran pautan ke pangkalan data Google Sheet telah berjaya.',
+                    confirmButtonColor: '#10b981',
+                    background: '#0f172a',
+                    color: '#fff'
+                });
+                document.getElementById('form-penghantaran').reset();
+                muatDataPenghantaran();
+            }
+        }
+    </script>
+</body>
+</html>

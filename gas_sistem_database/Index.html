@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ms" data-theme="corporate">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Sistem Penghantaran Pautan</title>
+  
+  <!-- Tipografi -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Ekosistem Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Tailwind CSS & DaisyUI -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.0/dist/full.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Alpine.js (Pengurusan State Berpusat) & SweetAlert2 -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.1/dist/cdn.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    
+    /* Hibrid Glassmorphism untuk Lapisan Atas */
+    .glass-navbar {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    
+    /* Bauhaus Minimal untuk Komponen Berat */
+    .bauhaus-card {
+      background-color: #ffffff;
+      border: 2px solid #e5e7eb;
+      border-radius: 16px;
+      box-shadow: 4px 4px 0px 0px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col items-center text-slate-800" x-data="stateAplikasi()">
+  
+  <!-- Navigasi Utama (Top Menu - Lebar Maksimum 1440px) -->
+  <header class="w-full glass-navbar sticky top-0 z-40 flex justify-center shadow-sm">
+    <div class="navbar w-full max-w-[1440px] px-4 md:px-8 py-3">
+      <div class="flex-1">
+        <a class="text-xl font-bold flex items-center gap-3 text-slate-800">
+          <div class="p-2 bg-primary text-white rounded-lg">
+            <i data-lucide="link" class="w-5 h-5"></i>
+          </div>
+          Portal Tugasan
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Kandungan Utama (Mobile-First) -->
+  <main class="w-full max-w-3xl flex-1 px-4 py-8 md:py-12 relative z-10">
+    <div class="bauhaus-card p-6 md:p-10 relative overflow-hidden">
+      
+      <!-- Hiasan Sudut -->
+      <div class="absolute -top-10 -right-10 w-32 h-32 bg-primary opacity-5 rounded-full blur-2xl"></div>
+
+      <div class="mb-8 border-b border-slate-100 pb-4">
+        <h2 class="text-2xl font-bold flex items-center gap-2 text-slate-800">
+          Borang Penghantaran
+        </h2>
+        <p class="text-sm text-slate-500 mt-1">Lengkapkan parameter di bawah untuk mengemas kini pangkalan data pautan anda.</p>
+      </div>
+      
+      <!-- Borang Penghantaran -->
+      <form @submit.prevent="laksanaPenghantaran" class="space-y-6 relative z-10">
+        
+        <div class="form-control w-full">
+          <label class="label"><span class="label-text font-bold text-slate-600">ID Utama (No. Kad Pengenalan / Kod Pengguna)</span></label>
+          <div class="relative">
+            <i data-lucide="fingerprint" class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+            <input type="text" x-model="borang.id" placeholder="Cth: 850101145566" class="input input-bordered w-full pl-12 focus:border-primary focus:ring-1 focus:ring-primary transition-all uppercase font-medium" required />
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="form-control w-full">
+            <label class="label"><span class="label-text font-bold text-slate-600">Nama Sekolah</span></label>
+            <div class="relative">
+              <i data-lucide="school" class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+              <input type="text" x-model="borang.namaSekolah" placeholder="Cth: SMK SERI BINTANG" class="input input-bordered w-full pl-12 focus:border-primary focus:ring-1 focus:ring-primary transition-all uppercase font-medium" required />
+            </div>
+          </div>
+          
+          <div class="form-control w-full">
+            <label class="label"><span class="label-text font-bold text-slate-600">Kod Sekolah</span></label>
+            <div class="relative">
+              <i data-lucide="hash" class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+              <input type="text" x-model="borang.kodSekolah" placeholder="Cth: WEA0011" class="input input-bordered w-full pl-12 focus:border-primary focus:ring-1 focus:ring-primary transition-all uppercase font-medium" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-control w-full">
+          <label class="label"><span class="label-text font-bold text-slate-600">Pautan Tapak (Site Link)</span></label>
+          <div class="relative">
+            <i data-lucide="globe" class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+            <input type="url" x-model="borang.linkSite" placeholder="https://sites.google.com/..." class="input input-bordered w-full pl-12 focus:border-primary focus:ring-1 focus:ring-primary transition-all font-medium" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-full mt-4 flex items-center justify-center gap-2 hover:shadow-lg transition-all" :disabled="sedangMemuat">
+          <i data-lucide="upload" class="w-5 h-5" x-show="!sedangMemuat"></i>
+          <span class="loading loading-spinner loading-sm" x-show="sedangMemuat" style="display: none;"></span>
+          <span x-text="sedangMemuat ? 'Sedang Memproses...' : 'Hantar Rekod'"></span>
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Paparan Overlay Loading (Kitaran google.script.run) -->
+  <div x-show="sedangMemuat" style="display: none;" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center" x-transition.opacity>
+    <div class="bg-white p-6 rounded-2xl flex flex-col items-center gap-4 shadow-2xl border border-slate-100 min-w-[200px]">
+      <span class="loading loading-ring loading-lg text-primary"></span>
+      <p class="font-bold text-sm text-slate-600">Mengesahkan Akses...</p>
+    </div>
+  </div>
+
+  <script>
+    // Pemaparan Ikon Sisi Klien
+    lucide.createIcons();
+
+    // Pengurusan State Berpusat dengan Alpine.js
+    function stateAplikasi() {
+      return {
+        sedangMemuat: false,
+        borang: {
+          id: '',
+          namaSekolah: '',
+          kodSekolah: '',
+          linkSite: ''
+        },
+        laksanaPenghantaran() {
+          this.sedangMemuat = true;
+          
+          google.script.run
+            .withSuccessHandler((respons) => {
+              this.sedangMemuat = false;
+              if(respons.status === 'success') {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Penghantaran Berjaya',
+                  text: respons.message,
+                  confirmButtonColor: '#10b981',
+                  customClass: { popup: 'rounded-2xl' }
+                });
+                this.kosongkanBorang();
+              } else {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Ralat Pangkalan Data',
+                  text: respons.message,
+                  confirmButtonColor: '#ef4444',
+                  customClass: { popup: 'rounded-2xl' }
+                });
+              }
+            })
+            .withFailureHandler((ralat) => {
+              this.sedangMemuat = false;
+              Swal.fire({
+                icon: 'error',
+                title: 'Ralat Rangkaian',
+                text: 'Proses dibatalkan. Sila semak sambungan internet anda.',
+                confirmButtonColor: '#ef4444',
+                customClass: { popup: 'rounded-2xl' }
+              });
+            })
+            .simpanBorang(this.borang);
+        },
+        kosongkanBorang() {
+          this.borang = { id: '', namaSekolah: '', kodSekolah: '', linkSite: '' };
+        }
+      }
+    }
+  </script>
+</body>
+</html>

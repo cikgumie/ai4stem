@@ -4,24 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modul Pakar: Penjana Imej AI (Image Generator AI)</title>
+    <meta name="description" content="Modul Pakar Penjana Imej AI — kuasai teknik prompt engineering untuk menghasilkan poster, ilustrasi saintifik, dan grafik tanpa hak cipta dengan Imagen 3 & Gemini.">
+    <title>Kuasai Penjanaan Imej Gemini | AI4STEM</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+    <!-- Google Fonts: Exo & Roboto Mono (Tech Mode) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Icons & Animations -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <!-- Custom Styles -->
+    <!-- Custom Style -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Vanta Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
 
     <!-- Tailwind Config -->
     <script>
@@ -29,16 +32,22 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        display: ['"Outfit"', 'sans-serif'],
+                        sans: ['"Roboto Mono"', 'monospace'],
+                        display: ['"Exo"', 'sans-serif'],
+                        mono: ['"Roboto Mono"', 'monospace'],
                     },
                     colors: {
                         brand: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
+                            50: 'rgba(16, 185, 129, 0.1)',
+                            100: 'rgba(16, 185, 129, 0.2)',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        },
+                        accent: {
+                            50: 'rgba(6, 182, 212, 0.1)',
+                            500: '#06b6d4',
+                            600: '#0891b2',
                         }
                     }
                 }
@@ -47,269 +56,517 @@
     </script>
 
     <style>
-        .hero-mask {
-            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0% 30%);
+        .prompt-box {
+            background-color: #06090f;
+            color: #cbd5e1;
+            border-left: 4px solid #10b981;
+            padding: 1.25rem;
+            border-radius: 1rem;
+            font-family: 'Roboto Mono', 'Fira Code', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            position: relative;
+            border-top: 1px solid rgba(255,255,255,0.03);
+            border-right: 1px solid rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        .accordion-content {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+        }
+        .accordion-content.active {
+            max-height: 1000px;
+            opacity: 1;
+        }
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
+        .generator-input {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 1rem;
+            background-color: rgba(15, 23, 42, 0.8);
+            color: white;
+            transition: all 0.3s;
+            font-size: 0.9375rem;
+        }
+        .generator-input:focus {
+            outline: none;
+            border-color: #06b6d4;
+            background-color: rgba(15, 23, 42, 0.95);
+            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.2);
+        }
+        .generator-label {
+            display: block;
+            margin-bottom: 0.625rem;
+            font-weight: 600;
+            color: #e2e8f0;
+            font-size: 0.875rem;
+        }
+        .glass-card {
+            background: rgba(13, 20, 35, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
     </style>
 </head>
 
-<body class="antialiased selection:bg-brand-100 selection:text-brand-900">
+<body class="antialiased selection:bg-emerald-500/30 selection:text-emerald-400 bg-slate-950 text-slate-100">
 
     <!-- Navigation (Modular) -->
-    <div id="navbar-placeholder" data-theme="light" data-accent="brand"></div>
+    <div id="navbar-placeholder" data-theme="dark" data-accent="brand"></div>
     <script src="assets/js/nav-component.js"></script>
 
-
-    <main>
-        <!-- Hero Section -->
-        <header class="relative pt-32 pb-20 lg:pt-44 lg:pb-36 overflow-hidden">
-            <!-- Animation / Particles Container -->
-            <div id="particles-js" class="absolute inset-0 z-0"></div>
-            <div class="absolute inset-0 bg-grid-slate -z-10"></div>
-            
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="text-left" data-aos="fade-right">
-                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-100 mb-6">
-                            <span class="flex h-2 w-2 relative">
-                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-                                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
-                            </span>
-                            <span class="text-xs font-bold text-brand-600 uppercase tracking-widest">Visual Intelligence</span>
-                        </span>
-                        <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 leading-[1.1]">
-                            <span id="typewriter-visual" class="text-brand-600"></span><span class="type-cursor text-brand-600">|</span>
-                        </h1>
-                        <p class="text-lg text-slate-600 mb-10 leading-relaxed max-w-xl">
-                            Kuasai seni menterjemah imaginasi kepada realiti digital. Terokai teknik penjanaan imej yang menakjubkan untuk bahan bantu mengajar yang berimpak.
-                        </p>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="explorasi_imej.html" class="bg-brand-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-brand-700 transition shadow-xl shadow-brand-500/20 flex items-center gap-2">
-                                Mula Belajar <i data-lucide="sparkles" class="w-4 h-4"></i>
-                            </a>
-                            <button onclick="scrollToSection('gallery')" class="px-8 py-4 rounded-xl font-bold text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 transition shadow-sm">
-                                Lihat Contoh
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="relative" data-aos="zoom-out-left">
-                        <div class="absolute -inset-4 bg-brand-600/10 blur-3xl rounded-full opacity-50"></div>
-                        <!-- The MASKED Hero Image -->
-                        <div class="relative z-10 w-full aspect-square md:aspect-[4/3] overflow-hidden rounded-[3rem] hero-mask shadow-2xl">
-                            <img src="assets/img/visual_hero_v2.png" alt="Visual AI Hero" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-tr from-brand-600/40 via-transparent to-transparent"></div>
-                        </div>
-                        <!-- Decorative Floating Element -->
-                        <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl shadow-2xl border border-slate-100 animate-bounce transition-all duration-[3000ms] z-20 hidden md:block">
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600 shadow-inner">
-                                    <i data-lucide="monitor" class="w-6 h-6"></i>
-                                </div>
-                                <div class="flex flex-col">
-                                    <p class="text-xs text-slate-500 font-bold uppercase tracking-tight">Prompt Result</p>
-                                    <p class="text-sm font-bold text-slate-900">HD 4K Quality</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <!-- Showcase Section -->
-        <section id="gallery" class="py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16" data-aos="fade-up">
-                    <span class="text-brand-600 font-bold tracking-widest text-xs uppercase bg-brand-50 px-3 py-1 rounded-full">Explore Art</span>
-                    <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mt-4">Dikuasakan Imaginasi</h2>
-                    <p class="text-slate-600 mt-4 max-w-2xl mx-auto text-lg leading-relaxed">Lihat bagaimana AI mampu menghidupkan modul pembelajaran dengan visual yang realistik dan artistik.</p>
-                </div>
-                
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Example 1 -->
-                    <div class="group relative bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-100 h-[450px]" data-aos="fade-up">
-                        <img src="assets/img/visual_science_v2.png" alt="Science AI" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-8 w-full">
-                            <span class="bg-blue-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase mb-4 inline-block shadow-lg">Sains & Inovasi</span>
-                            <h4 class="text-2xl font-bold text-white mb-2">Ilustrasi Saintifik 3D</h4>
-                            <p class="text-slate-300 text-sm leading-relaxed italic border-l-2 border-blue-500 pl-3">"Penerangan sel biologi menjadi lebih jelas dengan visual lutsinar yang realisitik."</p>
-                        </div>
-                    </div>
-
-                    <!-- Example 2 -->
-                    <div class="group relative bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-100 h-[450px]" data-aos="fade-up" data-aos-delay="100">
-                        <img src="assets/img/visual_history_v2.png" alt="History AI" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-8 w-full">
-                            <span class="bg-orange-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase mb-4 inline-block shadow-lg">Sejarah & Budaya</span>
-                            <h4 class="text-2xl font-bold text-white mb-2">Tokoh Sejarah</h4>
-                            <p class="text-slate-300 text-sm leading-relaxed italic border-l-2 border-orange-500 pl-3">"Menghidupkan semula wira bangsa dalam kualiti sinematik untuk modul Sejarah."</p>
-                        </div>
-                    </div>
-
-                    <!-- Example 3 -->
-                    <div class="group relative bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-100 h-[450px]" data-aos="fade-up" data-aos-delay="200">
-                        <img src="assets/img/visual_poster_v2.png" alt="Futuristic Poster" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-8 w-full">
-                            <span class="bg-purple-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase mb-4 inline-block shadow-lg">Grafik & Poster</span>
-                            <h4 class="text-2xl font-bold text-white mb-2">Poster Digital Moden</h4>
-                            <p class="text-slate-300 text-sm leading-relaxed italic border-l-2 border-purple-500 pl-3">"Membina poster cyber security dengan elemen 3D yang bersih dan profesional."</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Components Grid (S.L.A.P Acronym) -->
-        <section class="py-24 bg-slate-50 border-y border-slate-100">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16" data-aos="fade-up">
-                    <span class="text-brand-600 font-bold tracking-widest text-xs uppercase bg-brand-50 px-3 py-1 rounded-full">Methodology</span>
-                    <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mt-4">S.L.A.P</h2>
-                    <p class="text-slate-500 mt-4 text-lg">Formula ringas untuk menghasilkan visual AI yang luar biasa.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- S - Subjek -->
-                    <div class="group bg-white rounded-[2.5rem] p-4 shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-                        <div class="relative h-48 mb-6 overflow-hidden rounded-[2rem]">
-                            <img src="assets/img/prompt_subjek_v2.png" alt="Subjek" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-brand-600/10 group-hover:bg-transparent transition-colors"></div>
-                            <div class="absolute top-4 left-4 w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-brand-600 shadow-lg">
-                                <span class="text-2xl font-black italic">S</span>
-                            </div>
-                        </div>
-                        <div class="px-4 pb-6">
-                            <h4 class="font-bold text-xl text-slate-900 mb-2">Subjek</h4>
-                            <p class="text-sm text-slate-500 leading-relaxed">Fokus utama scene dan aksi yang sedang dilakukan oleh watak anda.</p>
-                        </div>
-                    </div>
-
-                    <!-- L - Latar -->
-                    <div class="group bg-white rounded-[2.5rem] p-4 shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-                        <div class="relative h-48 mb-6 overflow-hidden rounded-[2rem]">
-                            <img src="assets/img/prompt_latar_v2.png" alt="Latar" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-teal-600/10 group-hover:bg-transparent transition-colors"></div>
-                            <div class="absolute top-4 left-4 w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-teal-600 shadow-lg">
-                                <span class="text-2xl font-black italic">L</span>
-                            </div>
-                        </div>
-                        <div class="px-4 pb-6">
-                            <h4 class="font-bold text-xl text-slate-900 mb-2">Latar</h4>
-                            <p class="text-sm text-slate-500 leading-relaxed">Suasana sekeliling, waktu, dan elemen persekitaran yang spesifik.</p>
-                        </div>
-                    </div>
-
-                    <!-- A - Aura -->
-                    <div class="group bg-white rounded-[2.5rem] p-4 shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-                        <div class="relative h-48 mb-6 overflow-hidden rounded-[2rem]">
-                            <img src="assets/img/prompt_aura_v2.png" alt="Aura" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-purple-600/10 group-hover:bg-transparent transition-colors"></div>
-                            <div class="absolute top-4 left-4 w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-purple-600 shadow-lg">
-                                <span class="text-2xl font-black italic">A</span>
-                            </div>
-                        </div>
-                        <div class="px-4 pb-6">
-                            <h4 class="font-bold text-xl text-slate-900 mb-2">Aura</h4>
-                            <p class="text-sm text-slate-500 leading-relaxed">Gaya artistik, mood, pencahayaan, dan emosi yang ingin disampaikan.</p>
-                        </div>
-                    </div>
-
-                    <!-- P - Perincian -->
-                    <div class="group bg-white rounded-[2.5rem] p-4 shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-                        <div class="relative h-48 mb-6 overflow-hidden rounded-[2rem]">
-                            <img src="assets/img/prompt_perincian_v2.png" alt="Perincian" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-rose-600/10 group-hover:bg-transparent transition-colors"></div>
-                            <div class="absolute top-4 left-4 w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-rose-600 shadow-lg">
-                                <span class="text-2xl font-black italic">P</span>
-                            </div>
-                        </div>
-                        <div class="px-4 pb-6">
-                            <h4 class="font-bold text-xl text-slate-900 mb-2">Perincian</h4>
-                            <p class="text-sm text-slate-500 leading-relaxed">Kualiti visual, sudut kamera, lensa, dan resolusi teknikal tinggi.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tutorial Section -->
-        <section id="tutorial-langkah" class="py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="grid lg:grid-cols-2 gap-16 items-center">
-                    <div data-aos="fade-right">
-                        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Proses Diffusion.<br>Kaitan Teks & Visual.</h2>
-                        <p class="text-slate-600 text-lg mb-8 leading-relaxed">
-                            AI bermula dengan 'noise' (rawak) dan secara beransur-ansur memperhalusi imej sehingga ia menjadi bentuk yang anda inginkan melalui ribuan langkah pengiraan yang kompleks.
-                        </p>
-                        <div class="space-y-6">
-                            <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                                <div class="w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
-                                <p class="text-slate-700 font-semibold">Teks Analisis oleh Model Bahasa</p>
-                            </div>
-                            <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                                <div class="w-10 h-10 bg-brand-500 text-white rounded-full flex items-center justify-center font-bold">2</div>
-                                <p class="text-slate-700 font-semibold">Penjanaan Noise Asas</p>
-                            </div>
-                            <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                                <div class="w-10 h-10 bg-accent-500 text-white rounded-full flex items-center justify-center font-bold">3</div>
-                                <p class="text-slate-700 font-semibold">Penyah-kaburan (Denoising) Langkah-demi-langkah</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative" data-aos="fade-left">
-                         <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
-                            <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1974" class="w-full h-auto object-cover">
-                         </div>
-                         <div class="absolute -top-6 -right-6 bg-brand-600 text-white p-6 rounded-3xl shadow-xl flex flex-col items-center">
-                            <span class="text-2xl font-bold">85%</span>
-                            <span class="text-[10px] uppercase font-bold tracking-tighter">Accuracy</span>
-                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Final CTA -->
-        <section class="py-24 bg-brand-600">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-5xl font-bold text-white mb-8" data-aos="fade-up">Sedia Untuk Meneroka?</h2>
-                <p class="text-brand-100 text-lg mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Masuk ke modul explorasi untuk belajar teknik prompt yang lebih mendalam dan bina visual pendidikan anda sendiri.
-                </p>
-                <a href="explorasi_imej.html" class="inline-flex items-center gap-3 bg-white text-brand-600 px-10 py-5 rounded-2xl font-bold text-xl hover:bg-brand-50 transition transform hover:scale-105 shadow-2xl shadow-black/20" data-aos="zoom-in" data-aos-delay="200">
-                    Buka Modul Explorasi <i data-lucide="sparkles" class="w-6 h-6"></i>
+    <!-- Header Section -->
+    <header id="vanta-bg" class="text-white text-center pt-48 pb-32 mb-10 overflow-hidden relative bg-slate-950">
+        <div class="container mx-auto relative z-10 px-6" data-aos="zoom-in">
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/80 border border-slate-800/80 text-cyan-400 text-sm font-bold mb-6">
+                <i data-lucide="sparkles" class="w-4 h-4 inline-block text-cyan-400"></i> Modul Explorasi Termaju
+            </span>
+            <h1 class="text-4xl md:text-7xl font-extrabold mb-8 leading-tight font-display tracking-tight text-white">Kuasai Penjanaan <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 glow-text-cyan">Imej Gemini</span></h1>
+            <p class="text-lg md:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed mb-12">
+                Rangka kerja komprehensif untuk menguasai keupayaan visual Imagen 3 bagi mencapai hasil berkualiti profesional untuk pendidikan dan kreativiti.
+            </p>
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="#pustaka-prompt" class="bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 font-extrabold py-4 px-10 rounded-2xl hover:opacity-90 transition-all transform hover:scale-105 shadow-lg shadow-emerald-500/10 flex items-center gap-3 cursor-pointer border border-emerald-400/20">
+                    Teroka Pustaka Prompt <i data-lucide="wand-sparkles" class="w-4 h-4 inline-block text-slate-955"></i>
                 </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 overflow-hidden">
+
+        <!-- Enjin Section -->
+        <section id="enjin-platform" class="py-24 bg-slate-950 border-t border-slate-900">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="md:w-1/2" data-aos="fade-right">
+                    <span class="text-emerald-400 font-bold tracking-widest text-xs uppercase bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full">Core Engine</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mt-6 leading-tight">Memahami Kuasa<br>Visual Imagen 3</h2>
+                    <p class="text-slate-400 mt-6 text-lg leading-relaxed">Gemini bukan sekadar AI teks. Dengan integrasi Imagen 3, ia kini mampu menjana visual dengan ketepatan prompt yang luar biasa dan kualiti artistik yang tinggi.</p>
+                    
+                    <div class="mt-10 space-y-6">
+                        <div class="flex gap-4 p-6 bg-slate-900/60 rounded-3xl border border-slate-850 hover:shadow-lg transition-all group">
+                            <div class="w-12 h-12 bg-cyan-500/15 rounded-2xl flex items-center justify-center text-cyan-400 flex-shrink-0 group-hover:scale-110 transition-transform border border-cyan-500/20">
+                                <i data-lucide="zap" class="w-6 h-6 text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-lg font-display">Imagen 3: Fotorealistik</h4>
+                                <p class="text-slate-400 text-sm mt-1">Model utama untuk kualiti tertinggi, butiran kulit yang nyata, dan pemahaman prompt yang kompleks.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 p-6 bg-slate-900/60 rounded-3xl border border-slate-850 hover:shadow-lg transition-all group">
+                            <div class="w-12 h-12 bg-emerald-500/15 rounded-2xl flex items-center justify-center text-emerald-400 flex-shrink-0 group-hover:scale-110 transition-transform border border-emerald-500/20">
+                                <i data-lucide="edit-3" class="w-6 h-6 text-emerald-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-lg font-display">Penyuntingan Perbualan</h4>
+                                <p class="text-slate-400 text-sm mt-1">Ubah suai imej secara berulang hanya melalui arahan teks tanpa perlu menjana semula semuanya.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 grid grid-cols-2 gap-4" data-aos="fade-left">
+                    <a href="https://gemini.google.com/" target="_blank" class="bg-slate-900 rounded-[2rem] aspect-square flex flex-col items-center justify-center text-center p-8 text-white relative overflow-hidden group hover:scale-[1.02] transition-all border border-slate-800/80">
+                        <img src="assets/img/engine_nano_v2.png" alt="Nano Banana" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity">
+                        <div class="absolute inset-0 bg-gradient-to-br from-yellow-400/20 to-transparent"></div>
+                        <i data-lucide="cpu" class="w-10 h-10 mb-4 text-yellow-400 group-hover:scale-110 transition-transform relative z-10"></i>
+                        <h4 class="font-bold text-lg mb-2 relative z-10 font-display">Nano Banana</h4>
+                        <p class="text-xs text-slate-400 relative z-10">Enjin terkini Google untuk kelajuan dan kreativiti maksima.</p>
+                        <div class="mt-4 flex items-center gap-2 text-[10px] font-bold text-yellow-400 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
+                            Buka App <i data-lucide="external-link" class="w-3 h-3 inline-block"></i>
+                        </div>
+                    </a>
+                    <a href="https://chatgpt.com/" target="_blank" class="bg-slate-900 rounded-[2rem] aspect-square flex flex-col items-center justify-center text-center p-8 text-white mt-12 relative overflow-hidden group hover:scale-[1.02] transition-all border border-slate-800/80">
+                        <img src="assets/img/engine_gpt_v2.png" alt="GPT Image" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity">
+                        <i data-lucide="bot" class="w-10 h-10 mb-4 text-emerald-400 group-hover:scale-110 transition-transform relative z-10"></i>
+                        <h4 class="font-bold text-lg mb-2 relative z-10 font-display">GPT Image</h4>
+                        <p class="text-xs text-slate-400 relative z-10">Kuasa DALL-E 3 yang disebatikan terus dalam ChatGPT.</p>
+                        <div class="mt-4 flex items-center gap-2 text-[10px] font-bold text-white uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
+                            Buka App <i data-lucide="external-link" class="w-3 h-3 inline-block"></i>
+                        </div>
+                    </a>
+                    <a href="https://www.canva.com/magic-media/" target="_blank" class="bg-slate-900 rounded-[2rem] aspect-square flex flex-col items-center justify-center text-center p-8 text-white -mt-12 group hover:scale-[1.02] transition-all border border-slate-800/80 relative overflow-hidden">
+                        <i data-lucide="palette" class="w-10 h-10 mb-4 text-cyan-400 group-hover:scale-110 transition-transform relative z-10"></i>
+                        <h4 class="font-bold text-lg mb-2 relative z-10 font-display">Canva</h4>
+                        <p class="text-xs text-slate-400 relative z-10">Bina visual dan reka bentuk dengan Magic Media.</p>
+                        <div class="mt-4 flex items-center gap-2 text-[10px] font-bold text-white uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
+                            Buka App <i data-lucide="external-link" class="w-3 h-3 inline-block"></i>
+                        </div>
+                    </a>
+                    <a href="https://deepai.org/" target="_blank" class="bg-slate-900 rounded-[2rem] aspect-square flex flex-col items-center justify-center text-center p-8 text-slate-200 group hover:scale-[1.02] transition-all border border-slate-800/80 relative overflow-hidden">
+                        <i data-lucide="brain" class="w-10 h-10 mb-4 text-purple-400 group-hover:scale-110 transition-transform relative z-10"></i>
+                        <h4 class="font-bold text-lg mb-2 relative z-10 font-display">Deep AI</h4>
+                        <p class="text-xs text-slate-400 relative z-10">Penjanaan imej pantas dengan pelbagai gaya artistik.</p>
+                        <div class="mt-4 flex items-center gap-2 text-[10px] font-bold text-purple-400 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
+                            Buka App <i data-lucide="external-link" class="w-3 h-3 inline-block"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Anatomy Section -->
+        <section id="anatomi-prompt" class="py-24 bg-slate-950 -mx-6 px-6 border-t border-slate-900">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="text-cyan-400 font-bold tracking-widest text-xs uppercase bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full">Anatomy</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mt-6 font-display">7 Komponen Prompt Induk</h2>
+                    <p class="text-slate-450 mt-4 max-w-2xl mx-auto italic text-lg">Gunakan komponen ini untuk membina arahan yang jelas, spesifik, dan kaya dengan butiran.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-aos="fade-up">
+                    <!-- Cards for components -->
+                    <div class="glass-card p-8 rounded-[2rem] border border-slate-805/85 hover:shadow-2xl transition-all group hover:-translate-y-2">
+                        <div class="w-full aspect-square bg-slate-950 rounded-2xl mb-6 overflow-hidden border border-slate-850 flex items-center justify-center p-4">
+                            <img src="assets/img/anatomy_subjek_v2.png" alt="Subjek" class="w-full h-full object-contain group-hover:scale-110 transition-transform">
+                        </div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-cyan-500/15 border border-cyan-500/20 rounded-full flex items-center justify-center text-cyan-400 font-bold text-xs">1</div>
+                            <h4 class="font-bold text-xl text-white font-display">Subjek</h4>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Entiti utama imej. Jadilah spesifik tentang identiti dan aksi.</p>
+                        <code class="text-xs bg-slate-950 border border-slate-850 px-3 py-2 rounded-lg text-cyan-400 block font-mono">`kereta sport vintaj merah`</code>
+                    </div>
+                    <div class="glass-card p-8 rounded-[2rem] border border-slate-805/85 hover:shadow-2xl transition-all group hover:-translate-y-2">
+                        <div class="w-full aspect-square bg-slate-950 rounded-2xl mb-6 overflow-hidden border border-slate-850 flex items-center justify-center p-4">
+                            <img src="assets/img/anatomy_gaya_v2.png" alt="Gaya" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                        </div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-purple-500/15 border border-purple-500/20 rounded-full flex items-center justify-center text-purple-400 font-bold text-xs">2</div>
+                            <h4 class="font-bold text-xl text-white font-display">Gaya</h4>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Estetika visual keseluruhan untuk mengawal mood.</p>
+                        <code class="text-xs bg-slate-950 border border-slate-850 px-3 py-2 rounded-lg text-purple-400 block font-mono">`Fotorealistik, Pixar 3D`</code>
+                    </div>
+                    <div class="glass-card p-8 rounded-[2rem] border border-slate-805/85 hover:shadow-2xl transition-all group hover:-translate-y-2">
+                        <div class="w-full aspect-square bg-slate-950 rounded-2xl mb-6 overflow-hidden border border-slate-850 flex items-center justify-center p-4">
+                            <img src="assets/img/anatomy_komposisi_v2.png" alt="Komposisi" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                        </div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-blue-500/15 border border-blue-500/20 rounded-full flex items-center justify-center text-blue-400 font-bold text-xs">3</div>
+                            <h4 class="font-bold text-xl text-white font-display">Komposisi</h4>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Sudut kamera dan pembingkaian adegan (Framing).</p>
+                        <code class="text-xs bg-slate-950 border border-slate-850 px-3 py-2 rounded-lg text-blue-400 block font-mono">`Potret jarak dekat, Aerial`</code>
+                    </div>
+                    <div class="glass-card p-8 rounded-[2rem] border border-slate-805/85 hover:shadow-2xl transition-all group hover:-translate-y-2">
+                        <div class="w-full aspect-square bg-slate-950 rounded-2xl mb-6 overflow-hidden border border-slate-850 flex items-center justify-center p-4">
+                            <img src="assets/img/anatomy_pencahayaan_v2.png" alt="Pencahayaan" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                        </div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-orange-500/15 border border-orange-500/20 rounded-full flex items-center justify-center text-orange-400 font-bold text-xs">4</div>
+                            <h4 class="font-bold text-xl text-white font-display">Pencahayaan</h4>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Sumber cahaya dan suasana untuk menetapkan mood.</p>
+                        <code class="text-xs bg-slate-950 border border-slate-850 px-3 py-2 rounded-lg text-orange-400 block font-mono">`Soft Golden Hour Light`</code>
+                    </div>
+                    <div class="glass-card p-8 rounded-[2rem] border border-slate-805/85 hover:shadow-2xl transition-all group hover:-translate-y-2">
+                        <div class="w-full aspect-square bg-slate-950 rounded-2xl mb-6 overflow-hidden border border-slate-850 flex items-center justify-center p-4">
+                            <img src="assets/img/anatomy_warna_v2.png" alt="Warna" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                        </div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-emerald-500/15 border border-emerald-500/20 rounded-full flex items-center justify-center text-emerald-400 font-bold text-xs">5</div>
+                            <h4 class="font-bold text-xl text-white font-display">Warna</h4>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Skema warna dan nada untuk mempengaruhi emosi.</p>
+                        <code class="text-xs bg-slate-950 border border-slate-850 px-3 py-2 rounded-lg text-emerald-400 block font-mono">`Pastel, Monokromatik`</code>
+                    </div>
+                    <div class="glass-card p-8 rounded-[2rem] border border-slate-805/85 hover:shadow-2xl transition-all group hover:-translate-y-2">
+                        <div class="w-full aspect-square bg-slate-950 rounded-2xl mb-6 overflow-hidden border border-slate-850 flex items-center justify-center p-4">
+                            <img src="assets/img/anatomy_kualiti_v2.png" alt="Kualiti" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                        </div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-teal-500/15 border border-teal-500/20 rounded-full flex items-center justify-center text-teal-400 font-bold text-xs">6</div>
+                            <h4 class="font-bold text-xl text-white mb-3 font-display">Kualiti</h4>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Tahap perincian, resolusi, dan tekstur dikehendaki.</p>
+                        <code class="text-xs bg-slate-950 border border-slate-850 px-3 py-2 rounded-lg text-teal-400 block font-mono">`Resolusi 8K, Film Grain`</code>
+                    </div>
+                    <div class="glass-card p-8 rounded-[2rem] border border-slate-805/85 hover:shadow-2xl transition-all group hover:-translate-y-2">
+                        <div class="w-full aspect-square bg-slate-950 rounded-2xl mb-6 overflow-hidden border border-slate-850 flex items-center justify-center p-4">
+                            <img src="assets/img/anatomy_konteks_v2.png" alt="Konteks" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                        </div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-rose-500/15 border border-rose-500/20 rounded-full flex items-center justify-center text-rose-400 font-bold text-xs">7</div>
+                            <h4 class="font-bold text-xl text-white mb-3 font-display">Konteks</h4>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">Latar belakang dan persekitaran tempat adegan berlaku.</p>
+                        <code class="text-xs bg-slate-950 border border-slate-850 px-3 py-2 rounded-lg text-rose-400 block font-mono">`jalanan sibuk bandar Tokyo`</code>
+                    </div>
+                    <div class="bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950/40 p-8 rounded-[2rem] border border-slate-800 flex flex-col items-center justify-center text-center group hover:shadow-2xl transition-all shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+                        <i data-lucide="rocket" class="w-10 h-10 text-emerald-400 mb-6 group-hover:animate-bounce glow-text-green"></i>
+                        <p class="text-white font-bold text-lg tracking-widest uppercase leading-tight font-display">Combine all for <br>Perfection</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pustaka Prompt Imej Pakar -->
+        <section id="pustaka-prompt" class="py-24 bg-slate-950 -mx-6 px-6 border-t border-slate-900">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="text-cyan-400 font-bold tracking-widest text-xs uppercase bg-cyan-500/10 border border-cyan-500/20 px-3 py-1 rounded-full">Pro Library</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mt-6 leading-tight font-display">Pustaka Prompt Imej Pakar</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl mx-auto text-lg leading-relaxed">Koleksi lengkap prompt premium yang dikumpulkan mengikut kategori untuk hasil yang profesional.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Kumpulan 1: Potret & Profesional -->
+                    <div class="space-y-6" data-aos="fade-up">
+                        <div class="flex items-center gap-4 mb-6 border-b-2 border-cyan-500/50 pb-4">
+                            <i data-lucide="user" class="w-8 h-8 text-cyan-400"></i>
+                            <h3 class="text-2xl font-bold text-white font-display">Potret & Profesional</h3>
+                        </div>
+
+                        <!-- Card 1: Maroon Studio -->
+                        <div class="glass-card rounded-[2.5rem] border border-slate-800/80 hover:border-cyan-500/30 transition-all flex flex-col overflow-hidden shadow-sm hover:shadow-xl group">
+                            <div class="aspect-[4/5] overflow-hidden bg-slate-950">
+                                <img src="assets/img/pro_maroon_studio.webp" alt="Maroon Studio" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100" loading="lazy">
+                            </div>
+                            <div class="p-8">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h4 class="font-bold text-white">1. Maroon Studio</h4>
+                                    <button onclick="copyLibraryPrompt(this)" data-prompt="A hyper-realistic cinematic editorial portrait of the uploaded person (preserve face 100%). HE stands tall in a dark MAROON moody studio, surrounded by soft drifting black white smoke under a dramatic spotlight. Outfit:Fit blaack luxury suit with fit-leg trousers, . Both hands tucked casually in pockets, shoulders relaxed, confident expression, head tilted slightly upward." class="w-10 h-10 rounded-xl bg-slate-950 text-cyan-400 border border-slate-850 hover:bg-cyan-500 hover:text-slate-950 hover:border-cyan-400 transition-all flex items-center justify-center cursor-pointer">
+                                        <i data-lucide="copy" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <p class="text-xs text-slate-400 italic leading-relaxed line-clamp-2">"A hyper-realistic cinematic editorial portrait in a dark maroon studio..."</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Hijab Authority -->
+                        <div class="glass-card rounded-[2.5rem] border border-slate-800/80 hover:border-cyan-500/30 transition-all flex flex-col overflow-hidden shadow-sm hover:shadow-xl group">
+                            <div class="aspect-[4/5] overflow-hidden bg-slate-950">
+                                <img src="assets/img/pro_hijab_authority.webp" alt="Hijab Authority" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100" loading="lazy">
+                            </div>
+                            <div class="p-8">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h4 class="font-bold text-white">2. Relaxed Authority</h4>
+                                    <button onclick="copyLibraryPrompt(this)" data-prompt="Hands in Pockets - relaxed authority. A hyper-realistic cinematic editorial portrait of the uploaded person (preserve face 100%). Red hijab covering her whole chest. She stands tall in a dark room, with 4 lighting setup facing the camera. Outfit: black luxury suit, Left hands tucked casually in pockets, shoulders relaxed, confident expression, head tilted slightly fwd." class="w-10 h-10 rounded-xl bg-slate-950 text-cyan-400 border border-slate-850 hover:bg-cyan-500 hover:text-slate-950 hover:border-cyan-400 transition-all flex items-center justify-center cursor-pointer">
+                                        <i data-lucide="copy" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <p class="text-xs text-slate-400 italic leading-relaxed line-clamp-2">"Professional portrait of a woman in a red hijab with authoritative posture..."</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Stark Cinematic -->
+                        <div class="glass-card rounded-[2.5rem] border border-slate-800/80 hover:border-cyan-500/30 transition-all flex flex-col overflow-hidden shadow-sm hover:shadow-xl group">
+                            <div class="aspect-[9/16] overflow-hidden bg-slate-950">
+                                <img src="assets/img/pro_stark_cinematic.webp" alt="Stark Cinematic" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100" loading="lazy">
+                            </div>
+                            <div class="p-8">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h4 class="font-bold text-white">3. Stark Cinematic</h4>
+                                    <button onclick="copyLibraryPrompt(this)" data-prompt="Create a vertical potrait shot in 1080x1920 format, characterized by stark cinematic lighting and intense contrast. Captured in a slightly low, upward-facing angle that dramatized the subject’s jawline and neck, the composition evokes quite dominance and sculptural elegance. The background is a deep, saturated crimson red, creating a bold visual clash with the model’s luminous skin and dark wardrobe." class="w-10 h-10 rounded-xl bg-slate-950 text-cyan-400 border border-slate-850 hover:bg-cyan-500 hover:text-slate-950 hover:border-cyan-400 transition-all flex items-center justify-center cursor-pointer">
+                                        <i data-lucide="copy" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <p class="text-xs text-slate-400 italic leading-relaxed line-clamp-2">"High-contrast vertical portrait with a deep crimson background..."</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Corporate Maven -->
+                        <div class="glass-card rounded-[2.5rem] border border-slate-800/80 hover:border-cyan-500/30 transition-all flex flex-col overflow-hidden shadow-sm hover:shadow-xl group">
+                            <div class="aspect-square overflow-hidden bg-slate-950">
+                                <img src="assets/img/pro_corporate_maven.webp" alt="Corporate Maven" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100" loading="lazy">
+                            </div>
+                            <div class="p-8">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h4 class="font-bold text-white">4. Corporate Maven</h4>
+                                    <button onclick="copyLibraryPrompt(this)" data-prompt="Studio portrait, arms crossed, slight 45° angle, looking at camera. Navy blazer, white shirt, blue-white striped tie. Soft key light, fill, rim; deep blue gradient background. Waist-up, 85mm, f/2.8, shallow depth. Photorealistic 4K, cinematic corporate style. Keep exact facial features, skin texture, and lip color." class="w-10 h-10 rounded-xl bg-slate-950 text-cyan-400 border border-slate-850 hover:bg-cyan-500 hover:text-slate-950 hover:border-cyan-400 transition-all flex items-center justify-center cursor-pointer">
+                                        <i data-lucide="copy" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <p class="text-xs text-slate-400 italic leading-relaxed line-clamp-2">"Professional corporate profile with soft studio lighting and navy blazer..."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kumpulan 2: Produk & Makanan -->
+                    <div class="space-y-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center gap-4 mb-6 border-b-2 border-emerald-500/50 pb-4">
+                            <i data-lucide="utensils" class="w-8 h-8 text-emerald-400"></i>
+                            <h3 class="text-2xl font-bold text-white font-display">Produk & Makanan</h3>
+                        </div>
+
+                        <!-- Card 5: Floating Food -->
+                        <div class="glass-card rounded-[2.5rem] border border-slate-800/80 hover:border-emerald-500/30 transition-all flex flex-col overflow-hidden shadow-sm hover:shadow-xl group">
+                            <div class="aspect-video overflow-hidden bg-slate-950">
+                                <img src="assets/img/pro_floating_burger.webp" alt="Floating Burger" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100" loading="lazy">
+                            </div>
+                            <div class="p-8">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h4 class="font-bold text-white">5. Floating Burger</h4>
+                                    <button onclick="copyLibraryPrompt(this)" data-prompt="A macro product photograph of a premium double cheeseburger floating in mid-air against a clean dark grey background. Ingredients are dynamic and slightly exploding: toasted sesame seed buns, double beef patties with melting cheddar cheese, crisp green lettuce, ripe tomato slices, red onions, and sauce droplets flying around. Sharp focus, studio soft key lighting, splash and droplet details visible, high-speed shutter effect." class="w-10 h-10 rounded-xl bg-slate-950 text-emerald-400 border border-slate-855 hover:bg-emerald-500 hover:text-slate-955 hover:border-emerald-400 transition-all flex items-center justify-center cursor-pointer">
+                                        <i data-lucide="copy" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <p class="text-xs text-slate-400 italic leading-relaxed line-clamp-2">"High-speed macro action shot of a floating cheeseburger with separating ingredients..."</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 6: Dynamic Splash -->
+                        <div class="glass-card rounded-[2.5rem] border border-slate-800/80 hover:border-emerald-500/30 transition-all flex flex-col overflow-hidden shadow-sm hover:shadow-xl group">
+                            <div class="aspect-video overflow-hidden bg-slate-950">
+                                <img src="assets/img/pro_dynamic_splash.webp" alt="Dynamic Splash" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100" loading="lazy">
+                            </div>
+                            <div class="p-8">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h4 class="font-bold text-white">6. Cosmic Perfume</h4>
+                                    <button onclick="copyLibraryPrompt(this)" data-prompt="Studio shot, dynamic product photography of a luxury black glass perfume bottle colliding with a wave of sparkling gold water droplets and fluid splashes. Cosmic dark background with purple and gold galaxy dust. Reflections on the surface. Dynamic lighting, f/8, 1/2000s shutter speed, capturing crystal clear water crowns and gold dust particles." class="w-10 h-10 rounded-xl bg-slate-950 text-emerald-400 border border-slate-855 hover:bg-emerald-500 hover:text-slate-955 hover:border-emerald-400 transition-all flex items-center justify-center cursor-pointer">
+                                        <i data-lucide="copy" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <p class="text-xs text-slate-400 italic leading-relaxed line-clamp-2">"Luxury black perfume bottle splashing with sparkling gold water crowns..."</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 7: Cinematic Coffee -->
+                        <div class="glass-card rounded-[2.5rem] border border-slate-800/80 hover:border-emerald-500/30 transition-all flex flex-col overflow-hidden shadow-sm hover:shadow-xl group">
+                            <div class="aspect-video overflow-hidden bg-slate-950">
+                                <img src="assets/img/pro_cinematic_coffee.webp" alt="Cinematic Coffee" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100" loading="lazy">
+                            </div>
+                            <div class="p-8">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h4 class="font-bold text-white">7. Smoke-brewing Coffee</h4>
+                                    <button onclick="copyLibraryPrompt(this)" data-prompt="A cozy close-up of a porcelain cup filled with dark espresso. Creamy latte art design on top. The cup rests on a rustic dark wood cafe table. Wisps of steam rise gracefully, capturing backlit morning sunrays. In the background, out-of-focus cafe lights create beautiful warm bokeh. Moody tone, shallow depth of field, 50mm, f/1.8, warm film grading." class="w-10 h-10 rounded-xl bg-slate-950 text-emerald-400 border border-slate-855 hover:bg-emerald-500 hover:text-slate-955 hover:border-emerald-400 transition-all flex items-center justify-center cursor-pointer">
+                                        <i data-lucide="copy" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <p class="text-xs text-slate-400 italic leading-relaxed line-clamp-2">"Moody rustic espresso cup with elegant steam wisps and cafe bokeh..."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kumpulan 3: Landskap & Seni Digital -->
+                    <div class="space-y-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center gap-4 mb-6 border-b-2 border-purple-500/50 pb-4">
+                            <i data-lucide="compass" class="w-8 h-8 text-purple-400"></i>
+                            <h3 class="text-2xl font-bold text-white font-display">Landskap & Seni</h3>
+                        </div>
+
+                        <!-- Card 8: Cyberpunk Alley -->
+                        <div class="glass-card rounded-[2.5rem] border border-slate-800/80 hover:border-purple-500/30 transition-all flex flex-col overflow-hidden shadow-sm hover:shadow-xl group">
+                            <div class="aspect-video overflow-hidden bg-slate-950">
+                                <img src="assets/img/pro_cyberpunk_alley.webp" alt="Cyberpunk Alley" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100" loading="lazy">
+                            </div>
+                            <div class="p-8">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h4 class="font-bold text-white">8. Neo-Neon Alleyway</h4>
+                                    <button onclick="copyLibraryPrompt(this)" data-prompt="A detailed wide cyberpunk street scene in Neo-Tokyo at night. Heavy rain falling, creating hyper-detailed puddles on the asphalt reflecting bright neon signs in cyan, magenta, and amber. Futuristic glowing vending machines line the narrow alley. A solitary figure holding a transparent glowing umbrella walks away. High contrast, atmospheric haze, raytracing shadows." class="w-10 h-10 rounded-xl bg-slate-950 text-purple-400 border border-slate-855 hover:bg-purple-550 hover:text-slate-955 hover:border-purple-400 transition-all flex items-center justify-center cursor-pointer">
+                                        <i data-lucide="copy" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <p class="text-xs text-slate-400 italic leading-relaxed line-clamp-2">"Rainy Neo-Tokyo alleyway illuminated by colorful neon reflections..."</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 9: Isometric Eco-Dome -->
+                        <div class="glass-card rounded-[2.5rem] border border-slate-800/80 hover:border-purple-500/30 transition-all flex flex-col overflow-hidden shadow-sm hover:shadow-xl group">
+                            <div class="aspect-video overflow-hidden bg-slate-950">
+                                <img src="assets/img/pro_isometric_dome.webp" alt="Isometric Eco-Dome" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100" loading="lazy">
+                            </div>
+                            <div class="p-8">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h4 class="font-bold text-white">9. Isometric Solarpunk</h4>
+                                    <button onclick="copyLibraryPrompt(this)" data-prompt="A clean isometric 3D model illustration of a futuristic self-sustaining solarpunk greenhouse dome. Features include: miniature solar panels on glass panes, wind micro-turbines, vertical gardens inside with glowing plants, a water recycling pond, and a small electric vehicle charging station. Cute stylized clay render style, soft pastel palette, bright white background, octane render style." class="w-10 h-10 rounded-xl bg-slate-950 text-purple-400 border border-slate-855 hover:bg-purple-550 hover:text-slate-955 hover:border-purple-400 transition-all flex items-center justify-center cursor-pointer">
+                                        <i data-lucide="copy" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <p class="text-xs text-slate-400 italic leading-relaxed line-clamp-2">"Cute 3D solarpunk dome model with miniature turbines and plant layouts..."</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 10: Cosmic Oasis -->
+                        <div class="glass-card rounded-[2.5rem] border border-slate-800/80 hover:border-purple-500/30 transition-all flex flex-col overflow-hidden shadow-sm hover:shadow-xl group">
+                            <div class="aspect-video overflow-hidden bg-slate-950">
+                                <img src="assets/img/pro_cosmic_oasis.webp" alt="Cosmic Oasis" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100" loading="lazy">
+                            </div>
+                            <div class="p-8">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h4 class="font-bold text-white">10. Cosmic Oasis</h4>
+                                    <button onclick="copyLibraryPrompt(this)" data-prompt="A breathtaking digital painting of a glowing neon oasis on a desert planet under a giant ringed nebula gas cloud. Bioluminescent palm trees and glowing mineral crystals reflect in a small emerald pool. Two moons hang in the starlit sky. Fantasy art style, high detail, rich gradients, epic lighting, atmospheric depth, cinematic poster composition." class="w-10 h-10 rounded-xl bg-slate-950 text-purple-400 border border-slate-855 hover:bg-purple-550 hover:text-slate-955 hover:border-purple-400 transition-all flex items-center justify-center cursor-pointer">
+                                        <i data-lucide="copy" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <p class="text-xs text-slate-400 italic leading-relaxed line-clamp-2">"Bioluminescent desert oasis on a distant planet under an epic nebula sky..."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="text-center py-16 bg-slate-900 text-slate-300">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-wrap justify-center gap-8 mb-8 text-sm font-bold uppercase tracking-widest text-slate-500">
-                <a href="index.html" class="hover:text-brand-400 transition">Utama</a>
-                <a href="generatif_ai.html" class="hover:text-brand-400 transition">Teks</a>
-                <a href="audio_ai.html" class="hover:text-brand-400 transition">Audio</a>
-                <a href="video_ai.html" class="hover:text-brand-400 transition">Video</a>
+    <footer class="bg-slate-950 border-t border-slate-900 py-10">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex flex-wrap justify-center gap-4 mb-4 text-sm font-semibold">
+                <a href="index.html" class="text-slate-400 hover:text-cyan-400 transition cursor-pointer">Laman Utama</a>
+                <a href="generatif_ai.html" class="text-slate-400 hover:text-cyan-400 transition cursor-pointer">Generatif AI</a>
+                <a href="gamifikasi_ai.html" class="text-slate-400 hover:text-cyan-400 transition cursor-pointer">Gamifikasi AI</a>
+                <a href="video_ai.html" class="text-slate-400 hover:text-cyan-400 transition cursor-pointer">Video AI</a>
             </div>
-            <p class="text-slate-500">&copy; 2026 Pendidik AI Hub. Dibina untuk Kecemerlangan Guru.</p>
+            <p class="text-slate-500 text-sm font-medium">&copy; 2026 AI4STEM Hub. Panduan AI Visual.</p>
         </div>
     </footer>
 
     <!-- Vendor Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
+
     <!-- Custom Scripts -->
     <script src="assets/js/main.js"></script>
 
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        
         lucide.createIcons();
 
+        function copyLibraryPrompt(btn) {
+            const promptText = btn.getAttribute('data-prompt');
+            window.copyTextToClipboard(promptText).then(() => {
+                const icon = btn.querySelector('i');
+                const oldClass = icon.className;
+                icon.setAttribute('data-lucide', 'check');
+                icon.className = 'text-emerald-400 w-4 h-4';
+                lucide.createIcons();
+                setTimeout(() => {
+                    icon.setAttribute('data-lucide', 'copy');
+                    icon.className = oldClass;
+                    lucide.createIcons();
+                }, 2000);
+            });
+        }
+
+        // Initialize Vanta background waves
+        try {
+            VANTA.WAVES({
+              el: "#vanta-bg",
+              mouseControls: true,
+              touchControls: true,
+              gyroControls: false,
+              minHeight: 200.00,
+              minWidth: 200.00,
+              scale: 1.00,
+              scaleMobile: 1.00,
+              color: 0x06b6d4, // Cyan wave color matching our brand
+              shininess: 30.00,
+              waveHeight: 15.00,
+              waveSpeed: 0.80,
+              zoom: 0.65
+            });
+        } catch (e) {
+            console.error("Vanta initialization failed:", e);
+        }
     </script>
 </body>
-
 </html>
