@@ -212,15 +212,23 @@
             <!-- Form -->
             <form id="form-penghantaran" onsubmit="hantarRekodBorang(event)" class="space-y-5">
                 
-                <!-- ID Utama -->
+                <!-- ID Utama (Random Primary Key) -->
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">ID Utama (No. KP / Kod Pengguna) <span class="text-rose-400">*</span></label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500">
-                            <i data-lucide="fingerprint" class="w-4 h-4"></i>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-300">ID Rekod Utama (Auto Primary Key) <span class="text-emerald-400">*</span></label>
+                        <span class="text-[10px] text-emerald-400 font-mono font-bold uppercase">Dijana Secara Rawak</span>
+                    </div>
+                    <div class="relative flex items-center gap-2">
+                        <div class="relative flex-1">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-emerald-400">
+                                <i data-lucide="key-round" class="w-4 h-4"></i>
+                            </div>
+                            <input type="text" id="input-id" readonly required
+                                class="w-full bg-slate-900 border border-slate-800 rounded-xl py-3 pl-11 pr-4 text-emerald-400 font-mono text-xs font-bold focus:outline-none uppercase tracking-wider">
                         </div>
-                        <input type="text" id="input-id" placeholder="Contoh: 850101145566" required
-                            class="w-full bg-slate-900 border border-slate-800 rounded-xl py-3 pl-11 pr-4 text-white text-xs focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition font-mono uppercase">
+                        <button type="button" onclick="janaIdRandom()" class="px-3 py-3 bg-slate-900 border border-slate-800 hover:border-emerald-500/40 text-slate-400 hover:text-emerald-400 rounded-xl transition cursor-pointer flex items-center gap-1.5 text-xs font-bold" title="Jana ID Rawak Baharu">
+                            <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Jana ID
+                        </button>
                     </div>
                 </div>
 
@@ -326,8 +334,19 @@
             muatDataPenghantaran();
         });
 
+        function janaIdRandom() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let randomCode = 'STEM-';
+            for (let i = 0; i < 6; i++) {
+                randomCode += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            const inputId = document.getElementById('input-id');
+            if (inputId) inputId.value = randomCode;
+        }
+
         function bukaModalPenghantaran() {
             document.getElementById('modal-borang-penghantaran').classList.remove('hidden');
+            janaIdRandom();
         }
 
         function tutupModalPenghantaran() {

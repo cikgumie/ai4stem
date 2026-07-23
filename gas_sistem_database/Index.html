@@ -75,10 +75,15 @@
       <form @submit.prevent="laksanaPenghantaran" class="space-y-6 relative z-10">
         
         <div class="form-control w-full">
-          <label class="label"><span class="label-text font-bold text-slate-600">ID Utama (No. Kad Pengenalan / Kod Pengguna)</span></label>
+          <div class="flex justify-between items-center mb-1">
+            <label class="label"><span class="label-text font-bold text-slate-600">ID Rekod Utama (Auto Primary Key)</span></label>
+            <button type="button" @click="janaIdRawak()" class="text-xs text-primary font-bold hover:underline flex items-center gap-1">
+              <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Jana ID
+            </button>
+          </div>
           <div class="relative">
-            <i data-lucide="fingerprint" class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-            <input type="text" x-model="borang.id" placeholder="Cth: 850101145566" class="input input-bordered w-full pl-12 focus:border-primary focus:ring-1 focus:ring-primary transition-all uppercase font-medium" required />
+            <i data-lucide="key-round" class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+            <input type="text" x-model="borang.id" readonly class="input input-bordered w-full pl-12 font-mono font-bold text-primary bg-slate-100 uppercase" required />
           </div>
         </div>
         
@@ -134,10 +139,13 @@
       return {
         sedangMemuat: false,
         borang: {
-          id: '',
+          id: 'STEM-' + Math.random().toString(36).substr(2, 6).toUpperCase(),
           namaSekolah: '',
           kodSekolah: '',
           linkSite: ''
+        },
+        janaIdRawak() {
+          this.borang.id = 'STEM-' + Math.random().toString(36).substr(2, 6).toUpperCase();
         },
         laksanaPenghantaran() {
           this.sedangMemuat = true;
