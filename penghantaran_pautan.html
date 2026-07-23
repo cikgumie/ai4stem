@@ -320,13 +320,6 @@
 
         let senaraiRekodPenghantaran = [];
 
-        // Data Contoh Mock jika offline/loading
-        const MOCK_DATA = [
-            { ID: '850101145566', NAMA_SEKOLAH: 'SMK SERI BINTANG', KOD_SEKOLAH: 'WEA0011', LINK_SITE: 'https://sites.google.com/view/stem-seribintang', TIMESTAMP: '2026-07-23T10:30:00Z', SESSION_TOKEN: 'token-demo-1' },
-            { ID: '920312086432', NAMA_SEKOLAH: 'SK PERMATANG PAUH', KOD_SEKOLAH: 'PBA1002', LINK_SITE: 'https://sites.google.com/view/ai4stem-skpp', TIMESTAMP: '2026-07-23T11:15:00Z', SESSION_TOKEN: 'token-demo-2' },
-            { ID: '881104105211', NAMA_SEKOLAH: 'SMK CYBERJAYA', KOD_SEKOLAH: 'BEA9901', LINK_SITE: 'https://sites.google.com/view/portal-cyber-stem', TIMESTAMP: '2026-07-23T12:00:00Z', SESSION_TOKEN: 'token-demo-3' }
-        ];
-
         document.addEventListener('DOMContentLoaded', () => {
             const savedUrl = localStorage.getItem('ai4stem_gas_url') || DEFAULT_API_URL;
             document.getElementById('input-api-url').value = savedUrl;
@@ -375,14 +368,14 @@
 
                 if (refreshIcon) refreshIcon.classList.remove('animate-spin');
 
-                if (res.status === 'success' && Array.isArray(res.data) && res.data.length > 0) {
+                if (res.status === 'success' && Array.isArray(res.data)) {
                     senaraiRekodPenghantaran = res.data;
                 } else {
-                    senaraiRekodPenghantaran = MOCK_DATA;
+                    senaraiRekodPenghantaran = [];
                 }
             } catch (err) {
                 if (refreshIcon) refreshIcon.classList.remove('animate-spin');
-                senaraiRekodPenghantaran = MOCK_DATA;
+                senaraiRekodPenghantaran = [];
             }
 
             paparKadPenghantaran(senaraiRekodPenghantaran);
