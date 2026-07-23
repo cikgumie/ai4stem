@@ -72,6 +72,18 @@ document.addEventListener('DOMContentLoaded', () => {
         initTypewriter(videoTypeElement, videoPhrases);
     }
 
+    // 8. Initialize Typewriter (Bina Site)
+    const binaSiteTypeElement = document.getElementById('typewriter-bina-site');
+    if (binaSiteTypeElement) {
+        const binaSitePhrases = [
+            "Hub Maklumat STEM",
+            "Galeri Bahan Digital",
+            "Pusat Pembelajaran Murid",
+            "Portfolio Inovasi Guru"
+        ];
+        initTypewriter(binaSiteTypeElement, binaSitePhrases);
+    }
+
     // 8. Back-to-Top Button Visibility
     const backToTop = document.getElementById('back-to-top');
     if (backToTop) {

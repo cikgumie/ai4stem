@@ -8,7 +8,7 @@
  */
 
 (function () {
-    const APP_VERSION = '2026.07.20.01';
+    const APP_VERSION = '2026.07.23.02';
     const savedVersion = localStorage.getItem('ai4stem_version');
 
     if (savedVersion !== APP_VERSION) {
@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         <a href="visual_ai.html" class="block px-4 py-2.5 text-sm ${activeClass('visual_ai.html')} rounded-xl transition-colors">Visual</a>
                         <a href="gamifikasi_ai.html" class="block px-4 py-2.5 text-sm ${activeClass('gamifikasi_ai.html')} rounded-xl transition-colors">Gamifikasi</a>
                         <a href="video_ai.html" class="block px-4 py-2.5 text-sm ${activeClass('video_ai.html')} rounded-xl transition-colors">Video</a>
-                        <a href="penghantaran_pautan.html" class="block px-4 py-2.5 text-sm ${activeClass('penghantaran_pautan.html')} rounded-xl transition-colors">Hantar Pautan</a>
                     </div>
                 </div>
 
@@ -85,8 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="px-5 py-2 text-sm font-semibold ${textBase} ${textHover} rounded-full transition-all flex items-center gap-1">
                         Explorasi AI <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform group-hover:rotate-180"></i>
                     </button>
-                    <div class="absolute top-full left-0 mt-2 w-48 bg-slate-900 border-slate-800 rounded-2xl shadow-xl border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 p-2 transform origin-top scale-95 group-hover:scale-100">
-                        <span class="block px-4 py-2.5 text-sm text-slate-500 italic rounded-xl">Akan Datang</span>
+                    <div class="absolute top-full left-0 mt-2 w-52 bg-slate-900 border-slate-800 rounded-2xl shadow-xl border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 p-2 transform origin-top scale-95 group-hover:scale-100">
+                        <a href="bina_site.html" class="block px-4 py-2.5 text-sm ${activeClass('bina_site.html')} rounded-xl transition-colors flex items-center justify-between">
+                            Bina Google Site
+                        </a>
                     </div>
                 </div>
 
@@ -129,14 +130,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         <a href="visual_ai.html" class="mobile-nav-link block px-4 py-2.5 text-sm ${activeClass('visual_ai.html')} rounded-xl transition-colors">Visual</a>
                         <a href="gamifikasi_ai.html" class="mobile-nav-link block px-4 py-2.5 text-sm ${activeClass('gamifikasi_ai.html')} rounded-xl transition-colors">Gamifikasi</a>
                         <a href="video_ai.html" class="mobile-nav-link block px-4 py-2.5 text-sm ${activeClass('video_ai.html')} rounded-xl transition-colors">Video</a>
-                        <a href="penghantaran_pautan.html" class="mobile-nav-link block px-4 py-2.5 text-sm ${activeClass('penghantaran_pautan.html')} rounded-xl transition-colors">Hantar Pautan</a>
                     </div>
                 </div>
 
                 <div class="border-t ${theme === 'light' ? 'border-slate-100' : 'border-slate-800'} my-4 pt-4">
                     <span class="px-4 text-[10px] font-bold text-amber-500 uppercase tracking-widest">Explorasi AI</span>
                     <div class="mt-2 space-y-1">
-                        <span class="block px-4 py-2.5 text-sm text-slate-400 italic rounded-xl">Akan Datang</span>
+                        <a href="bina_site.html" class="mobile-nav-link block px-4 py-2.5 text-sm ${activeClass('bina_site.html')} rounded-xl transition-colors">Bina Google Site</a>
                     </div>
                 </div>
 
