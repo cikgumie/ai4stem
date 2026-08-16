@@ -381,13 +381,30 @@
             if (refreshIcon) refreshIcon.classList.add('animate-spin');
 
             try {
-                // Fetch data via GET with action=getData
-                const response = await fetch(`${apiUrl}?action=getData`);
-                const res = await response.json();
+                let res = null;
+                // 1. Periksan/Cuba kaedah GET dengan timestamp untuk bypass browser cache
+                try {
+                    const response = await fetch(`${apiUrl}?action=getData&_t=${Date.now()}`);
+                    const text = await response.text();
+                    res = JSON.parse(text);
+                } catch (getErr) {
+                    // 2. Jika GET mengembalikan HTML (SyntaxError), cuba POST request dengan action=getData
+                    try {
+                        const postResp = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                            body: JSON.stringify({ action: 'getData' })
+                        });
+                        const postText = await postResp.text();
+                        res = JSON.parse(postText);
+                    } catch (postErr) {
+                        console.error('Gagal mengambil data dari Google Apps Script Web App:', postErr);
+                    }
+                }
 
                 if (refreshIcon) refreshIcon.classList.remove('animate-spin');
 
-                if (res.status === 'success' && Array.isArray(res.data)) {
+                if (res && res.status === 'success' && Array.isArray(res.data)) {
                     senaraiRekodPenghantaran = res.data;
                 } else {
                     senaraiRekodPenghantaran = [];

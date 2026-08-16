@@ -104,9 +104,12 @@ function simpanBorang(payload) {
     lock.waitLock(10000);
     
     const ss = SpreadsheetApp.getActiveSpreadsheet();
-    const sheet = ss.getSheetByName('Penghantaran');
+    let sheet = ss.getSheetByName('Penghantaran');
+    if (!sheet) {
+      sheet = ss.getSheets()[0];
+    }
     
-    if (!sheet) throw new Error("Ralat Pangkalan Data: Jadual 'Penghantaran' tidak wujud.");
+    if (!sheet) throw new Error("Ralat Pangkalan Data: Helaian Google Sheet tidak wujud.");
     
     // Pelaksanaan sanitasi dan normalisasi teks
     const id = sanitizeInput(payload.id).toUpperCase();
@@ -118,6 +121,11 @@ function simpanBorang(payload) {
     
     sheet.appendRow([id, namaSekolah, kodSekolah, linkSite, timestamp, sessionToken]);
     
+    // Padam cache supaya data baharu dipaparkan serta-merta pada laman web
+    try {
+      CacheService.getScriptCache().remove('DATA_PENGHANTARAN');
+    } catch (e) {}
+
     return { status: 'success', message: 'Maklumat pautan berjaya direkodkan.', token: sessionToken };
     
   } catch (error) {
@@ -138,12 +146,24 @@ function dapatkanDataPenghantaran() {
   const cachedData = cache.get(cacheKey);
   
   if (cachedData) {
-    return JSON.parse(cachedData);
+    try {
+      const parsed = JSON.parse(cachedData);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed;
+      }
+    } catch (e) {}
   }
   
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = ss.getSheetByName('Penghantaran');
+  let sheet = ss.getSheetByName('Penghantaran');
+  if (!sheet) {
+    sheet = ss.getSheets()[0];
+  }
+
+  if (!sheet) return [];
+
   const data = sheet.getDataRange().getValues();
+  if (data.length <= 1) return []; // Hanya header atau kosong
   
   const headers = data.shift();
   const objekData = data.map(row => {
@@ -154,8 +174,10 @@ function dapatkanDataPenghantaran() {
     return obj;
   });
   
-  // Simpan dalam cache selama 20 minit (1200 saat)
-  cache.put(cacheKey, JSON.stringify(objekData), 1200);
+  // Simpan dalam cache selama 2 minit (120 saat sahaja)
+  try {
+    cache.put(cacheKey, JSON.stringify(objekData), 120);
+  } catch (e) {}
   
   return objekData;
 }
