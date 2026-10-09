@@ -426,10 +426,10 @@ Berdasarkan maklumat di atas, tolong jana:
                     </div>
                 </div>
 
-                <!-- 3 Contoh Prompt Unik -->
+                <!-- 13 Contoh Prompt Unik -->
                 <div class="text-center mb-12">
-                    <h3 class="text-2xl md:text-3xl font-bold text-white font-display">Tiga Contoh Prompt Unik Kategori</h3>
-                    <p class="text-slate-400 mt-2 text-sm">Contoh siap guna untuk melatih fokus penceritaan, kepantasan refleks, atau kekuatan ingatan.</p>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white font-display">13 Contoh Prompt Unik Kategori</h3>
+                    <p class="text-slate-400 mt-2 text-sm">Contoh siap guna untuk pelbagai jenis mekanik permainan dan objektif pembelajaran.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -468,6 +468,146 @@ Berdasarkan maklumat di atas, tolong jana:
                             <h4 class="font-bold text-lg text-white mb-3 font-display">3. Padanan Interaktif</h4>
                             <p class="text-slate-355 text-xs leading-relaxed italic bg-slate-950 p-4 rounded-2xl border border-slate-850">
                                 "Tuliskan kod web asas (HTML/JS) untuk permainan padanan kad memori bagi topik [Topik]. Sediakan 6 pasangan unik: Kumpulan A (Istilah) dan Kumpulan B (Definisi) berdasarkan nota ini: [Masukkan Nota]. Sistem mesti memberikan maklum balas visual serta-merta (hijau untuk padanan tepat, merah jika salah sebelum kad ditutup semula)."
+                            </p>
+                        </div>
+                        <button onclick="copySpecificPrompt(this)" class="mt-6 w-full bg-slate-950 text-purple-400 border border-slate-850 hover:bg-purple-500 hover:text-slate-955 hover:border-purple-400 transition font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Prompt
+                        </button>
+                    </div>
+
+                    <!-- Prompt 4: Bilik Misteri -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-805/85 shadow-lg hover:shadow-xl transition-all duration-305 flex flex-col justify-between" data-aos="fade-up">
+                        <div>
+                            <div class="text-3xl mb-4">🚪</div>
+                            <h4 class="font-bold text-lg text-white mb-3 font-display">4. Bilik Misteri</h4>
+                            <p class="text-slate-355 text-xs leading-relaxed italic bg-slate-950 p-4 rounded-2xl border border-slate-850">
+                                "Bina permainan bilik misteri pendidikan bagi topik [Topik]. Murid perlu membuka lima kunci untuk keluar daripada bilik. Setiap kunci memerlukan penyelesaian masalah berdasarkan [Nota]. Gunakan gabungan petunjuk visual, soalan konsep dan situasi aplikasi. Sediakan dua tahap bantuan bagi setiap kunci. Jawapan salah mesti menerima penerangan dan peluang mencuba semula. Akhiri permainan dengan rumusan lima konsep yang murid gunakan."
+                            </p>
+                        </div>
+                        <button onclick="copySpecificPrompt(this)" class="mt-6 w-full bg-slate-950 text-purple-400 border border-slate-850 hover:bg-purple-500 hover:text-slate-955 hover:border-purple-400 transition font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Prompt
+                        </button>
+                    </div>
+
+                    <!-- Prompt 5: Susun Urutan -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-805/85 shadow-lg hover:shadow-xl transition-all duration-305 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                        <div>
+                            <div class="text-3xl mb-4">🔄</div>
+                            <h4 class="font-bold text-lg text-white mb-3 font-display">5. Susun Urutan</h4>
+                            <p class="text-slate-355 text-xs leading-relaxed italic bg-slate-950 p-4 rounded-2xl border border-slate-850">
+                                "Bina permainan menyusun urutan bagi topik [Topik] berdasarkan [Nota]. Sediakan lima cabaran yang melibatkan langkah proses, kronologi atau urutan arahan. Murid menyusun kad melalui seret dan lepas atau butang naik dan turun. Semak susunan selepas murid menekan butang Semak. Terangkan kedudukan yang salah dan sebab urutan yang betul. Tingkatkan bilangan kad secara berperingkat."
+                            </p>
+                        </div>
+                        <button onclick="copySpecificPrompt(this)" class="mt-6 w-full bg-slate-950 text-purple-400 border border-slate-850 hover:bg-purple-500 hover:text-slate-955 hover:border-purple-400 transition font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Prompt
+                        </button>
+                    </div>
+
+                    <!-- Prompt 6: Kelaskan Objek -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-805/85 shadow-lg hover:shadow-xl transition-all duration-305 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                        <div>
+                            <div class="text-3xl mb-4">🗂️</div>
+                            <h4 class="font-bold text-lg text-white mb-3 font-display">6. Kelaskan Objek</h4>
+                            <p class="text-slate-355 text-xs leading-relaxed italic bg-slate-950 p-4 rounded-2xl border border-slate-850">
+                                "Bina permainan pengelasan bagi topik [Topik]. Gunakan 12 item daripada [Nota] dan dua hingga empat kategori yang jelas. Murid memindahkan item ke kategori yang sesuai melalui seret dan lepas atau pilihan butang. Selepas setiap tindakan, terangkan ciri yang menentukan kategori tersebut. Elakkan item yang mempunyai lebih daripada satu jawapan tanpa penerangan. Paparkan rumusan item yang masih mengelirukan murid."
+                            </p>
+                        </div>
+                        <button onclick="copySpecificPrompt(this)" class="mt-6 w-full bg-slate-950 text-purple-400 border border-slate-850 hover:bg-purple-500 hover:text-slate-955 hover:border-purple-400 transition font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Prompt
+                        </button>
+                    </div>
+
+                    <!-- Prompt 7: Detektif Kesilapan -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-805/85 shadow-lg hover:shadow-xl transition-all duration-305 flex flex-col justify-between" data-aos="fade-up">
+                        <div>
+                            <div class="text-3xl mb-4">🔎</div>
+                            <h4 class="font-bold text-lg text-white mb-3 font-display">7. Detektif Kesilapan</h4>
+                            <p class="text-slate-355 text-xs leading-relaxed italic bg-slate-950 p-4 rounded-2xl border border-slate-850">
+                                "Bina permainan detektif bagi topik [Topik]. Sediakan lima bahan seperti petikan, rajah, pengiraan, pseudokod atau situasi berdasarkan [Nota]. Setiap bahan mengandungi satu atau dua kesilapan yang disengajakan. Murid perlu mengenal pasti kesilapan dan memilih pembetulan. Berikan markah berasingan untuk pengesanan dan pembetulan. Selepas semakan, paparkan versi yang betul serta penerangan ringkas."
+                            </p>
+                        </div>
+                        <button onclick="copySpecificPrompt(this)" class="mt-6 w-full bg-slate-950 text-purple-400 border border-slate-850 hover:bg-purple-500 hover:text-slate-955 hover:border-purple-400 transition font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Prompt
+                        </button>
+                    </div>
+
+                    <!-- Prompt 8: Teka Silang Kata -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-805/85 shadow-lg hover:shadow-xl transition-all duration-305 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                        <div>
+                            <div class="text-3xl mb-4">📝</div>
+                            <h4 class="font-bold text-lg text-white mb-3 font-display">8. Teka Silang Kata</h4>
+                            <p class="text-slate-355 text-xs leading-relaxed italic bg-slate-950 p-4 rounded-2xl border border-slate-850">
+                                "Bina teka silang kata interaktif bagi topik [Topik] menggunakan lapan hingga sepuluh istilah daripada [Nota]. Pastikan setiap petunjuk mempunyai jawapan yang jelas. Jana grid dengan persilangan huruf yang sah. Sediakan fungsi semak perkataan, petunjuk tambahan dan navigasi papan kekunci. Selepas murid melengkapkan perkataan, paparkan definisi serta contoh penggunaannya. Paparkan semua istilah sebagai nota ulang kaji pada akhir permainan."
+                            </p>
+                        </div>
+                        <button onclick="copySpecificPrompt(this)" class="mt-6 w-full bg-slate-950 text-purple-400 border border-slate-850 hover:bg-purple-500 hover:text-slate-955 hover:border-purple-400 transition font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Prompt
+                        </button>
+                    </div>
+
+                    <!-- Prompt 9: Cari Objek Tersembunyi -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-805/85 shadow-lg hover:shadow-xl transition-all duration-305 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                        <div>
+                            <div class="text-3xl mb-4">🔦</div>
+                            <h4 class="font-bold text-lg text-white mb-3 font-display">9. Cari Objek Tersembunyi</h4>
+                            <p class="text-slate-355 text-xs leading-relaxed italic bg-slate-950 p-4 rounded-2xl border border-slate-850">
+                                "Bina permainan mencari objek dalam satu situasi berkaitan [Topik]. Gunakan lapan objek atau komponen berdasarkan [Nota]. Berikan tugasan berasaskan fungsi, contohnya meminta murid mencari komponen yang menjalankan fungsi tertentu. Selepas murid memilih objek, minta mereka menjawab satu soalan tentang fungsi atau kepentingannya. Sediakan petunjuk lokasi dan pilihan senarai objek untuk membantu murid."
+                            </p>
+                        </div>
+                        <button onclick="copySpecificPrompt(this)" class="mt-6 w-full bg-slate-950 text-purple-400 border border-slate-850 hover:bg-purple-500 hover:text-slate-955 hover:border-purple-400 transition font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Prompt
+                        </button>
+                    </div>
+
+                    <!-- Prompt 10: Simulasi Interaktif -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-805/85 shadow-lg hover:shadow-xl transition-all duration-305 flex flex-col justify-between" data-aos="fade-up">
+                        <div>
+                            <div class="text-3xl mb-4">⚙️</div>
+                            <h4 class="font-bold text-lg text-white mb-3 font-display">10. Simulasi Interaktif</h4>
+                            <p class="text-slate-355 text-xs leading-relaxed italic bg-slate-950 p-4 rounded-2xl border border-slate-850">
+                                "Bina simulasi pendidikan bagi topik [Topik] berdasarkan [Nota]. Pilih satu hubungan sebab dan akibat yang sesuai untuk disimulasikan. Murid mengubah dua atau tiga pemboleh ubah dan memerhatikan kesannya melalui animasi atau paparan data. Minta murid membuat ramalan sebelum menjalankan simulasi. Sediakan tiga misi penerokaan. Terangkan perbezaan antara ramalan dengan keputusan. Nyatakan andaian dan batas simulasi."
+                            </p>
+                        </div>
+                        <button onclick="copySpecificPrompt(this)" class="mt-6 w-full bg-slate-950 text-purple-400 border border-slate-850 hover:bg-purple-500 hover:text-slate-955 hover:border-purple-400 transition font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Prompt
+                        </button>
+                    </div>
+
+                    <!-- Prompt 11: Menara Pertahanan -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-805/85 shadow-lg hover:shadow-xl transition-all duration-305 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                        <div>
+                            <div class="text-3xl mb-4">🛡️</div>
+                            <h4 class="font-bold text-lg text-white mb-3 font-display">11. Menara Pertahanan</h4>
+                            <p class="text-slate-355 text-xs leading-relaxed italic bg-slate-950 p-4 rounded-2xl border border-slate-850">
+                                "Bina permainan menara pertahanan pendidikan bagi topik [Topik]. Sediakan lima gelombang cabaran. Sebelum membina atau menaik taraf menara, murid perlu menjawab soalan berdasarkan [Nota]. Jawapan betul memberikan sumber pembinaan. Jawapan salah memaparkan penerangan dan soalan pemulihan. Bezakan markah pembelajaran daripada markah strategi. Sediakan mod latihan tanpa penalti dan kawalan sentuh untuk telefon."
+                            </p>
+                        </div>
+                        <button onclick="copySpecificPrompt(this)" class="mt-6 w-full bg-slate-950 text-purple-400 border border-slate-850 hover:bg-purple-500 hover:text-slate-955 hover:border-purple-400 transition font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Prompt
+                        </button>
+                    </div>
+
+                    <!-- Prompt 12: Perlumbaan Ilmu -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-805/85 shadow-lg hover:shadow-xl transition-all duration-305 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                        <div>
+                            <div class="text-3xl mb-4">🏎️</div>
+                            <h4 class="font-bold text-lg text-white mb-3 font-display">12. Perlumbaan Ilmu</h4>
+                            <p class="text-slate-355 text-xs leading-relaxed italic bg-slate-950 p-4 rounded-2xl border border-slate-850">
+                                "Bina permainan perlumbaan bagi topik [Topik] dengan sepuluh pusat pemeriksaan berdasarkan [Nota]. Pada setiap pusat pemeriksaan, murid menjawab soalan untuk meneruskan perjalanan. Utamakan ketepatan jawapan dalam pengiraan markah. Jadikan bonus kelajuan sebagai pilihan. Jawapan salah memberikan penerangan dan satu percubaan pemulihan. Akhiri perlumbaan dengan laporan konsep yang murid kuasai dan perlu ulang kaji."
+                            </p>
+                        </div>
+                        <button onclick="copySpecificPrompt(this)" class="mt-6 w-full bg-slate-950 text-purple-400 border border-slate-850 hover:bg-purple-500 hover:text-slate-955 hover:border-purple-400 transition font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Prompt
+                        </button>
+                    </div>
+
+                    <!-- Prompt 13: Bina dan Uji -->
+                    <div class="glass-card rounded-[2.5rem] p-8 border border-slate-805/85 shadow-lg hover:shadow-xl transition-all duration-305 flex flex-col justify-between" data-aos="fade-up">
+                        <div>
+                            <div class="text-3xl mb-4">🛠️</div>
+                            <h4 class="font-bold text-lg text-white mb-3 font-display">13. Bina dan Uji</h4>
+                            <p class="text-slate-355 text-xs leading-relaxed italic bg-slate-950 p-4 rounded-2xl border border-slate-850">
+                                "Bina permainan pembinaan bagi topik [Topik] berdasarkan [Nota]. Murid memilih dan menyusun komponen untuk menghasilkan model, algoritma, litar atau struktur yang sesuai dengan topik. Sediakan tiga cabaran dengan syarat kejayaan yang jelas. Butang Uji mesti memeriksa hasil pembinaan dan menunjukkan bahagian yang berfungsi atau perlu diperbaiki. Berikan penerangan konsep bagi setiap masalah. Benarkan murid mengubah binaan dan menguji semula."
                             </p>
                         </div>
                         <button onclick="copySpecificPrompt(this)" class="mt-6 w-full bg-slate-950 text-purple-400 border border-slate-850 hover:bg-purple-500 hover:text-slate-955 hover:border-purple-400 transition font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer">
