@@ -84,7 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="px-5 py-2 text-sm font-semibold ${textBase} ${textHover} rounded-full transition-all flex items-center gap-1">
                         Explorasi AI <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform group-hover:rotate-180"></i>
                     </button>
-                    <div class="absolute top-full left-0 mt-2 w-52 bg-slate-900 border-slate-800 rounded-2xl shadow-xl border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 p-2 transform origin-top scale-95 group-hover:scale-100">
+                    <div class="absolute top-full left-0 mt-2 w-56 bg-slate-900 border-slate-800 rounded-2xl shadow-xl border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 p-2 transform origin-top scale-95 group-hover:scale-100">
+                        <a href="junior_ai/index.html" class="block px-4 py-2.5 text-sm text-emerald-400 hover:text-emerald-300 font-bold rounded-xl transition-colors flex items-center justify-between">
+                            Junior AI (Murid)
+                            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/30">Baru</span>
+                        </a>
                         <a href="bina_site.html" class="block px-4 py-2.5 text-sm ${activeClass('bina_site.html')} rounded-xl transition-colors flex items-center justify-between">
                             Bina Google Site
                         </a>
@@ -136,6 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="border-t ${theme === 'light' ? 'border-slate-100' : 'border-slate-800'} my-4 pt-4">
                     <span class="px-4 text-[10px] font-bold text-amber-500 uppercase tracking-widest">Explorasi AI</span>
                     <div class="mt-2 space-y-1">
+                        <a href="junior_ai/index.html" class="mobile-nav-link block px-4 py-2.5 text-sm text-emerald-400 font-bold rounded-xl transition-colors flex items-center justify-between">
+                            Junior AI (Murid)
+                            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/30">Baru</span>
+                        </a>
                         <a href="bina_site.html" class="mobile-nav-link block px-4 py-2.5 text-sm ${activeClass('bina_site.html')} rounded-xl transition-colors">Bina Google Site</a>
                     </div>
                 </div>

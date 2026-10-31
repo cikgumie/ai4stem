@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Modul 4 Junior AI: Gamifikasi AI Ceria untuk Murid Sekolah. Tukarkan plot cerita dan cabaran sains murid kepada permainan kuiz interaktif di Quizizz & Wordwall.">
+    <title>Modul 4: Gamifikasi AI &bull; Cipta Game Berdasarkan Cerita | Junior AI</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Junior AI Custom Styles (Ceria & Fun) -->
+    <link rel="stylesheet" href="assets/css/junior.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        fun: ['"Fredoka"', 'cursive', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-fun-mesh bg-fun-dots text-slate-800 antialiased selection:bg-pink-200 selection:text-pink-900">
+
+    <!-- Navigation Header -->
+    <div id="junior-navbar-placeholder"></div>
+
+    <main class="pt-24 lg:pt-28 overflow-hidden">
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Header & Modul Badge -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="relative py-14 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="max-w-3xl">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-100 border-2 border-pink-300 text-pink-800 text-xs font-fun font-bold mb-4"
+                        data-aos="fade-down">
+                        <span>🎮</span>
+                        MISI 4 DARI 4 &bull; GAMIFIKASI INTERAKTIF
+                    </div>
+                    <h1 class="font-fun text-4xl sm:text-6xl font-bold text-slate-900 tracking-tight leading-tight mb-4"
+                        data-aos="fade-up">
+                        Cipta Game Interaktif <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500">
+                            Berdasarkan Cerita Kamu 🏆
+                        </span>
+                    </h1>
+                    <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-medium" data-aos="fade-up"
+                        data-aos-delay="100">
+                        Kemuncak projek kreatif murid! Tukarkan cabaran sains dan jalan cerita kamu menjadi sebuah
+                        permainan kuiz interaktif. Rakan sekelas boleh bermain, menjawab soalan wira kamu, dan mengumpul
+                        markah bintang tertinggi!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Red Thread: Sambungan Cerita Modul 1, 2, 3 -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="py-8 bg-white/70 border-y-2 border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="fun-card-pink p-6 sm:p-7">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-2xl bg-pink-100 border-2 border-pink-300 text-pink-700 flex items-center justify-center text-2xl flex-shrink-0">
+                                🕹️
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-fun font-bold uppercase tracking-widest text-pink-700">
+                                    Dunia Permainan Diilhamkan Dari Projek Anda
+                                </span>
+                                <h3 class="font-fun text-xl sm:text-2xl font-bold text-slate-900" id="synced-game-title">
+                                    Memuatkan Cerita Projek...
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs px-3.5 py-1 rounded-full bg-pink-100 text-pink-800 font-fun font-bold border border-pink-300">
+                                🌟 Status: Fasa Permainan
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="bg-pink-50/80 p-4 rounded-2xl border-2 border-pink-200 text-xs sm:text-sm text-slate-700 leading-relaxed font-medium italic"
+                        id="synced-game-story">
+                        "Memuatkan teks cerita murid..."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Langkah 1: Bagaimana Menukar Cerita Menjadi Game? -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="py-14">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14" data-aos="fade-up">
+                    <span
+                        class="text-xs font-fun font-bold text-pink-800 uppercase tracking-widest px-4 py-1.5 rounded-full bg-pink-100 border-2 border-pink-300">
+                        Langkah 1: Konsep Gamifikasi
+                    </span>
+                    <h2 class="font-fun text-3xl sm:text-4xl font-bold text-slate-900 mt-3">
+                        Tukar Jalan Cerita Jadi 3 Misi Cabaran 🎯
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-2 font-medium">
+                        Setiap pusingan permainan adalah sebahagian daripada kisah pengembaraan watak kamu!
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                    <!-- Level 1 -->
+                    <div class="fun-card-pink p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full bg-pink-100 text-pink-800 font-fun font-bold text-xs border border-pink-300">
+                                    Level 1
+                                </span>
+                                <span class="text-xs font-fun font-bold text-slate-500">Misi Pengesanan 🔍</span>
+                            </div>
+                            <h4 class="font-fun text-xl font-bold text-slate-900 mb-2">Kenal Pasti Masalah</h4>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed mb-4">
+                                Pemain perlu mengenal pasti apakah punca bahaya yang mengancam watak atau alam sekitar dalam cerita kamu.
+                            </p>
+                        </div>
+                        <div class="p-3.5 bg-pink-50 rounded-2xl border-2 border-pink-200 text-xs text-slate-700">
+                            <strong>Contoh Soalan:</strong> "Apakah bahan buangan yang dikesan oleh Robi di sungai?"
+                        </div>
+                    </div>
+
+                    <!-- Level 2 -->
+                    <div class="fun-card-yellow p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 font-fun font-bold text-xs border border-amber-300">
+                                    Level 2
+                                </span>
+                                <span class="text-xs font-fun font-bold text-slate-500">Misi Teknologi 🛠️</span>
+                            </div>
+                            <h4 class="font-fun text-xl font-bold text-slate-900 mb-2">Pilih Alatan Yang Betul</h4>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed mb-4">
+                                Pemain memilih alatan sains atau teknologi yang paling tepat untuk membantu watak menyelesaikan krisis.
+                            </p>
+                        </div>
+                        <div class="p-3.5 bg-amber-50 rounded-2xl border-2 border-amber-200 text-xs text-slate-700">
+                            <strong>Contoh Soalan:</strong> "Gajet manakah yang paling sesuai untuk mengutip botol plastik terapung?"
+                        </div>
+                    </div>
+
+                    <!-- Level 3 -->
+                    <div class="fun-card-emerald p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-fun font-bold text-xs border border-emerald-300">
+                                    Level 3
+                                </span>
+                                <span class="text-xs font-fun font-bold text-slate-500">Misi Kemenangan 🏆</span>
+                            </div>
+                            <h4 class="font-fun text-xl font-bold text-slate-900 mb-2">Kesan Kejayaan</h4>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed mb-4">
+                                Soalan bonus mengenai pengajaran moral dan kesan baik apabila teknologi digunakan secara bertanggungjawab.
+                            </p>
+                        </div>
+                        <div class="p-3.5 bg-emerald-50 rounded-2xl border-2 border-emerald-200 text-xs text-slate-700">
+                            <strong>Contoh Soalan:</strong> "Apakah manfaat kepada hidupan air selepas sungai berjaya dibersihkan?"
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Langkah 2: Penjana Soalan Game AI untuk Quizizz & Wordwall -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="py-14 bg-white/70 border-y-2 border-slate-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10" data-aos="fade-up">
+                    <span
+                        class="text-xs font-fun font-bold text-pink-800 uppercase tracking-widest px-4 py-1.5 rounded-full bg-pink-100 border-2 border-pink-300">
+                        Langkah 2: Penjana Kuiz AI
+                    </span>
+                    <h2 class="font-fun text-3xl sm:text-4xl font-bold text-slate-900 mt-3">
+                        Jana Kuiz untuk Quizizz / Wordwall 📋
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-2 font-medium">
+                        Tekan butang di bawah untuk menjana soalan kuiz berdasarkan cerita kamu, sedia disalin ke dalam Quizizz AI atau ChatGPT!
+                    </p>
+                </div>
+
+                <div class="fun-card-pink p-6 sm:p-8">
+                    <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+                        <button onclick="generateGameQuestionsFromStory()"
+                            class="btn-fun-3d px-5 py-3 rounded-2xl bg-pink-400 hover:bg-pink-300 text-slate-950 font-fun font-bold text-xs border-2 border-pink-500 transition flex items-center gap-2 cursor-pointer">
+                            <span>✨</span> Jana Soalan Baru dari Cerita Saya
+                        </button>
+                        <button onclick="JuniorData.copyText(document.getElementById('game-prompt-output').innerText, this)"
+                            class="btn-fun-3d px-5 py-3 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 font-fun font-bold text-xs border-2 border-slate-300 transition flex items-center gap-1.5 cursor-pointer">
+                            <i data-lucide="copy" class="w-4 h-4 text-pink-600"></i> Salin Soalan Kuiz
+                        </button>
+                    </div>
+
+                    <pre id="game-prompt-output"
+                        class="font-mono text-xs bg-slate-900 p-5 rounded-2xl text-pink-300 whitespace-pre-wrap leading-relaxed max-h-80 overflow-y-auto shadow-inner">SOALAN KUIZ CABARAN CERITA:
+1. Siapakah wira utama dalam misi penyelamatan ini?
+A) Robi si Robot Cilik & Sarah (Jawapan Betul)
+B) Raksasa Plastik
+C) Pemburu Ikan
+D) Kapal Kargo
+
+2. Apakah masalah utama yang dikesan di lokasi kejadian?
+A) Sisa plastik mencemari air sungai (Jawapan Betul)
+B) Kebakaran hutan
+C) Pokok tumbang
+D) Banjir lumpur
+
+3. Bagaimanakah watak utama membersihkan sungai dalam masa singkat?
+A) Menggunakan jaring eko-magnetik dan dron pemantau pintar (Jawapan Betul)
+B) Menunggu hujan lebat
+C) Membiarkan sisa mengalir ke laut
+D) Menggunakan penyapu biasa
+
+4. Apakah nilai murni yang dipelajari daripada cerita ini?
+A) Menjaga ekosistem alam dengan bantuan sains dan teknologi (Jawapan Betul)
+B) Membuang sampah di mana-mana
+C) Tidak perlu bekerjasama
+D) Takut menggunakan teknologi baru</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Langkah 3 (Wow Feature): Mini Game Playable Demo Langsung -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="py-16">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10" data-aos="fade-up">
+                    <span
+                        class="text-xs font-fun font-bold text-amber-800 uppercase tracking-widest px-4 py-1.5 rounded-full bg-amber-100 border-2 border-amber-300">
+                        Langkah 3 &bull; Jom Main Sekarang!
+                    </span>
+                    <h2 class="font-fun text-3xl sm:text-4xl font-bold text-slate-900 mt-3">
+                        Uji Main Mini Game Cerita Anda 🕹️
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-2 font-medium">
+                        Ini contoh permainan interaktif yang dibina daripada cerita anda! Jawab 3 soalan di bawah dan kumpul skor bintang!
+                    </p>
+                </div>
+
+                <!-- Mini Interactive Quiz Game Card -->
+                <div class="fun-card-yellow p-6 sm:p-8 text-center" id="mini-game-container">
+
+                    <!-- Score Header -->
+                    <div class="flex items-center justify-between pb-4 mb-6 border-b-2 border-amber-200">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xl animate-bouncy">🎮</span>
+                            <span class="font-fun text-sm font-bold text-slate-800 uppercase tracking-wider">
+                                Misi Mini Game Aktif
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-1.5 font-fun font-bold text-amber-700 text-base bg-amber-100 px-3.5 py-1 rounded-full border border-amber-300">
+                            <span>⭐</span>
+                            Skor: <span id="game-score">0</span> / 300 Mata
+                        </div>
+                    </div>
+
+                    <!-- Question Screen -->
+                    <div id="quiz-question-box" class="space-y-6">
+                        <div>
+                            <span class="text-xs font-fun font-bold text-pink-700 uppercase tracking-widest px-3 py-1 rounded-full bg-pink-100 border border-pink-200" id="quiz-level-indicator">
+                                Soalan 1 dari 3
+                            </span>
+                            <h3 class="font-fun text-2xl sm:text-3xl font-bold text-slate-900 mt-3" id="quiz-question-title">
+                                Apakah krisis utama yang berlaku dalam cerita?
+                            </h3>
+                        </div>
+
+                        <!-- Options Buttons -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="quiz-options-container">
+                            <!-- Populated via JS -->
+                        </div>
+
+                        <div id="quiz-feedback" class="text-sm font-fun font-bold min-h-6"></div>
+                    </div>
+
+                    <!-- Victory Screen (Hidden initially) -->
+                    <div id="quiz-victory-box" class="hidden py-8 space-y-4">
+                        <div class="w-20 h-20 rounded-full bg-amber-100 border-3 border-amber-300 text-amber-600 flex items-center justify-center mx-auto text-4xl animate-bouncy">
+                            🏆
+                        </div>
+                        <h3 class="font-fun text-3xl font-bold text-slate-900">Tahniah! Misi Selesai! 🎉</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 font-medium max-w-md mx-auto" id="victory-summary">
+                            Kamu berjaya menjawab semua soalan dan membuktikan jalan cerita kamu sangat sesuai dijadikan permainan interaktif!
+                        </p>
+                        <button onclick="restartMiniGame()"
+                            class="btn-fun-3d px-7 py-3.5 rounded-2xl bg-pink-400 hover:bg-pink-300 text-slate-950 font-fun font-bold text-xs border-2 border-pink-500 transition cursor-pointer">
+                            Main Semula Mini Game 🔄
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Tamat Projek: 4 Lencana Keberhasilan Murid Ceria -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="py-16 bg-white/80 border-t-2 border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-fun font-bold text-emerald-800 uppercase tracking-widest px-4 py-1.5 rounded-full bg-emerald-100 border-2 border-emerald-300">
+                        🎉 Tahniah Murid Pintar AI!
+                    </span>
+                    <h2 class="font-fun text-3xl sm:text-4xl font-bold text-slate-900 mt-3">
+                        Lencana Kejayaan Projek Anda 🎖️
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-2 font-medium">
+                        Kamu telah melalui 4 fasa penerokaan AI yang saling berkait rapat dari awal hingga akhir!
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 text-center">
+                    <div class="fun-card-emerald p-6">
+                        <div class="w-16 h-16 rounded-2xl bg-emerald-100 border-2 border-emerald-300 text-emerald-700 flex items-center justify-center mx-auto mb-3 text-3xl">
+                            ✍️
+                        </div>
+                        <h4 class="font-fun text-base font-bold text-slate-900 mb-1">Penulis Cilik</h4>
+                        <p class="text-xs text-slate-500 font-medium">Cerita 100 Perkataan Siap</p>
+                    </div>
+
+                    <div class="fun-card-cyan p-6">
+                        <div class="w-16 h-16 rounded-2xl bg-sky-100 border-2 border-sky-300 text-sky-700 flex items-center justify-center mx-auto mb-3 text-3xl">
+                            🎨
+                        </div>
+                        <h4 class="font-fun text-base font-bold text-slate-900 mb-1">Artis Komik</h4>
+                        <p class="text-xs text-slate-500 font-medium">Imej Watak & 4 Panel Siap</p>
+                    </div>
+
+                    <div class="fun-card-purple p-6">
+                        <div class="w-16 h-16 rounded-2xl bg-purple-100 border-2 border-purple-300 text-purple-700 flex items-center justify-center mx-auto mb-3 text-3xl">
+                            🎬
+                        </div>
+                        <h4 class="font-fun text-base font-bold text-slate-900 mb-1">Pengarah Vids</h4>
+                        <p class="text-xs text-slate-500 font-medium">Storyboard & Video Google Vids</p>
+                    </div>
+
+                    <div class="fun-card-pink p-6">
+                        <div class="w-16 h-16 rounded-2xl bg-pink-100 border-2 border-pink-300 text-pink-700 flex items-center justify-center mx-auto mb-3 text-3xl">
+                            🎮
+                        </div>
+                        <h4 class="font-fun text-base font-bold text-slate-900 mb-1">Pereka Game</h4>
+                        <p class="text-xs text-slate-500 font-medium">Game Kuiz Berdasarkan Cerita</p>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center">
+                    <a href="index.html"
+                        class="btn-fun-3d inline-flex items-center gap-2 px-9 py-4 rounded-2xl bg-gradient-to-r from-amber-400 via-pink-400 to-sky-400 text-slate-950 font-fun font-bold text-base border-2 border-amber-400">
+                        <span class="text-xl">🏠</span>
+                        <span>Kembali ke Laman Utama Junior AI</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="junior-footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="assets/js/junior-storage.js"></script>
+    <script src="assets/js/junior-nav.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        const DEFAULT_QUIZ = [
+            {
+                q: "Apakah krisis utama yang dihadapi dalam cerita?",
+                opts: ["Pencemaran sisa plastik di sungai", "Banjir kilat di bandar", "Kebakaran hutan tropika", "Ribut taufan"],
+                ans: 0
+            },
+            {
+                q: "Bagaimanakah watak wira menyelesaikan masalah tersebut?",
+                opts: ["Menggunakan jaring eko-magnetik dan dron AI", "Tidur di rumah", "Menunggu orang lain tolong", "Membuang lebih banyak sisa"],
+                ans: 0
+            },
+            {
+                q: "Apakah pengajaran sains daripada cerita kamu?",
+                opts: ["Teknologi pintar boleh memelihara alam sekitar", "Robot tidak berguna", "Jangan jaga kebersihan", "Sungai tidak penting"],
+                ans: 0
+            }
+        ];
+
+        let activeQuiz = [...DEFAULT_QUIZ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.JuniorData) {
+                const story = window.JuniorData.getStory();
+                if (story) {
+                    document.getElementById('synced-game-title').textContent = story.title || 'Cerita Anda';
+                    document.getElementById('synced-game-story').textContent = `"${story.storyText || ''}"`;
+                }
+                window.JuniorData.markMissionDone(4);
+            }
+            loadQuestion();
+        });
+
+        function loadQuestion() {
+            const q = activeQuiz[currentQuestionIndex];
+            if (!q) {
+                showVictory();
+                return;
+            }
+
+            document.getElementById('quiz-level-indicator').textContent = `Soalan ${currentQuestionIndex + 1} dari ${activeQuiz.length}`;
+            document.getElementById('quiz-question-title').textContent = q.q;
+            document.getElementById('quiz-feedback').textContent = '';
+
+            const container = document.getElementById('quiz-options-container');
+            container.innerHTML = '';
+
+            q.opts.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'btn-fun-3d p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-pink-400 text-left text-xs font-fun font-bold text-slate-800 transition cursor-pointer flex items-center justify-between';
+                btn.innerHTML = `<span>${opt}</span><span class="text-pink-600 font-mono text-xs px-2 py-0.5 rounded-lg bg-pink-50 border border-pink-200">${['A','B','C','D'][idx]}</span>`;
+                btn.onclick = () => handleAnswer(idx, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function handleAnswer(selectedIndex, btn) {
+            const q = activeQuiz[currentQuestionIndex];
+            const feedback = document.getElementById('quiz-feedback');
+
+            if (selectedIndex === q.ans) {
+                btn.className = 'btn-fun-3d p-4 rounded-2xl bg-emerald-100 border-2 border-emerald-400 text-emerald-900 text-left text-xs font-fun font-bold transition flex items-center justify-between shadow-xs';
+                score += 100;
+                document.getElementById('game-score').textContent = score;
+                feedback.innerHTML = '<span class="text-emerald-700">🎉 Tepat sekali! Hebat pengetahuan sains kamu!</span>';
+                
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    loadQuestion();
+                }, 1200);
+            } else {
+                btn.className = 'btn-fun-3d p-4 rounded-2xl bg-rose-100 border-2 border-rose-400 text-rose-900 text-left text-xs font-fun font-bold transition flex items-center justify-between shadow-xs';
+                feedback.innerHTML = '<span class="text-rose-600">Cuba lagi! Baca semula jalan cerita wira kamu.</span>';
+            }
+        }
+
+        function showVictory() {
+            document.getElementById('quiz-question-box').classList.add('hidden');
+            document.getElementById('quiz-victory-box').classList.remove('hidden');
+            if (window.JuniorData) {
+                window.JuniorData.showToast("🏆 Tahniah! Anda berjaya menyelesaikan semua 4 modul Junior AI!");
+            }
+        }
+
+        function restartMiniGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            document.getElementById('game-score').textContent = score;
+            document.getElementById('quiz-victory-box').classList.add('hidden');
+            document.getElementById('quiz-question-box').classList.remove('hidden');
+            loadQuestion();
+        }
+
+        function generateGameQuestionsFromStory() {
+            const data = window.JuniorData ? window.JuniorData.getStory() : null;
+            if (!data) return;
+
+            const newText = `SOALAN KUIZ BERDASARKAN CERITA "${data.title || 'Projek Murid'}":
+
+1. Siapakah watak utama yang mengetuai pengembaraan ini?
+A) ${data.character || 'Wira STEM'} (Jawapan Betul)
+B) Musuh Alam Sekitar
+C) Orang Asing
+D) Penonton
+
+2. Di manakah cabaran dalam kisah ini berlaku?
+A) Di ${data.setting || 'lokasi rahsia'} (Jawapan Betul)
+B) Di atas awan
+C) Di dalam gua gelap
+D) Di pasar malam
+
+3. Apakah tindakan bijak watak untuk menyelesaikan masalah?
+A) Menggunakan sains dan inovasi teknologi secara berani (Jawapan Betul)
+B) Melarikan diri
+C) Berputus asa
+D) Membiarkan masalah berlarutan
+
+4. Apakah nilai penting yang disampaikan kepada murid?
+A) Kerjasama dan teknologi pintar mampu menyelamatkan alam (Jawapan Betul)
+B) Bersendirian lebih baik
+C) Jangan belajar sains
+D) Jangan berani mencuba`;
+
+            document.getElementById('game-prompt-output').textContent = newText;
+            window.JuniorData.showToast("Soalan kuiz berjaya dijana daripada cerita anda! 🌟");
+        }
+    </script>
+</body>
+
+</html>

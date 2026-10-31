@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Modul 2 Junior AI: Photo & Komik AI Ceria untuk Murid Sekolah. Tukarkan watak daripada cerita 100 perkataan kepada gambar visual dan komik strip 4-panel.">
+    <title>Modul 2: Photo & Komik AI &bull; Dari Cerita ke Ilustrasi | Junior AI</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Junior AI Custom Styles (Ceria & Fun) -->
+    <link rel="stylesheet" href="assets/css/junior.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        fun: ['"Fredoka"', 'cursive', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-fun-mesh bg-fun-dots text-slate-800 antialiased selection:bg-sky-200 selection:text-sky-900">
+
+    <!-- Navigation Header -->
+    <div id="junior-navbar-placeholder"></div>
+
+    <main class="pt-24 lg:pt-28 overflow-hidden">
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Header & Modul Badge -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="relative py-14 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="max-w-3xl">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-100 border-2 border-sky-300 text-sky-800 text-xs font-fun font-bold mb-4"
+                        data-aos="fade-down">
+                        <span>🎨</span>
+                        MISI 2 DARI 4 &bull; PHOTO & KOMIK AI
+                    </div>
+                    <h1 class="font-fun text-4xl sm:text-6xl font-bold text-slate-900 tracking-tight leading-tight mb-4"
+                        data-aos="fade-up">
+                        Jana Gambar & Komik <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-indigo-500">
+                            Daripada Cerita Kamu 🖌️
+                        </span>
+                    </h1>
+                    <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-medium" data-aos="fade-up"
+                        data-aos-delay="100">
+                        Cerita hebat yang kamu hasilkan di Modul 1 kini sedia untuk diwarnakan! Pelajari cara menukar
+                        teks watak kepada imej berkualiti tinggi dan susun sebuah strip komik 4-panel yang memukau!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Red Thread: Sambungan Cerita Modul 1 -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="py-8 bg-white/70 border-y-2 border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="fun-card-cyan p-6 sm:p-7">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-2xl bg-sky-100 border-2 border-sky-300 text-sky-700 flex items-center justify-center text-2xl flex-shrink-0">
+                                🔗
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-fun font-bold uppercase tracking-widest text-sky-700">
+                                    Disegerakkan dari Modul 1 (Generatif Cerita)
+                                </span>
+                                <h3 class="font-fun text-xl sm:text-2xl font-bold text-slate-900" id="synced-title">
+                                    Memuatkan Cerita...
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span id="synced-word-count"
+                                class="text-xs px-3.5 py-1 rounded-full bg-sky-100 text-sky-800 font-fun font-bold border border-sky-300">
+                                0 Perkataan
+                            </span>
+                            <a href="generatif_ai.html#editor"
+                                class="btn-fun-3d text-xs px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-fun font-bold border-2 border-slate-200 transition flex items-center gap-1.5">
+                                <i data-lucide="edit" class="w-3.5 h-3.5 text-sky-500"></i> Ubah Cerita
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-700 mb-3 bg-sky-50/80 p-4 rounded-2xl border-2 border-sky-200">
+                        <div>
+                            <span class="text-sky-800 font-fun font-bold">Watak Utama:</span>
+                            <span id="synced-character" class="text-slate-900 ml-1 font-semibold">-</span>
+                        </div>
+                        <div>
+                            <span class="text-sky-800 font-fun font-bold">Latar Tempat:</span>
+                            <span id="synced-setting" class="text-slate-900 ml-1 font-semibold">-</span>
+                        </div>
+                    </div>
+
+                    <p id="synced-snippet" class="text-xs sm:text-sm text-slate-600 italic line-clamp-2 leading-relaxed font-medium">
+                        "Memuatkan teks cerita murid..."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Langkah 1: Formula Prompt Gambar Murid (W-G-L) -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="py-14">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14" data-aos="fade-up">
+                    <span
+                        class="text-xs font-fun font-bold text-sky-800 uppercase tracking-widest px-4 py-1.5 rounded-full bg-sky-100 border-2 border-sky-300">
+                        Langkah 1: Rahsia Prompt Gambar
+                    </span>
+                    <h2 class="font-fun text-3xl sm:text-4xl font-bold text-slate-900 mt-3">
+                        Gunakan Formula W - G - L 🖼️
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-2 font-medium">
+                        Penjana imej AI seperti Bing Image Creator, Canva, atau Google Imagen memerlukan 3 bahan utama supaya visual yang terhasil tepat seperti imaginasi kamu!
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- W -->
+                    <div class="fun-card-cyan p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-sky-400 text-slate-950 flex items-center justify-center font-fun text-2xl font-bold border-2 border-sky-500 shadow-xs">
+                                    W
+                                </div>
+                                <div>
+                                    <h3 class="font-fun text-xl font-bold text-slate-900">Watak & Aksi</h3>
+                                    <span class="text-xs text-sky-700 font-bold">Siapa dan apa aksinya?</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed mb-4">
+                                Gambarkan rupa watak cerita kamu dan apa yang sedang dilakukan dengan jelas.
+                            </p>
+                        </div>
+                        <div class="bg-sky-50 p-3.5 rounded-2xl border-2 border-sky-200 text-xs text-slate-700">
+                            <strong>Contoh:</strong> "Robi, robot kecil berwarna putih biru dengan mata digital ceria, memegang jaring pembersih pintar."
+                        </div>
+                    </div>
+
+                    <!-- G -->
+                    <div class="fun-card-purple p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-purple-400 text-slate-950 flex items-center justify-center font-fun text-2xl font-bold border-2 border-purple-500 shadow-xs">
+                                    G
+                                </div>
+                                <div>
+                                    <h3 class="font-fun text-xl font-bold text-slate-900">Gaya Seni (Style)</h3>
+                                    <span class="text-xs text-purple-700 font-bold">Jenis lukisan apa?</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed mb-4">
+                                Tentukan gaya visual seperti animasi 3D Pixar, anime kartun Ghibli, atau komik buku cerita.
+                            </p>
+                        </div>
+                        <div class="bg-purple-50 p-3.5 rounded-2xl border-2 border-purple-200 text-xs text-slate-700">
+                            <strong>Contoh:</strong> "3D Pixar animation style, Disney animated movie render, vibrant colors, ultra-detailed."
+                        </div>
+                    </div>
+
+                    <!-- L -->
+                    <div class="fun-card-emerald p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-emerald-400 text-slate-950 flex items-center justify-center font-fun text-2xl font-bold border-2 border-emerald-500 shadow-xs">
+                                    L
+                                </div>
+                                <div>
+                                    <h3 class="font-fun text-xl font-bold text-slate-900">Latar & Cahaya</h3>
+                                    <span class="text-xs text-emerald-700 font-bold">Pemandangan & suasana</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed mb-4">
+                                Gambarkan suasana alam sekeliling, waktu siang/malam, dan pencahayaan yang menarik.
+                            </p>
+                        </div>
+                        <div class="bg-emerald-50 p-3.5 rounded-2xl border-2 border-emerald-200 text-xs text-slate-700">
+                            <strong>Contoh:</strong> "Tebing sungai jernih waktu senja, lampu neon lembut, pokok hijau berseri, cinematic lighting."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Langkah 2: Interaktif Penjana Prompt Gambar Watak -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="py-14 bg-white/70 border-y-2 border-slate-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10" data-aos="fade-up">
+                    <span
+                        class="text-xs font-fun font-bold text-sky-800 uppercase tracking-widest px-4 py-1.5 rounded-full bg-sky-100 border-2 border-sky-300">
+                        Langkah 2: Kotak Jana Prompt
+                    </span>
+                    <h2 class="font-fun text-3xl sm:text-4xl font-bold text-slate-900 mt-3">
+                        Pilih Gaya & Jana Prompt Gambar 🎬
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-2 font-medium">
+                        Pilih gaya seni kegemaran kamu, dan tekan butang untuk menjana prompt imej siap pakai bagi watak cerita kamu!
+                    </p>
+                </div>
+
+                <div class="fun-card-cyan p-6 sm:p-8">
+                    <!-- Style Selector Buttons -->
+                    <div class="mb-6">
+                        <label class="block text-xs font-fun font-bold text-slate-700 uppercase tracking-wider mb-3">
+                            Pilih Gaya Seni Gambar:
+                        </label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="style-selector">
+                            <button type="button" onclick="selectArtStyle('pixar')" id="style-pixar"
+                                class="p-4 rounded-2xl bg-sky-100 border-3 border-sky-400 text-left transition-all cursor-pointer shadow-xs">
+                                <span class="text-2xl mb-1 block">🎬</span>
+                                <h4 class="font-fun text-sm font-bold text-slate-900">3D Pixar Disney</h4>
+                                <p class="text-[10px] text-slate-600 font-medium">Comel, berkilat, 3D</p>
+                            </button>
+                            <button type="button" onclick="selectArtStyle('anime')" id="style-anime"
+                                class="p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-slate-400 text-left transition-all cursor-pointer">
+                                <span class="text-2xl mb-1 block">✨</span>
+                                <h4 class="font-fun text-sm font-bold text-slate-900">Anime Ghibli</h4>
+                                <p class="text-[10px] text-slate-500 font-medium">Lembut, fantasi, cat air</p>
+                            </button>
+                            <button type="button" onclick="selectArtStyle('comic')" id="style-comic"
+                                class="p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-slate-400 text-left transition-all cursor-pointer">
+                                <span class="text-2xl mb-1 block">💥</span>
+                                <h4 class="font-fun text-sm font-bold text-slate-900">Komik Kartun</h4>
+                                <p class="text-[10px] text-slate-500 font-medium">Garis tebal, warna ceria</p>
+                            </button>
+                            <button type="button" onclick="selectArtStyle('clay')" id="style-clay"
+                                class="p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-slate-400 text-left transition-all cursor-pointer">
+                                <span class="text-2xl mb-1 block">🧸</span>
+                                <h4 class="font-fun text-sm font-bold text-slate-900">Claymation</h4>
+                                <p class="text-[10px] text-slate-500 font-medium">Tekstur tanah liat comel</p>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Custom Prompt Output Box -->
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <label class="text-xs font-fun font-bold text-sky-800 uppercase tracking-wider flex items-center gap-1.5">
+                                <span>✨</span> Prompt Imej Sedia Salin:
+                            </label>
+                            <button onclick="JuniorData.copyText(document.getElementById('generated-image-prompt').innerText, this)"
+                                class="btn-fun-3d px-4 py-2 rounded-xl bg-sky-400 hover:bg-sky-300 text-slate-950 text-xs font-fun font-bold border-2 border-sky-500 transition flex items-center gap-1.5 cursor-pointer">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Prompt Imej
+                            </button>
+                        </div>
+                        <pre id="generated-image-prompt"
+                            class="font-mono text-xs bg-slate-900 p-4 rounded-2xl text-sky-300 whitespace-pre-wrap leading-relaxed shadow-inner">A cute and friendly hero character named Robi si Robot Cilik standing beside a clean river with eco-friendly gadgets, 3D Pixar Disney animation style, warm glowing sunlight, cinematic bokeh, vibrant colors, high detail, child-friendly illustration.</pre>
+                        <p class="text-xs text-slate-600 font-medium flex items-center gap-1.5">
+                            <i data-lucide="external-link" class="w-3.5 h-3.5 text-sky-500"></i>
+                            Tampal prompt ini ke dalam <strong>Bing Image Creator (bing.com/create)</strong>, <strong>Canva Magic Media</strong>, atau <strong>Google Imagen</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Langkah 3: Susun Komik 4-Panel daripada Cerita Murid -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                    <span
+                        class="text-xs font-fun font-bold text-sky-800 uppercase tracking-widest px-4 py-1.5 rounded-full bg-sky-100 border-2 border-sky-300">
+                        Langkah 3 &bull; Projek Komik Digital
+                    </span>
+                    <h2 class="font-fun text-3xl sm:text-5xl font-bold text-slate-900 mt-3">
+                        Susun Strip Komik 4-Panel 📖
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-2 font-medium">
+                        Tukarkan jalan cerita 100 perkataan kamu kepada 4 babak komik! Setiap panel mewakili detik penting pengembaraan wira kamu:
+                    </p>
+                </div>
+
+                <!-- 4 Comic Panels Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                    <!-- Panel 1 -->
+                    <div class="comic-panel-fun p-5 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-fun font-bold px-3 py-1 rounded-xl bg-sky-400 text-slate-950 border border-sky-500">
+                                    Panel 1
+                                </span>
+                                <span class="text-xs font-fun font-bold text-slate-500">Pengenalan</span>
+                            </div>
+                            <div class="aspect-video rounded-2xl bg-sky-50 border-2 border-sky-200 flex flex-col items-center justify-center p-3 text-center mb-4">
+                                <span class="text-3xl mb-1">🏞️</span>
+                                <span class="text-[11px] font-fun font-bold text-sky-800">Watak & Latar</span>
+                            </div>
+                            <h4 class="font-fun text-base font-bold text-slate-900 mb-1">Mula Kisah</h4>
+                            <textarea id="panel-1-desc" rows="3"
+                                class="w-full text-xs p-3 rounded-xl bg-slate-50 border-2 border-slate-200 text-slate-800 font-medium focus:outline-none focus:border-sky-400"
+                                placeholder="Gambarkan suasana mula cerita... cth: Robi dan Sarah melihat sungai mula tercemar."></textarea>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-slate-100 text-[11px] text-sky-700 font-bold">
+                            💡 Tip: <em>"Character introduction, wide shot"</em>
+                        </div>
+                    </div>
+
+                    <!-- Panel 2 -->
+                    <div class="comic-panel-fun p-5 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-fun font-bold px-3 py-1 rounded-xl bg-purple-400 text-slate-950 border border-purple-500">
+                                    Panel 2
+                                </span>
+                                <span class="text-xs font-fun font-bold text-slate-500">Cabaran Sains</span>
+                            </div>
+                            <div class="aspect-video rounded-2xl bg-purple-50 border-2 border-purple-200 flex flex-col items-center justify-center p-3 text-center mb-4">
+                                <span class="text-3xl mb-1">⚠️</span>
+                                <span class="text-[11px] font-fun font-bold text-purple-800">Konflik / Masalah</span>
+                            </div>
+                            <h4 class="font-fun text-base font-bold text-slate-900 mb-1">Cabaran Tiba</h4>
+                            <textarea id="panel-2-desc" rows="3"
+                                class="w-full text-xs p-3 rounded-xl bg-slate-50 border-2 border-slate-200 text-slate-800 font-medium focus:outline-none focus:border-purple-400"
+                                placeholder="Apakah masalah yang berlaku? cth: Ikan-ikan terperangkap dalam sisa sampah."></textarea>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-slate-100 text-[11px] text-purple-700 font-bold">
+                            💡 Tip: <em>"Dramatic action, emergency challenge"</em>
+                        </div>
+                    </div>
+
+                    <!-- Panel 3 -->
+                    <div class="comic-panel-fun p-5 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-fun font-bold px-3 py-1 rounded-xl bg-emerald-400 text-slate-950 border border-emerald-500">
+                                    Panel 3
+                                </span>
+                                <span class="text-xs font-fun font-bold text-slate-500">Tindakan Inovasi</span>
+                            </div>
+                            <div class="aspect-video rounded-2xl bg-emerald-50 border-2 border-emerald-200 flex flex-col items-center justify-center p-3 text-center mb-4">
+                                <span class="text-3xl mb-1">⚡</span>
+                                <span class="text-[11px] font-fun font-bold text-emerald-800">Teknologi Berfungsi</span>
+                            </div>
+                            <h4 class="font-fun text-base font-bold text-slate-900 mb-1">Aksi Pintar</h4>
+                            <textarea id="panel-3-desc" rows="3"
+                                class="w-full text-xs p-3 rounded-xl bg-slate-50 border-2 border-slate-200 text-slate-800 font-medium focus:outline-none focus:border-emerald-400"
+                                placeholder="Bagaimana wira bertindak? cth: Robi guna jaring magnetik dan dron pengesan."></textarea>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-slate-100 text-[11px] text-emerald-700 font-bold">
+                            💡 Tip: <em>"Hero using futuristic science gadgets"</em>
+                        </div>
+                    </div>
+
+                    <!-- Panel 4 -->
+                    <div class="comic-panel-fun p-5 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-fun font-bold px-3 py-1 rounded-xl bg-pink-400 text-slate-950 border border-pink-500">
+                                    Panel 4
+                                </span>
+                                <span class="text-xs font-fun font-bold text-slate-500">Kejayaan</span>
+                            </div>
+                            <div class="aspect-video rounded-2xl bg-pink-50 border-2 border-pink-200 flex flex-col items-center justify-center p-3 text-center mb-4">
+                                <span class="text-3xl mb-1">🏆</span>
+                                <span class="text-[11px] font-fun font-bold text-pink-800">Penamat Gembira</span>
+                            </div>
+                            <h4 class="font-fun text-base font-bold text-slate-900 mb-1">Kemenangan Bersama</h4>
+                            <textarea id="panel-4-desc" rows="3"
+                                class="w-full text-xs p-3 rounded-xl bg-slate-50 border-2 border-slate-200 text-slate-800 font-medium focus:outline-none focus:border-pink-400"
+                                placeholder="Bagaimana akhir kisah? cth: Sungai kembali bersih dan semua gembira!"></textarea>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-slate-100 text-[11px] text-pink-700 font-bold">
+                            💡 Tip: <em>"Happy celebration, sparkling clean nature"</em>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mt-8 flex flex-wrap justify-center gap-4">
+                    <button onclick="autoFillComicFromStory()"
+                        class="btn-fun-3d px-6 py-3.5 rounded-2xl bg-sky-100 hover:bg-sky-200 text-sky-900 border-2 border-sky-300 font-fun text-xs font-bold transition flex items-center gap-2 cursor-pointer">
+                        <span>🪄</span> Auto-Isi Panel Daripada Cerita Anda
+                    </button>
+                    <button onclick="saveComicPanels()"
+                        class="btn-fun-3d px-6 py-3.5 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-fun text-xs font-bold border-2 border-emerald-500 transition flex items-center gap-2 cursor-pointer">
+                        <i data-lucide="save" class="w-4 h-4"></i> Simpan Draf Komik
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Next Module Banner -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="py-12 bg-white/80 border-t-2 border-slate-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="p-6 rounded-3xl bg-gradient-to-r from-purple-100 via-white to-purple-50 border-3 border-purple-300 shadow-md flex flex-col sm:flex-row items-center justify-between gap-6"
+                    data-aos="fade-up">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 rounded-2xl bg-purple-200 text-purple-800 flex items-center justify-center text-3xl border-2 border-purple-400 flex-shrink-0">
+                            🎬
+                        </div>
+                        <div>
+                            <span class="text-xs font-fun font-bold text-purple-800 uppercase tracking-wider">Misi Seterusnya</span>
+                            <h4 class="font-fun text-2xl font-bold text-slate-900">Langkah 3: Video AI & Google Vids</h4>
+                            <p class="text-xs text-slate-600 font-medium">Gabungkan gambar watak dan komik kamu menjadi video animasi bergerak dengan suara narator!</p>
+                        </div>
+                    </div>
+                    <a href="video_ai.html"
+                        class="btn-fun-3d flex-shrink-0 px-7 py-4 rounded-2xl bg-purple-400 hover:bg-purple-300 text-slate-950 font-fun font-bold text-sm border-2 border-purple-500 flex items-center gap-2">
+                        <span>Ke Modul Video</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="junior-footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="assets/js/junior-storage.js"></script>
+    <script src="assets/js/junior-nav.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        let currentStyle = 'pixar';
+
+        const STYLE_CONFIG = {
+            pixar: "3D Pixar Disney animation style, warm glowing sunlight, cinematic bokeh, vibrant colors, ultra-detailed, child-friendly illustration.",
+            anime: "Studio Ghibli aesthetic anime style, hand-drawn watercolor feel, whimsical fantasy, lush green details, gentle lighting, charming anime character.",
+            comic: "Vibrant Saturday morning cartoon comic book style, bold clean outlines, dynamic action pose, colorful cel shading, energetic feel.",
+            clay: "Cute friendly claymation stop-motion style, Aardman inspired, tactile soft clay textures, warm soft studio lighting, adorable character."
+        };
+
+        function selectArtStyle(styleKey) {
+            currentStyle = styleKey;
+            ['pixar', 'anime', 'comic', 'clay'].forEach(key => {
+                const btn = document.getElementById('style-' + key);
+                if (key === styleKey) {
+                    btn.className = "p-4 rounded-2xl bg-sky-100 border-3 border-sky-400 text-left transition-all cursor-pointer shadow-xs";
+                } else {
+                    btn.className = "p-4 rounded-2xl bg-white border-2 border-slate-200 hover:border-slate-400 text-left transition-all cursor-pointer";
+                }
+            });
+            updateImagePrompt();
+        }
+
+        function updateImagePrompt() {
+            const data = window.JuniorData ? window.JuniorData.getStory() : null;
+            const character = data ? data.character : "Robi si Robot Cilik";
+            const setting = data ? data.setting : "Tebing Sungai Biru";
+            const styleDesc = STYLE_CONFIG[currentStyle] || STYLE_CONFIG.pixar;
+
+            const promptText = `A cute and friendly hero character named ${character} in ${setting}, doing an inspiring science adventure mission, ${styleDesc}`;
+            document.getElementById('generated-image-prompt').textContent = promptText;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.JuniorData) {
+                const story = window.JuniorData.getStory();
+                if (story) {
+                    document.getElementById('synced-title').textContent = story.title || 'Cerita Anda';
+                    document.getElementById('synced-character').textContent = story.character || '-';
+                    document.getElementById('synced-setting').textContent = story.setting || '-';
+                    document.getElementById('synced-snippet').textContent = `"${(story.storyText || '').substring(0, 180)}..."`;
+
+                    const words = (story.storyText || '').trim().split(/\s+/).filter(Boolean).length;
+                    document.getElementById('synced-word-count').textContent = `${words} Perkataan`;
+                }
+                updateImagePrompt();
+            }
+        });
+
+        function autoFillComicFromStory() {
+            const data = window.JuniorData ? window.JuniorData.getStory() : null;
+            if (!data) return;
+
+            document.getElementById('panel-1-desc').value = `Watak ${data.character} berada di ${data.setting}. Suasana bermula dengan tenang.`;
+            document.getElementById('panel-2-desc').value = `Tiba-tiba satu masalah timbul berkaitan isu alam dan sains yang membahayakan kawasan.`;
+            document.getElementById('panel-3-desc').value = `${data.character} segera menggunakan kemahiran teknologi bijak untuk memulakan misi penyelamatan.`;
+            document.getElementById('panel-4-desc').value = `Misi berjaya! Kawasan kembali selamat dan semua meraikan kejayaan inovasi.`;
+            window.JuniorData.showToast("Panel komik berjaya diisi secara automatik! 🎨");
+        }
+
+        function saveComicPanels() {
+            window.JuniorData.markMissionDone(2);
+            window.JuniorData.showToast("Draf komik anda berjaya disimpan! 🌟");
+        }
+    </script>
+</body>
+
+</html>

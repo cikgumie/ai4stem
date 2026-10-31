@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Modul 3 Junior AI: Video AI Ceria & Google Vids untuk Murid Sekolah. Bina storyboard cerita dan hasilkan video animasi pengembaraan sains di Google Vids.">
+    <title>Modul 3: Video AI & Google Vids &bull; Bina Storyboard & Video | Junior AI</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Junior AI Custom Styles (Ceria & Fun) -->
+    <link rel="stylesheet" href="assets/css/junior.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        fun: ['"Fredoka"', 'cursive', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-fun-mesh bg-fun-dots text-slate-800 antialiased selection:bg-purple-200 selection:text-purple-900">
+
+    <!-- Navigation Header -->
+    <div id="junior-navbar-placeholder"></div>
+
+    <main class="pt-24 lg:pt-28 overflow-hidden">
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Header & Modul Badge -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="relative py-14 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="max-w-3xl">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100 border-2 border-purple-300 text-purple-800 text-xs font-fun font-bold mb-4"
+                        data-aos="fade-down">
+                        <span>🎬</span>
+                        MISI 3 DARI 4 &bull; VIDEO AI & GOOGLE VIDS
+                    </div>
+                    <h1 class="font-fun text-4xl sm:text-6xl font-bold text-slate-900 tracking-tight leading-tight mb-4"
+                        data-aos="fade-up">
+                        Bina Storyboard & Video <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500">
+                            Dalam Google Vids 🎥
+                        </span>
+                    </h1>
+                    <p class="text-slate-600 text-base sm:text-lg leading-relaxed font-medium" data-aos="fade-up"
+                        data-aos-delay="100">
+                        Kini masanya untuk menghidupkan cerita dan gambar kamu menjadi video klip animasi bergerak! Pelajari cara
+                        menyusun papan cerita (storyboard), menulis skrip suara latar, dan menghasilkan video menarik di
+                        Google Vids dengan mudah!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Red Thread: Sambungan Cerita Modul 1 & 2 -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="py-8 bg-white/70 border-y-2 border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="fun-card-purple p-6 sm:p-7">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-2xl bg-purple-100 border-2 border-purple-300 text-purple-700 flex items-center justify-center text-2xl flex-shrink-0">
+                                🎞️
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-fun font-bold uppercase tracking-widest text-purple-700">
+                                    Bahan Skrip dari Projek Anda
+                                </span>
+                                <h3 class="font-fun text-xl sm:text-2xl font-bold text-slate-900" id="synced-video-title">
+                                    Memuatkan Tajuk Cerita...
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs px-3.5 py-1 rounded-full bg-purple-100 text-purple-800 font-fun font-bold border border-purple-300">
+                                ⏱️ Sasaran Durasi: 60 Saat
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50/80 p-4 rounded-2xl border-2 border-purple-200 text-xs sm:text-sm text-slate-700 leading-relaxed font-medium italic"
+                        id="synced-video-story">
+                        "Memuatkan teks cerita murid..."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Langkah 1: Papan Cerita (Storyboard Creator) -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="py-14">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14" data-aos="fade-up">
+                    <span
+                        class="text-xs font-fun font-bold text-purple-800 uppercase tracking-widest px-4 py-1.5 rounded-full bg-purple-100 border-2 border-purple-300">
+                        Langkah 1: Susun Papan Cerita
+                    </span>
+                    <h2 class="font-fun text-3xl sm:text-4xl font-bold text-slate-900 mt-3">
+                        Papan Cerita 3-Babak (Storyboard) 📋
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-2 font-medium">
+                        Sebelum membuka Google Vids, murid profesional akan merancang video dalam 3 babak: Permulaan, Puncak Aksi, dan Penamat.
+                    </p>
+                </div>
+
+                <!-- 3 Scenes Interactive Storyboard Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                    <!-- Scene 1 -->
+                    <div class="fun-card-purple p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full bg-purple-100 text-purple-800 font-fun font-bold text-xs border border-purple-300">
+                                    Babak 1 (0-15s)
+                                </span>
+                                <span class="text-xs font-fun font-bold text-slate-500">Mula Kisah 🌅</span>
+                            </div>
+                            <h4 class="font-fun text-xl font-bold text-slate-900 mb-2">Pengenalan & Masalah</h4>
+                            <div class="space-y-3 mb-4">
+                                <div>
+                                    <label class="block text-[11px] font-fun font-bold text-slate-700 mb-1">Visual Adegan:</label>
+                                    <input type="text" id="scene-1-visual"
+                                        value="Gambar watak wira dan pemandangan kawasan yang mula tercemar."
+                                        class="w-full text-xs p-3 rounded-xl bg-slate-50 border-2 border-slate-200 text-slate-800 font-medium focus:outline-none focus:border-purple-400">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-fun font-bold text-slate-700 mb-1">Skrip Suara (Voiceover):</label>
+                                    <textarea id="scene-1-voice" rows="4"
+                                        class="w-full text-xs p-3 rounded-xl bg-slate-50 border-2 border-slate-200 text-slate-800 font-medium leading-relaxed focus:outline-none focus:border-purple-400">Pada tahun 2050, sebuah krisis alam dikesan. Sahabat wira kita melihat perubahan drastik yang mengancam hidupan.</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-3 border-t border-purple-100 text-xs text-purple-700 font-bold">
+                            🎵 Muzik: <em>Misteri & Perlahan</em>
+                        </div>
+                    </div>
+
+                    <!-- Scene 2 -->
+                    <div class="fun-card-pink p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full bg-pink-100 text-pink-800 font-fun font-bold text-xs border border-pink-300">
+                                    Babak 2 (15-40s)
+                                </span>
+                                <span class="text-xs font-fun font-bold text-slate-500">Puncak Aksi ⚡</span>
+                            </div>
+                            <h4 class="font-fun text-xl font-bold text-slate-900 mb-2">Misi Inovasi Sains</h4>
+                            <div class="space-y-3 mb-4">
+                                <div>
+                                    <label class="block text-[11px] font-fun font-bold text-slate-700 mb-1">Visual Adegan:</label>
+                                    <input type="text" id="scene-2-visual"
+                                        value="Watak mengaktifkan gajet robotik berteknologi pintar."
+                                        class="w-full text-xs p-3 rounded-xl bg-slate-50 border-2 border-slate-200 text-slate-800 font-medium focus:outline-none focus:border-pink-400">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-fun font-bold text-slate-700 mb-1">Skrip Suara (Voiceover):</label>
+                                    <textarea id="scene-2-voice" rows="4"
+                                        class="w-full text-xs p-3 rounded-xl bg-slate-50 border-2 border-slate-200 text-slate-800 font-medium leading-relaxed focus:outline-none focus:border-pink-400">Tanpa berlengah, teknologi pintar digerakkan. Sensor kecerdasan buatan mengesan punca masalah dan bertindak sepantas kilat!</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-3 border-t border-pink-100 text-xs text-pink-700 font-bold">
+                            🎵 Muzik: <em>Bertenaga & Mendebarkan</em>
+                        </div>
+                    </div>
+
+                    <!-- Scene 3 -->
+                    <div class="fun-card-emerald p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-fun font-bold text-xs border border-emerald-300">
+                                    Babak 3 (40-60s)
+                                </span>
+                                <span class="text-xs font-fun font-bold text-slate-500">Penamat 🏆</span>
+                            </div>
+                            <h4 class="font-fun text-xl font-bold text-slate-900 mb-2">Kejayaan & Kesedaran</h4>
+                            <div class="space-y-3 mb-4">
+                                <div>
+                                    <label class="block text-[11px] font-fun font-bold text-slate-700 mb-1">Visual Adegan:</label>
+                                    <input type="text" id="scene-3-visual"
+                                        value="Kawasan kembali bersih, semua watak tersenyum bangga."
+                                        class="w-full text-xs p-3 rounded-xl bg-slate-50 border-2 border-slate-200 text-slate-800 font-medium focus:outline-none focus:border-emerald-400">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-fun font-bold text-slate-700 mb-1">Skrip Suara (Voiceover):</label>
+                                    <textarea id="scene-3-voice" rows="4"
+                                        class="w-full text-xs p-3 rounded-xl bg-slate-50 border-2 border-slate-200 text-slate-800 font-medium leading-relaxed focus:outline-none focus:border-emerald-400">Berkat inovasi sains dan kerjasama, misi berjaya diselesaikan. Bersama kita memelihara bumi untuk masa hadapan!</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-3 border-t border-emerald-100 text-xs text-emerald-700 font-bold">
+                            🎵 Muzik: <em>Inspirasi & Ceria</em>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mt-8 flex flex-wrap justify-center gap-4">
+                    <button onclick="autoFillStoryboardFromStory()"
+                        class="btn-fun-3d px-6 py-3.5 rounded-2xl bg-purple-100 hover:bg-purple-200 text-purple-900 border-2 border-purple-300 font-fun text-xs font-bold transition flex items-center gap-2 cursor-pointer">
+                        <span>🪄</span> Auto-Jana Storyboard dari Cerita Anda
+                    </button>
+                    <button onclick="copyFullVoiceoverScript()"
+                        class="btn-fun-3d px-6 py-3.5 rounded-2xl bg-purple-400 hover:bg-purple-300 text-slate-950 font-fun text-xs font-bold border-2 border-purple-500 transition flex items-center gap-2 cursor-pointer">
+                        <i data-lucide="copy" class="w-4 h-4"></i> Salin Keseluruhan Skrip Suara
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Langkah 2: Panduan Langkah Demi Langkah Google Vids -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="py-14 bg-white/70 border-y-2 border-slate-100">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <span
+                        class="text-xs font-fun font-bold text-purple-800 uppercase tracking-widest px-4 py-1.5 rounded-full bg-purple-100 border-2 border-purple-300">
+                        Langkah 2: Amali Google Vids
+                    </span>
+                    <h2 class="font-fun text-3xl sm:text-4xl font-bold text-slate-900 mt-3">
+                        Langkah Membina Video di Google Vids 🚀
+                    </h2>
+                    <p class="text-slate-600 text-sm mt-2 max-w-xl mx-auto font-medium">
+                        Google Vids ialah aplikasi rasmi Google Workspace yang memudahkan murid menghasilkan video pendidikan lengkap dengan suara narator AI.
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+
+                    <!-- Step 1 in Vids -->
+                    <div class="fun-card-purple p-6 flex flex-col sm:flex-row gap-5 items-start">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-400 border-2 border-purple-500 text-slate-950 flex items-center justify-center font-fun text-xl font-bold flex-shrink-0 shadow-xs">
+                            1
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-fun text-xl font-bold text-slate-900">Buka Google Vids (Akaun Murid / DELIMa)</h4>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                                Layari laman rasmi <strong>vids.google.com</strong> atau buka melalui Google Drive sekolah (Klik <em>New &rarr; Google Vids</em>).
+                            </p>
+                            <span class="inline-block text-[11px] font-fun font-bold text-purple-800 bg-purple-100 px-3 py-1 rounded-full border border-purple-300">
+                                💡 Petua: Gunakan akaun sekolah untuk akses percuma tanpa iklan.
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 in Vids -->
+                    <div class="fun-card-cyan p-6 flex flex-col sm:flex-row gap-5 items-start">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-400 border-2 border-sky-500 text-slate-950 flex items-center justify-center font-fun text-xl font-bold flex-shrink-0 shadow-xs">
+                            2
+                        </div>
+                        <div class="space-y-2 w-full">
+                            <h4 class="font-fun text-xl font-bold text-slate-900">Gunakan "Help Me Create a Video" Prompt</h4>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                                Masukkan arahan prompt ringkas kepada pembantu AI Google Vids dengan memasukkan tema cerita anda:
+                            </p>
+                            <div class="bg-slate-900 p-3.5 rounded-2xl flex items-center justify-between shadow-inner">
+                                <span class="font-mono text-xs text-sky-300" id="vids-prompt-text">
+                                    "Buat satu video cerita murid 60 saat tentang penyelamatan alam sekitar oleh robot cilik berteknologi pintar."
+                                </span>
+                                <button onclick="JuniorData.copyText(document.getElementById('vids-prompt-text').innerText, this)"
+                                    class="btn-fun-3d text-xs px-3.5 py-1.5 bg-sky-400 hover:bg-sky-300 text-slate-950 rounded-xl font-fun font-bold border border-sky-500 flex items-center gap-1 cursor-pointer">
+                                    <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 in Vids -->
+                    <div class="fun-card-emerald p-6 flex flex-col sm:flex-row gap-5 items-start">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-400 border-2 border-emerald-500 text-slate-950 flex items-center justify-center font-fun text-xl font-bold flex-shrink-0 shadow-xs">
+                            3
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-fun text-xl font-bold text-slate-900">Masukkan Gambar Watak dari Modul 2</h4>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                                Muat naik (upload) imej watak yang telah kamu jana daripada <strong>Modul 2 (Photo AI)</strong> ke dalam babak-babak Google Vids. Susun mengikut papan cerita 3-babak tadi.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 in Vids -->
+                    <div class="fun-card-pink p-6 flex flex-col sm:flex-row gap-5 items-start">
+                        <div class="w-12 h-12 rounded-2xl bg-pink-400 border-2 border-pink-500 text-slate-950 flex items-center justify-center font-fun text-xl font-bold flex-shrink-0 shadow-xs">
+                            4
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-fun text-xl font-bold text-slate-900">Aktifkan Suara Narator AI (Voiceover)</h4>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                                Tampal skrip suara dari papan cerita di atas ke dalam bahagian <em>Voiceover</em>. Pilih nada suara yang ramah dan ceria. Google Vids akan membaca skrip anda secara automatik!
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Next Module Banner -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="py-12 bg-white/80 border-t-2 border-slate-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="p-6 rounded-3xl bg-gradient-to-r from-pink-100 via-white to-pink-50 border-3 border-pink-300 shadow-md flex flex-col sm:flex-row items-center justify-between gap-6"
+                    data-aos="fade-up">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 rounded-2xl bg-pink-200 text-pink-800 flex items-center justify-center text-3xl border-2 border-pink-400 flex-shrink-0">
+                            🎮
+                        </div>
+                        <div>
+                            <span class="text-xs font-fun font-bold text-pink-800 uppercase tracking-wider">Misi Akhir</span>
+                            <h4 class="font-fun text-2xl font-bold text-slate-900">Langkah 4: Gamifikasi AI</h4>
+                            <p class="text-xs text-slate-600 font-medium">Tukar plot cabaran cerita dan video anda menjadi game interaktif di mana kawan-kawan boleh bermain dan mengumpul markah!</p>
+                        </div>
+                    </div>
+                    <a href="gamifikasi_ai.html"
+                        class="btn-fun-3d flex-shrink-0 px-7 py-4 rounded-2xl bg-pink-400 hover:bg-pink-300 text-slate-950 font-fun font-bold text-sm border-2 border-pink-500 flex items-center gap-2">
+                        <span>Ke Modul Game</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="junior-footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="assets/js/junior-storage.js"></script>
+    <script src="assets/js/junior-nav.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.JuniorData) {
+                const story = window.JuniorData.getStory();
+                if (story) {
+                    document.getElementById('synced-video-title').textContent = story.title || 'Tajuk Cerita Anda';
+                    document.getElementById('synced-video-story').textContent = `"${story.storyText || ''}"`;
+                    document.getElementById('vids-prompt-text').textContent = `"Hasilkan video pengembaraan murid 60 saat bertajuk ${story.title || 'Misi Sains'} lakonan ${story.character || 'Wira STEM'} di ${story.setting || 'Bumi'}"`;
+                }
+            }
+        });
+
+        function autoFillStoryboardFromStory() {
+            const data = window.JuniorData ? window.JuniorData.getStory() : null;
+            if (!data) return;
+
+            document.getElementById('scene-1-visual').value = `Watak ${data.character} di ${data.setting} melihat permulaan cabaran.`;
+            document.getElementById('scene-1-voice').value = `Di ${data.setting}, ${data.character} menyedari ada sesuatu yang tidak kena. Masa depan memerlukan tindakan segera!`;
+
+            document.getElementById('scene-2-visual').value = `${data.character} menggunakan teknologi sains untuk menyelesaikan masalah.`;
+            document.getElementById('scene-2-voice').value = `Dengan pantas, inovasi teknologi digerakkan. Sensor AI menganalisis setiap sudut untuk mencari jalan keluar paling bijak.`;
+
+            document.getElementById('scene-3-visual').value = `Kejayaan dicapai, kawasan kembali ceria dan selamat.`;
+            document.getElementById('scene-3-voice').value = `Akhirnya misi berjaya! Bersama-sama ${data.character}, kita buktikan sains dan teknologi mampu menyelamatkan dunia.`;
+
+            window.JuniorData.markMissionDone(3);
+            window.JuniorData.showToast("Storyboard berjaya diisi secara automatik berdasarkan cerita anda! 🎬");
+        }
+
+        function copyFullVoiceoverScript() {
+            const v1 = document.getElementById('scene-1-voice').value;
+            const v2 = document.getElementById('scene-2-voice').value;
+            const v3 = document.getElementById('scene-3-voice').value;
+            const fullScript = `SKRIP SUARA GOOGLE VIDS (60 SAAT):\n\n[Babak 1 - Mula]\n${v1}\n\n[Babak 2 - Aksi]\n${v2}\n\n[Babak 3 - Penamat]\n${v3}`;
+            window.JuniorData.copyText(fullScript);
+        }
+    </script>
+</body>
+
+</html>

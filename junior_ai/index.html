@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Junior AI - Hub Pembelajaran AI Ceria & Interaktif untuk Murid Sekolah. Cipta cerita 100 perkataan, gambar watak, komik, video Google Vids, dan game sendiri.">
+    <title>Junior AI | Explorasi Ceria AI untuk Murid Sekolah</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts: Fredoka & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Junior AI Custom Styles (Ceria & Fun) -->
+    <link rel="stylesheet" href="assets/css/junior.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        fun: ['"Fredoka"', 'cursive', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-fun-mesh bg-fun-dots text-slate-800 antialiased selection:bg-amber-200 selection:text-amber-900">
+
+    <!-- Navigation Header -->
+    <div id="junior-navbar-placeholder"></div>
+
+    <main class="pt-24 lg:pt-28 overflow-hidden">
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Hero Section: Explorasi Junior AI Ceria -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="relative py-16 lg:py-24 overflow-hidden">
+            <!-- Decorative Pastel Blobs -->
+            <div class="absolute top-10 left-10 w-72 h-72 bg-amber-200/50 rounded-full blur-3xl pointer-events-none animate-float"></div>
+            <div class="absolute bottom-10 right-10 w-80 h-80 bg-pink-200/50 rounded-full blur-3xl pointer-events-none animate-float" style="animation-delay: 2s;"></div>
+            <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-sky-200/50 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-4xl mx-auto" data-aos="fade-up">
+
+                    <!-- Cheerful Live Badge -->
+                    <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border-2 border-amber-300 shadow-sm mb-6 animate-bouncy">
+                        <span class="text-xl">🌟</span>
+                        <span class="font-fun text-xs sm:text-sm font-bold text-amber-900 uppercase tracking-wide">
+                            Explorasi Junior &bull; 4 Misi Kreatif & Seronok!
+                        </span>
+                        <span class="text-xl">🎉</span>
+                    </div>
+
+                    <!-- Main Headline -->
+                    <h1 class="font-fun text-4xl sm:text-6xl lg:text-7xl font-bold text-slate-900 tracking-tight leading-[1.18] mb-6">
+                        Jana Idea, Cipta Gambar, <br class="hidden sm:inline">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-pink-500 to-sky-500">
+                            Video & Game Sendiri! 🚀
+                        </span>
+                    </h1>
+
+                    <p class="text-base sm:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed font-medium">
+                        Satu cerita, empat karya digital hebat! Mulakan dengan menulis cerita 100 patah perkataan bersama AI, kemudian tukarkan kepada komik watak, video di Google Vids, dan game interaktif!
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                        <a href="generatif_ai.html"
+                            class="btn-fun-3d w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 text-slate-900 font-fun font-bold text-lg border-2 border-emerald-300 flex items-center justify-center gap-2.5">
+                            <span class="text-xl">✍️</span>
+                            <span>Mula Misi 1: Tulis Cerita</span>
+                        </a>
+                        <a href="#alur-projek"
+                            class="btn-fun-3d w-full sm:w-auto px-8 py-4 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 border-2 border-slate-200 font-fun font-bold text-lg flex items-center justify-center gap-2.5">
+                            <span class="text-xl">🗺️</span>
+                            <span>Lihat Peta 4 Misi</span>
+                        </a>
+                    </div>
+
+                    <!-- Live Status: Cerita Aktif Pelajar -->
+                    <div id="hero-story-banner"
+                        class="fun-card-yellow p-5 sm:p-6 text-left max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-2xl bg-amber-100 border-2 border-amber-300 text-amber-700 flex items-center justify-center text-3xl flex-shrink-0">
+                                🤖
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <h4 class="font-fun text-base font-bold text-slate-900" id="hero-story-title">Memuatkan Cerita Anda...</h4>
+                                    <span id="hero-story-badge"
+                                        class="text-[10px] px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 font-fun font-bold border border-amber-300">Tersimpan</span>
+                                </div>
+                                <p class="text-xs text-slate-600 line-clamp-1 font-medium mt-0.5" id="hero-story-snippet">
+                                    Cerita anda akan dibawa secara automatik ke dalam modul gambar, video dan game!
+                                </p>
+                            </div>
+                        </div>
+                        <a href="generatif_ai.html#editor"
+                            class="flex-shrink-0 text-xs font-fun font-bold px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 border-2 border-amber-500 shadow-xs transition-all flex items-center gap-1.5">
+                            <i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Buka Editor
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- The Connected Red Thread: Peta Alur Projek Ceria -->
+        <!-- ═══════════════════════════════════════ -->
+        <section id="alur-projek" class="py-20 bg-white/70 border-y-2 border-slate-100 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                    <span class="text-xs font-fun font-bold uppercase tracking-widest text-sky-700 px-4 py-1.5 rounded-full bg-sky-100 border-2 border-sky-200">
+                        Alur Projek Murid Bersepadu
+                    </span>
+                    <h2 class="font-fun text-3xl sm:text-5xl font-bold text-slate-900 mt-4 mb-3">
+                        1 Kisah Menarik &bull; 4 Karya Digital Hebat!
+                    </h2>
+                    <p class="text-slate-600 text-base font-medium">
+                        Semua modul saling berkaitan! Kamu tidak perlu pening fikir idea baru. Ikuti 4 langkah menyeronokkan ini:
+                    </p>
+                </div>
+
+                <!-- 4 Step Journey Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                    <!-- Step 1 -->
+                    <div class="fun-card-emerald p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="w-12 h-12 rounded-2xl bg-emerald-100 border-2 border-emerald-300 text-emerald-800 flex items-center justify-center font-fun text-xl font-bold">
+                                    01
+                                </span>
+                                <span class="text-xs font-fun font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
+                                    Mula Kisah
+                                </span>
+                            </div>
+                            <div class="text-3xl mb-2">✍️</div>
+                            <h3 class="font-fun text-2xl font-bold text-slate-900 mb-2">Generatif AI</h3>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed mb-4">
+                                Bersembang dengan AI pintar untuk membina plot sains & watak menarik.
+                            </p>
+                            <div class="p-3.5 rounded-2xl bg-emerald-50 border-2 border-emerald-200 mb-5">
+                                <p class="text-[11px] text-emerald-800 font-fun font-bold mb-0.5">🎯 Hasil Murid:</p>
+                                <p class="text-xs text-slate-700 font-semibold">Cerita 100 patah perkataan bertema STEM.</p>
+                            </div>
+                        </div>
+                        <a href="generatif_ai.html"
+                            class="btn-fun-3d block text-center py-3 px-4 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-fun font-bold text-xs border-2 border-emerald-500">
+                            Teroka Modul 1 &rarr;
+                        </a>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="fun-card-cyan p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="200">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="w-12 h-12 rounded-2xl bg-sky-100 border-2 border-sky-300 text-sky-800 flex items-center justify-center font-fun text-xl font-bold">
+                                    02
+                                </span>
+                                <span class="text-xs font-fun font-bold px-3 py-1 rounded-full bg-sky-100 text-sky-800 border border-sky-300">
+                                    Visual & Seni
+                                </span>
+                            </div>
+                            <div class="text-3xl mb-2">🎨</div>
+                            <h3 class="font-fun text-2xl font-bold text-slate-900 mb-2">Photo & Komik AI</h3>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed mb-4">
+                                Ambil watak dari cerita 100 perkataan tadi untuk menjana gambar dan komik 4-panel.
+                            </p>
+                            <div class="p-3.5 rounded-2xl bg-sky-50 border-2 border-sky-200 mb-5">
+                                <p class="text-[11px] text-sky-800 font-fun font-bold mb-0.5">🎯 Hasil Murid:</p>
+                                <p class="text-xs text-slate-700 font-semibold">Imej watak konsisten & Komik 4-panel siap.</p>
+                            </div>
+                        </div>
+                        <a href="photo_ai.html"
+                            class="btn-fun-3d block text-center py-3 px-4 rounded-xl bg-sky-400 hover:bg-sky-300 text-slate-950 font-fun font-bold text-xs border-2 border-sky-500">
+                            Teroka Modul 2 &rarr;
+                        </a>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="fun-card-purple p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="w-12 h-12 rounded-2xl bg-purple-100 border-2 border-purple-300 text-purple-800 flex items-center justify-center font-fun text-xl font-bold">
+                                    03
+                                </span>
+                                <span class="text-xs font-fun font-bold px-3 py-1 rounded-full bg-purple-100 text-purple-800 border border-purple-300">
+                                    Animasi
+                                </span>
+                            </div>
+                            <div class="text-3xl mb-2">🎬</div>
+                            <h3 class="font-fun text-2xl font-bold text-slate-900 mb-2">Video AI & Vids</h3>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed mb-4">
+                                Susun papan cerita 3-babak dan hidupkan video dengan suara narator di Google Vids.
+                            </p>
+                            <div class="p-3.5 rounded-2xl bg-purple-50 border-2 border-purple-200 mb-5">
+                                <p class="text-[11px] text-purple-800 font-fun font-bold mb-0.5">🎯 Hasil Murid:</p>
+                                <p class="text-xs text-slate-700 font-semibold">Papan cerita & video Google Vids 60 saat.</p>
+                            </div>
+                        </div>
+                        <a href="video_ai.html"
+                            class="btn-fun-3d block text-center py-3 px-4 rounded-xl bg-purple-400 hover:bg-purple-300 text-slate-950 font-fun font-bold text-xs border-2 border-purple-500">
+                            Teroka Modul 3 &rarr;
+                        </a>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="fun-card-pink p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="400">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="w-12 h-12 rounded-2xl bg-pink-100 border-2 border-pink-300 text-pink-800 flex items-center justify-center font-fun text-xl font-bold">
+                                    04
+                                </span>
+                                <span class="text-xs font-fun font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-800 border border-pink-300">
+                                    Interaktif
+                                </span>
+                            </div>
+                            <div class="text-3xl mb-2">🎮</div>
+                            <h3 class="font-fun text-2xl font-bold text-slate-900 mb-2">Gamifikasi AI</h3>
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed mb-4">
+                                Tukarkan plot cabaran sains cerita kamu jadi game kuiz interaktif bersama rakan!
+                            </p>
+                            <div class="p-3.5 rounded-2xl bg-pink-50 border-2 border-pink-200 mb-5">
+                                <p class="text-[11px] text-pink-800 font-fun font-bold mb-0.5">🎯 Hasil Murid:</p>
+                                <p class="text-xs text-slate-700 font-semibold">Game Kuiz Quizizz / Wordwall dari cerita.</p>
+                            </div>
+                        </div>
+                        <a href="gamifikasi_ai.html"
+                            class="btn-fun-3d block text-center py-3 px-4 rounded-xl bg-pink-400 hover:bg-pink-300 text-slate-950 font-fun font-bold text-xs border-2 border-pink-500">
+                            Teroka Modul 4 &rarr;
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Kad Modul Lengkap & Mesra Murid -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                    <div>
+                        <span class="text-xs font-fun font-bold text-amber-600 uppercase tracking-widest px-3 py-1 rounded-full bg-amber-100 border border-amber-300">
+                            Teroka Langkah demi Langkah
+                        </span>
+                        <h2 class="font-fun text-3xl sm:text-4xl font-bold text-slate-900 mt-2">
+                            Pilih Modul & Mula Beraksi! ✨
+                        </h2>
+                    </div>
+                    <p class="text-slate-600 text-sm max-w-md mt-2 md:mt-0 font-medium">
+                        Setiap modul disertakan panduan langkah demi langkah yang sangat mudah difahami, formula prompt mesra kanak-kanak, dan alatan terus di skrin.
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+
+                    <!-- Modul 1 -->
+                    <div class="fun-card-emerald p-6 sm:p-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                            <div class="lg:col-span-8 space-y-3">
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-fun font-bold border border-emerald-300">
+                                        Modul 1 &bull; Asas Teks & Cerita
+                                    </span>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
+                                        ⏱️ 20 Minit
+                                    </span>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
+                                        ⭐ Tahap: Mudah
+                                    </span>
+                                </div>
+                                <h3 class="font-fun text-2xl sm:text-3xl font-bold text-slate-900">
+                                    ✍️ Generatif AI: Cipta Cerita STEM 100 Patah Perkataan
+                                </h3>
+                                <p class="text-slate-600 text-sm leading-relaxed font-medium">
+                                    Ketahui cara memberi arahan (prompting) yang tepat kepada Google Gemini atau ChatGPT. Murid akan melatih kemahiran komunikasi, membina watak saintis cilik, dan menghasilkan cerita 100 perkataan dengan kaunter perkataan interaktif langsung.
+                                </p>
+                                <div class="flex flex-wrap gap-4 pt-2 text-xs text-slate-600 font-semibold">
+                                    <span class="flex items-center gap-1.5 text-emerald-700"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Formula R-S-M (Rakan, Situasi, Misi)</span>
+                                    <span class="flex items-center gap-1.5 text-emerald-700"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Live Word Counter (100 Perkataan)</span>
+                                    <span class="flex items-center gap-1.5 text-emerald-700"><i data-lucide="check" class="w-4 h-4 text-emerald-500"></i> Simpan Cerita Automatik</span>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-4 flex flex-col justify-center items-start lg:items-end">
+                                <a href="generatif_ai.html"
+                                    class="btn-fun-3d w-full sm:w-auto px-7 py-4 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-fun font-bold text-sm border-2 border-emerald-500 flex items-center justify-center gap-2">
+                                    <span>Tulis Cerita Sekarang</span>
+                                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modul 2 -->
+                    <div class="fun-card-cyan p-6 sm:p-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                            <div class="lg:col-span-8 space-y-3">
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <span class="px-3 py-1 rounded-full bg-sky-100 text-sky-800 text-xs font-fun font-bold border border-sky-300">
+                                        Modul 2 &bull; Visual & Ilustrasi
+                                    </span>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
+                                        ⏱️ 25 Minit
+                                    </span>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
+                                        ⭐ Sangat Kreatif
+                                    </span>
+                                </div>
+                                <h3 class="font-fun text-2xl sm:text-3xl font-bold text-slate-900">
+                                    🎨 Photo & Komik AI: Dari Teks Menjadi Karya Seni
+                                </h3>
+                                <p class="text-slate-600 text-sm leading-relaxed font-medium">
+                                    Gunakan watak dan latar tempat daripada cerita Modul 1! Pelajari kata kunci gaya seni (Pixar 3D, Anime Ghibli, Komik Sains), jana ilustrasi berkualiti, dan susun strip komik 4-panel yang memukau.
+                                </p>
+                                <div class="flex flex-wrap gap-4 pt-2 text-xs text-slate-600 font-semibold">
+                                    <span class="flex items-center gap-1.5 text-sky-700"><i data-lucide="check" class="w-4 h-4 text-sky-500"></i> Sambung Automatik Cerita Modul 1</span>
+                                    <span class="flex items-center gap-1.5 text-sky-700"><i data-lucide="check" class="w-4 h-4 text-sky-500"></i> Penjana Prompt Gambar Watak</span>
+                                    <span class="flex items-center gap-1.5 text-sky-700"><i data-lucide="check" class="w-4 h-4 text-sky-500"></i> Templat Komik 4-Panel</span>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-4 flex flex-col justify-center items-start lg:items-end">
+                                <a href="photo_ai.html"
+                                    class="btn-fun-3d w-full sm:w-auto px-7 py-4 rounded-2xl bg-sky-400 hover:bg-sky-300 text-slate-950 font-fun font-bold text-sm border-2 border-sky-500 flex items-center justify-center gap-2">
+                                    <span>Jana Gambar & Komik</span>
+                                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modul 3 -->
+                    <div class="fun-card-purple p-6 sm:p-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                            <div class="lg:col-span-8 space-y-3">
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <span class="px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-xs font-fun font-bold border border-purple-300">
+                                        Modul 3 &bull; Video & Animasi
+                                    </span>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
+                                        ⏱️ 30 Minit
+                                    </span>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
+                                        🎬 Google Vids
+                                    </span>
+                                </div>
+                                <h3 class="font-fun text-2xl sm:text-3xl font-bold text-slate-900">
+                                    🎬 Video AI: Bina Storyboard & Video di Google Vids
+                                </h3>
+                                <p class="text-slate-600 text-sm leading-relaxed font-medium">
+                                    Pindahkan komik dan teks cerita murid ke dalam bentuk papan cerita 3-babak (Mula, Puncak, Penamat). Panduan langkah demi langkah menggunakan Google Vids untuk menggabungkan visual, suara narator, dan muzik latar.
+                                </p>
+                                <div class="flex flex-wrap gap-4 pt-2 text-xs text-slate-600 font-semibold">
+                                    <span class="flex items-center gap-1.5 text-purple-700"><i data-lucide="check" class="w-4 h-4 text-purple-500"></i> Papan Cerita 3-Babak Interaktif</span>
+                                    <span class="flex items-center gap-1.5 text-purple-700"><i data-lucide="check" class="w-4 h-4 text-purple-500"></i> Panduan Google Vids DELIMa KPM</span>
+                                    <span class="flex items-center gap-1.5 text-purple-700"><i data-lucide="check" class="w-4 h-4 text-purple-500"></i> Skrip Suara Latar Siap Salin</span>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-4 flex flex-col justify-center items-start lg:items-end">
+                                <a href="video_ai.html"
+                                    class="btn-fun-3d w-full sm:w-auto px-7 py-4 rounded-2xl bg-purple-400 hover:bg-purple-300 text-slate-950 font-fun font-bold text-sm border-2 border-purple-500 flex items-center justify-center gap-2">
+                                    <span>Bina Video Vids</span>
+                                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modul 4 -->
+                    <div class="fun-card-pink p-6 sm:p-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                            <div class="lg:col-span-8 space-y-3">
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <span class="px-3 py-1 rounded-full bg-pink-100 text-pink-800 text-xs font-fun font-bold border border-pink-300">
+                                        Modul 4 &bull; Permainan Digital
+                                    </span>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
+                                        ⏱️ 25 Minit
+                                    </span>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-medium">
+                                        🎮 Sangat Seronok
+                                    </span>
+                                </div>
+                                <h3 class="font-fun text-2xl sm:text-3xl font-bold text-slate-900">
+                                    🎮 Gamifikasi AI: Cipta Game Berdasarkan Cerita Murid
+                                </h3>
+                                <p class="text-slate-600 text-sm leading-relaxed font-medium">
+                                    Jadikan cerita murid sebagai dunia game! Pelajari cara menukar plot cabaran cerita kepada kuiz cabaran interaktif di Quizizz AI atau Wordwall di mana rakan sekelas boleh bermain dan mengumpul markah.
+                                </p>
+                                <div class="flex flex-wrap gap-4 pt-2 text-xs text-slate-600 font-semibold">
+                                    <span class="flex items-center gap-1.5 text-pink-700"><i data-lucide="check" class="w-4 h-4 text-pink-500"></i> AI Quiz Prompt Generator</span>
+                                    <span class="flex items-center gap-1.5 text-pink-700"><i data-lucide="check" class="w-4 h-4 text-pink-500"></i> Mini Game Playable Demo Langsung</span>
+                                    <span class="flex items-center gap-1.5 text-pink-700"><i data-lucide="check" class="w-4 h-4 text-pink-500"></i> 4 Lencana Keberhasilan Projek</span>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-4 flex flex-col justify-center items-start lg:items-end">
+                                <a href="gamifikasi_ai.html"
+                                    class="btn-fun-3d w-full sm:w-auto px-7 py-4 rounded-2xl bg-pink-400 hover:bg-pink-300 text-slate-950 font-fun font-bold text-sm border-2 border-pink-500 flex items-center justify-center gap-2">
+                                    <span>Bina Game AI</span>
+                                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- Kod Etika & Panduan Keselamatan Murid Ceria -->
+        <!-- ═══════════════════════════════════════ -->
+        <section class="py-16 bg-white/80 border-t-2 border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-fun font-bold text-amber-700 uppercase tracking-widest px-4 py-1.5 rounded-full bg-amber-100 border-2 border-amber-300">
+                        🌟 Etika Murid Pintar
+                    </span>
+                    <h2 class="font-fun text-3xl font-bold text-slate-900 mt-3">
+                        3 Peraturan Emas Menggunakan AI
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="fun-card p-6 border-2 border-emerald-200 text-center">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4 text-3xl border-2 border-emerald-300">
+                            🧠
+                        </div>
+                        <h4 class="font-fun text-xl font-bold text-slate-900 mb-2">1. AI Pembantu Idea</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed font-medium">
+                            Gunakan AI untuk mencetuskan inspirasi cerita, bukan meniru bulat-bulat. Kamu adalah pencipta utama cerita kamu!
+                        </p>
+                    </div>
+
+                    <div class="fun-card p-6 border-2 border-sky-200 text-center">
+                        <div class="w-14 h-14 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center mx-auto mb-4 text-3xl border-2 border-sky-300">
+                            🔍
+                        </div>
+                        <h4 class="font-fun text-xl font-bold text-slate-900 mb-2">2. Semak Fakta Sains</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed font-medium">
+                            Kadangkala AI boleh tersilap. Sentiasa semak fakta sains dan ejaan bahasa bersama cikgu atau buku rujukan sekolah.
+                        </p>
+                    </div>
+
+                    <div class="fun-card p-6 border-2 border-pink-200 text-center">
+                        <div class="w-14 h-14 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center mx-auto mb-4 text-3xl border-2 border-pink-300">
+                            🔒
+                        </div>
+                        <h4 class="font-fun text-xl font-bold text-slate-900 mb-2">3. Jaga Maklumat Diri</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed font-medium">
+                            Jangan masukkan nama penuh sebenar, nombor telefon, atau alamat rumah dalam kotak AI demi keselamatan diri.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="junior-footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="assets/js/junior-storage.js"></script>
+    <script src="assets/js/junior-nav.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        // Initialize hero story banner with active saved story
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.JuniorData) {
+                const story = window.JuniorData.getStory();
+                const titleEl = document.getElementById('hero-story-title');
+                const snippetEl = document.getElementById('hero-story-snippet');
+                const badgeEl = document.getElementById('hero-story-badge');
+
+                if (story && titleEl && snippetEl) {
+                    titleEl.textContent = story.title || 'Cerita Projek Anda';
+                    snippetEl.textContent = `"${(story.storyText || '').substring(0, 75)}..."`;
+                    if (window.JuniorData.hasCustomStory()) {
+                        badgeEl.textContent = "Cerita Anda Aktif ⭐";
+                        badgeEl.className = "text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-fun font-bold border border-emerald-300";
+                    } else {
+                        badgeEl.textContent = "Cerita Contoh Sedia Diguna 💡";
+                        badgeEl.className = "text-[10px] px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 font-fun font-bold border border-amber-300";
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

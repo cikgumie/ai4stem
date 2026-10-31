@@ -1,0 +1,200 @@
+/* ==========================================================================
+   JUNIOR AI - Ceria & Fun Design System (Edisi Murid Sekolah)
+   Tema: Riang, Ceria, Bertenaga, Mesra Kanak-kanak & Interaktif
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+    --fun-yellow: #f59e0b;
+    --fun-orange: #fb923c;
+    --fun-cyan: #06b6d4;
+    --fun-blue: #0ea5e9;
+    --fun-pink: #ec4899;
+    --fun-green: #10b981;
+    --fun-purple: #8b5cf6;
+    --fun-bg: #f8faff;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #f8faff;
+    color: #1e293b;
+    overflow-x: hidden;
+}
+
+.font-fun {
+    font-family: 'Fredoka', cursive, sans-serif;
+}
+
+.font-display {
+    font-family: 'Fredoka', sans-serif;
+}
+
+.font-code {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Polka Dots & Playful Backgrounds */
+.bg-fun-dots {
+    background-color: #f8faff;
+    background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px), radial-gradient(#e2e8f0 1.5px, #f8faff 1.5px);
+    background-size: 32px 32px;
+    background-position: 0 0, 16px 16px;
+}
+
+.bg-fun-mesh {
+    background: radial-gradient(at 10% 15%, rgba(254, 240, 138, 0.45) 0px, transparent 50%),
+                radial-gradient(at 90% 10%, rgba(186, 230, 253, 0.5) 0px, transparent 50%),
+                radial-gradient(at 50% 80%, rgba(251, 207, 232, 0.45) 0px, transparent 50%),
+                radial-gradient(at 80% 80%, rgba(221, 214, 254, 0.4) 0px, transparent 50%),
+                #f8faff;
+}
+
+/* Fun 3D Cards */
+.fun-card {
+    background: #ffffff;
+    border-radius: 1.75rem;
+    box-shadow: 0 10px 0 #e2e8f0, 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.fun-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 0 #cbd5e1, 0 25px 30px -5px rgba(0, 0, 0, 0.08);
+}
+
+.fun-card-emerald {
+    background: #ffffff;
+    border: 3px solid #6ee7b7;
+    border-radius: 1.75rem;
+    box-shadow: 0 8px 0 #a7f3d0, 0 15px 20px -5px rgba(16, 185, 129, 0.08);
+}
+.fun-card-emerald:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 0 #6ee7b7, 0 22px 25px -5px rgba(16, 185, 129, 0.15);
+}
+
+.fun-card-cyan {
+    background: #ffffff;
+    border: 3px solid #7dd3fc;
+    border-radius: 1.75rem;
+    box-shadow: 0 8px 0 #bae6fd, 0 15px 20px -5px rgba(14, 165, 233, 0.08);
+}
+.fun-card-cyan:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 0 #7dd3fc, 0 22px 25px -5px rgba(14, 165, 233, 0.15);
+}
+
+.fun-card-purple {
+    background: #ffffff;
+    border: 3px solid #c4b5fd;
+    border-radius: 1.75rem;
+    box-shadow: 0 8px 0 #ddd6fe, 0 15px 20px -5px rgba(139, 92, 246, 0.08);
+}
+.fun-card-purple:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 0 #c4b5fd, 0 22px 25px -5px rgba(139, 92, 246, 0.15);
+}
+
+.fun-card-pink {
+    background: #ffffff;
+    border: 3px solid #f9a8d4;
+    border-radius: 1.75rem;
+    box-shadow: 0 8px 0 #fbcfe8, 0 15px 20px -5px rgba(236, 72, 153, 0.08);
+}
+.fun-card-pink:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 0 #f9a8d4, 0 22px 25px -5px rgba(236, 72, 153, 0.15);
+}
+
+.fun-card-yellow {
+    background: #ffffff;
+    border: 3px solid #fde047;
+    border-radius: 1.75rem;
+    box-shadow: 0 8px 0 #fef08a, 0 15px 20px -5px rgba(234, 179, 8, 0.08);
+}
+.fun-card-yellow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 0 #fde047, 0 22px 25px -5px rgba(234, 179, 8, 0.15);
+}
+
+/* 3D Chunky Buttons */
+.btn-fun-3d {
+    transition: all 0.15s ease-in-out;
+    box-shadow: 0 5px 0 rgba(0, 0, 0, 0.15);
+}
+
+.btn-fun-3d:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 0 rgba(0, 0, 0, 0.15);
+}
+
+.btn-fun-3d:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Float Animation */
+@keyframes floatGentle {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(1deg);
+    }
+}
+
+.animate-float {
+    animation: floatGentle 4s ease-in-out infinite;
+}
+
+@keyframes pulseBouncy {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.animate-bouncy {
+    animation: pulseBouncy 2.5s ease-in-out infinite;
+}
+
+/* Comic Panel Box in Fun Theme */
+.comic-panel-fun {
+    background: #ffffff;
+    border: 3px solid #cbd5e1;
+    border-radius: 1.5rem;
+    box-shadow: 0 6px 0 #e2e8f0;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s ease;
+}
+
+.comic-panel-fun:hover {
+    border-color: #0ea5e9;
+    box-shadow: 0 10px 0 #bae6fd;
+    transform: translateY(-3px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 9999px;
+    border: 2px solid #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
